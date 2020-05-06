@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Tasker.Models;
 
-namespace Tasker.InitialDataProviders
+namespace Tasker.Data
 {
-    class InitialTeachers
+    public static class InitialTeachers
     {
-        public ICollection<Teacher> Provide()
+        public static List<Teacher> Provide()
         {
             //new Teacher("Stanisław","Zawiślak","naszdom44@gmail.com","",""),
             return new List<Teacher>
