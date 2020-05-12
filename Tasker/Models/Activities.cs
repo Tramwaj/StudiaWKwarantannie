@@ -9,7 +9,7 @@ namespace Tasker.Models
 {
     public class Activities
     {
-        public List<Activity> All { get; }
+        public List<Activity> All { get; set; }
         public Activities()
         {
             All = new List<Activity>();

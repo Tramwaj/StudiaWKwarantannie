@@ -27,6 +27,9 @@ namespace Tasker
             
             cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
 
+            bindingSource1.DataSource = activities.All;
+            //bindingSource1.
+
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -53,8 +56,9 @@ namespace Tasker
             //lstEvents.Items.AddRange(events.ToString());
         }
         private void ShowAllEvents()
-        {            
-            olvEvents.SetObjects(activities.All);            
+        {
+            dlvActivities.Refresh();
+            //dlvActivities.SetObjects(activities.All);            
             //OLVDataObject
             
         }       
@@ -75,7 +79,7 @@ namespace Tasker
 
         private void olvEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<Lesson> temp = olvEvents.SelectedObjects.OfType<Lesson>().ToList();
+            List<Lesson> temp = dlvActivities.SelectedObjects.OfType<Lesson>().ToList();
             //olvEvents.AccessibilityObjectacce
             if (temp.Any())
             {
@@ -86,6 +90,11 @@ namespace Tasker
                     label1.Text = typ;
                 //}
             }
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
