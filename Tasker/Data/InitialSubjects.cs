@@ -9,7 +9,7 @@ namespace Tasker.Data
 {
     public static class InitialSubjects
     {
-        public static List<Subject> Provide(ICollection<Teacher> teachers)
+        public static ICollection<Subject> Provide(ICollection<Teacher> teachers)
         {
             return new List<Subject>
             {
