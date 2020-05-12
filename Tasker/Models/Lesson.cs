@@ -34,6 +34,8 @@ namespace Tasker.Models
                 LessonStatus.Finished;                
         }
 
+        //TODO: Equals
+
         public override string ToString()
         {
             var sb = new StringBuilder(base.ToString());

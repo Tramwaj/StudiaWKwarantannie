@@ -36,6 +36,8 @@ namespace Tasker.Models
             Links = links;
         }
 
+        //TODO: equals
+
         public override string ToString()
         {
             var sb = new StringBuilder(base.ToString());

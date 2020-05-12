@@ -17,9 +17,17 @@ namespace Tasker.Models
         {
             Subject = subject;
             Time = time;
-            Notes = new List<Note>();            
+            Notes = new List<Note>();
         }
-
+        public bool Equals(Activity other)
+        {
+            return Subject == other.Subject
+                && Time == other.Time;                
+        }
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Activity);
+        }
 
 
         public override string ToString()
