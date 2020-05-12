@@ -10,6 +10,7 @@ namespace Tasker.Models
     {
         public string Name { get; set; }
         public DateTime TimeCreated { get; set; }
-        public string Content { get; set; }        
+        public string Content { get; set; }  
+        public string PlaceOnDisk { get; set; }
     }
 }

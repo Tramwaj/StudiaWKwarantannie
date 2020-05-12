@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,14 +16,17 @@ namespace Tasker
     {
         private List<Teacher> teachers;
         private List<Subject> subjects;
-        private List<Event> events;
+        //private List<Activity> events;
+        private Activities activities;
         public Form1()
         {
             InitializeComponent();
-            teachers = Data.InitialTeachers.Provide();
-            subjects = Data.InitialSubjects.Provide(teachers);
-            events = new List<Event>();
+            teachers = Data.InitialTeachers.Provide().ToList();
+            subjects = Data.InitialSubjects.Provide(teachers).ToList();
+            activities = new Activities();
+            
             cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
+
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -30,10 +34,35 @@ namespace Tasker
             //monthCalendar1.
         }
 
+
+        private void btnAddLesson_Click(object sender, EventArgs e)
+        {
+            using (AddLesson addLesson = new AddLesson(subjects))
+            {
+
+                if (addLesson.ShowDialog() == DialogResult.OK)
+                {
+                    activities.Add(addLesson.GetResult());
+                }
+            }
+            ShowAllEvents();
+        }
+        private void UpdateEvents()
+        {
+            //lstEvents.Items.Clear();
+            //lstEvents.Items.AddRange(events.ToString());
+        }
+        private void ShowAllEvents()
+        {            
+            olvEvents.SetObjects(activities.All);            
+            //OLVDataObject
+            
+        }       
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
+            calendar.Invalidate();////
             DialogResult deleteConfirmed = MessageBox.Show(
-                "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);            
+                "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
             if (deleteConfirmed == DialogResult.OK)
             {
 
@@ -44,21 +73,19 @@ namespace Tasker
             }
         }
 
-        private void btnAddLesson_Click(object sender, EventArgs e)
+        private void olvEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (AddLesson addLesson = new AddLesson(subjects))
+            List<Lesson> temp = olvEvents.SelectedObjects.OfType<Lesson>().ToList();
+            //olvEvents.AccessibilityObjectacce
+            if (temp.Any())
             {
-                if (addLesson.ShowDialog() == DialogResult.OK)
-                {
-                    events.Add(addLesson.GetResult());
-                    lstEvents.Items.Add(events.Last());
-                }
-            }            
-        }
-        private void UpdateEvents()
-        {
-            //lstEvents.Items.Clear();
-            //lstEvents.Items.AddRange(events.ToString());
+                temp.First().Subject.Name = "Bobki";
+                string typ = temp.First().Subject.Name;//.GetType().ToString();
+                //if (!String.IsNullOrEmpty(typ))
+                //{
+                    label1.Text = typ;
+                //}
+            }
         }
     }
 }
