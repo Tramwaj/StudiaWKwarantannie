@@ -27,7 +27,7 @@ namespace Tasker
             
             cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
 
-            bindingSource1.DataSource = activities.All;
+            //bindingSource1.DataSource = activities.All;
             //bindingSource1.
 
         }
@@ -50,15 +50,15 @@ namespace Tasker
             }
             ShowAllEvents();
         }
-        private void UpdateEvents()
+        private void btnAddTask_Click(object sender, EventArgs e)
         {
-            //lstEvents.Items.Clear();
-            //lstEvents.Items.AddRange(events.ToString());
+
         }
+
         private void ShowAllEvents()
         {
-            dlvActivities.Refresh();
-            //dlvActivities.SetObjects(activities.All);            
+            //dlvActivities.Refresh();
+            dlvActivities.SetObjects(activities.All);            
             //OLVDataObject
             
         }       
@@ -96,5 +96,7 @@ namespace Tasker
         {
 
         }
+
+        
     }
 }

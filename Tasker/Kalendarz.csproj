@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddJob.Designer.cs">
+      <DependentUpon>AddJob.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddLesson.cs">
       <SubType>Form</SubType>
     </Compile>

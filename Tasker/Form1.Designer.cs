@@ -41,15 +41,13 @@
             this.btnCancelCalendar = new System.Windows.Forms.Button();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.dlvActivities = new BrightIdeasSoftware.DataListView();
-            this.olvColSubject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColTime = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColSubject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNotes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // calendar
@@ -128,6 +126,7 @@
             this.btnAddTask.TabIndex = 3;
             this.btnAddTask.Text = "Dodaj zadanie";
             this.btnAddTask.UseVisualStyleBackColor = true;
+            this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
             // 
             // label3
             // 
@@ -154,7 +153,7 @@
             this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListView1.HideSelection = false;
             this.objectListView1.Location = new System.Drawing.Point(608, 303);
-            this.objectListView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.objectListView1.Margin = new System.Windows.Forms.Padding(4);
             this.objectListView1.Name = "objectListView1";
             this.objectListView1.Size = new System.Drawing.Size(305, 255);
             this.objectListView1.TabIndex = 10;
@@ -176,7 +175,6 @@
             this.olvColStatus,
             this.olvColNotes});
             this.dlvActivities.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dlvActivities.DataSource = this.bindingSource1;
             this.dlvActivities.HideSelection = false;
             this.dlvActivities.Location = new System.Drawing.Point(388, 42);
             this.dlvActivities.Name = "dlvActivities";
@@ -185,16 +183,16 @@
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
             this.dlvActivities.View = System.Windows.Forms.View.Details;
             // 
-            // olvColSubject
-            // 
-            this.olvColSubject.AspectName = "Subject.ShortName";
-            this.olvColSubject.Text = "Przedmiot";
-            // 
             // olvColTime
             // 
             this.olvColTime.AspectName = "Time";
             this.olvColTime.AspectToStringFormat = "{0:HH:mm}";
             this.olvColTime.Text = "Czas";
+            // 
+            // olvColSubject
+            // 
+            this.olvColSubject.AspectName = "Subject.ShortName";
+            this.olvColSubject.Text = "Przedmiot";
             // 
             // olvColType
             // 
@@ -210,11 +208,6 @@
             // 
             this.olvColNotes.AspectName = "Notes.Count";
             this.olvColNotes.Text = "Notatki";
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(Tasker.Models.Activities);
-            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
             // Form1
             // 
@@ -238,7 +231,6 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,7 +255,6 @@
         private BrightIdeasSoftware.OLVColumn olvColType;
         private BrightIdeasSoftware.OLVColumn olvColStatus;
         private BrightIdeasSoftware.OLVColumn olvColNotes;
-        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 
