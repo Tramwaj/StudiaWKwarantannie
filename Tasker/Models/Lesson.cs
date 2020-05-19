@@ -33,8 +33,19 @@ namespace Tasker.Models
                 DateTime.Now < Time + Duration ? LessonStatus.InProgress :
                 LessonStatus.Finished;                
         }
-
-        //TODO: Equals
+        public bool Equals(Lesson other)
+        {
+            return Type == other.Type;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj is Lesson)
+            {
+            return base.Equals(obj)
+                    && Equals(obj as Lesson);
+            }
+            return false;
+        }
 
         public override string ToString()
         {

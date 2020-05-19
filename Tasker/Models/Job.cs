@@ -36,8 +36,21 @@ namespace Tasker.Models
             Links = links;
         }
 
-        //TODO: equals
+        public bool Equals(Job other)
+        {
+            return Name == other.Name
+                && Type == other.Type;
+        }
 
+        public override bool Equals(object obj)
+        {
+            if (obj is Job)
+            {
+                return base.Equals(obj)
+                    && Equals(obj as Job);
+            }
+            return false;
+        }
         public override string ToString()
         {
             var sb = new StringBuilder(base.ToString());
