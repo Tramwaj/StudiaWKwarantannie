@@ -52,7 +52,14 @@ namespace Tasker
         }
         private void btnAddTask_Click(object sender, EventArgs e)
         {
-
+            using (AddJob addJob = new AddJob(subjects))
+            {
+                if (addJob.ShowDialog() == DialogResult.OK)
+                {
+                    activities.Add(addJob.GetResult());
+                }
+            }
+            ShowAllEvents();
         }
 
         private void ShowAllEvents()
@@ -79,6 +86,7 @@ namespace Tasker
 
         private void olvEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //do testów całe jak na razie (selectedobjects jakos bedzie)
             List<Lesson> temp = dlvActivities.SelectedObjects.OfType<Lesson>().ToList();
             //olvEvents.AccessibilityObjectacce
             if (temp.Any())

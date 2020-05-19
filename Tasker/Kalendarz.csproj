@@ -88,6 +88,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\InitialSubjects.cs" />
+    <EmbeddedResource Include="AddJob.resx">
+      <DependentUpon>AddJob.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddLesson.resx">
       <DependentUpon>AddLesson.cs</DependentUpon>
     </EmbeddedResource>

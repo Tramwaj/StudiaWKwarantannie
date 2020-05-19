@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.lvwEvents = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,11 +40,13 @@
             this.btnCancelCalendar = new System.Windows.Forms.Button();
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.dlvActivities = new BrightIdeasSoftware.DataListView();
-            this.olvColTime = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColSubject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColTime = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNotes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.olvColName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
@@ -60,10 +61,10 @@
             // lvwEvents
             // 
             this.lvwEvents.HideSelection = false;
-            this.lvwEvents.Location = new System.Drawing.Point(645, 303);
+            this.lvwEvents.Location = new System.Drawing.Point(391, 522);
             this.lvwEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lvwEvents.Name = "lvwEvents";
-            this.lvwEvents.Size = new System.Drawing.Size(96, 251);
+            this.lvwEvents.Size = new System.Drawing.Size(96, 36);
             this.lvwEvents.TabIndex = 5;
             this.lvwEvents.UseCompatibleStateImageBehavior = false;
             // 
@@ -79,10 +80,10 @@
             // btnDeleteEvent
             // 
             this.btnDeleteEvent.ForeColor = System.Drawing.Color.Red;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(388, 303);
+            this.btnDeleteEvent.Location = new System.Drawing.Point(526, 303);
             this.btnDeleteEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDeleteEvent.Name = "btnDeleteEvent";
-            this.btnDeleteEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteEvent.Size = new System.Drawing.Size(125, 38);
             this.btnDeleteEvent.TabIndex = 1;
             this.btnDeleteEvent.Text = "Usuń";
             this.btnDeleteEvent.UseVisualStyleBackColor = true;
@@ -91,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(604, 272);
+            this.label2.Location = new System.Drawing.Point(605, 345);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 5;
@@ -152,47 +153,52 @@
             this.objectListView1.CellEditUseWholeCell = false;
             this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.objectListView1.HideSelection = false;
-            this.objectListView1.Location = new System.Drawing.Point(608, 303);
+            this.objectListView1.Location = new System.Drawing.Point(558, 366);
             this.objectListView1.Margin = new System.Windows.Forms.Padding(4);
             this.objectListView1.Name = "objectListView1";
-            this.objectListView1.Size = new System.Drawing.Size(305, 255);
+            this.objectListView1.Size = new System.Drawing.Size(355, 192);
             this.objectListView1.TabIndex = 10;
             this.objectListView1.UseCompatibleStateImageBehavior = false;
             this.objectListView1.View = System.Windows.Forms.View.Details;
             // 
             // dlvActivities
             // 
-            this.dlvActivities.AllColumns.Add(this.olvColTime);
             this.dlvActivities.AllColumns.Add(this.olvColSubject);
+            this.dlvActivities.AllColumns.Add(this.olvColTime);
             this.dlvActivities.AllColumns.Add(this.olvColType);
             this.dlvActivities.AllColumns.Add(this.olvColStatus);
             this.dlvActivities.AllColumns.Add(this.olvColNotes);
+            this.dlvActivities.AllColumns.Add(this.olvColName);
             this.dlvActivities.CellEditUseWholeCell = false;
             this.dlvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColTime,
             this.olvColSubject,
+            this.olvColTime,
             this.olvColType,
             this.olvColStatus,
-            this.olvColNotes});
+            this.olvColNotes,
+            this.olvColName});
             this.dlvActivities.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dlvActivities.DataSource = null;
             this.dlvActivities.HideSelection = false;
             this.dlvActivities.Location = new System.Drawing.Point(388, 42);
             this.dlvActivities.Name = "dlvActivities";
-            this.dlvActivities.Size = new System.Drawing.Size(525, 207);
+            this.dlvActivities.Size = new System.Drawing.Size(525, 254);
             this.dlvActivities.TabIndex = 11;
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
             this.dlvActivities.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColSubject
+            // 
+            this.olvColSubject.AspectName = "Subject.ShortName";
+            this.olvColSubject.DisplayIndex = 1;
+            this.olvColSubject.Text = "Przedmiot";
             // 
             // olvColTime
             // 
             this.olvColTime.AspectName = "Time";
             this.olvColTime.AspectToStringFormat = "{0:HH:mm}";
+            this.olvColTime.DisplayIndex = 0;
             this.olvColTime.Text = "Czas";
-            // 
-            // olvColSubject
-            // 
-            this.olvColSubject.AspectName = "Subject.ShortName";
-            this.olvColSubject.Text = "Przedmiot";
             // 
             // olvColType
             // 
@@ -209,11 +215,26 @@
             this.olvColNotes.AspectName = "Notes.Count";
             this.olvColNotes.Text = "Notatki";
             // 
+            // btnDetails
+            // 
+            this.btnDetails.Location = new System.Drawing.Point(388, 303);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(125, 38);
+            this.btnDetails.TabIndex = 12;
+            this.btnDetails.Text = "Szczegóły";
+            this.btnDetails.UseVisualStyleBackColor = true;
+            // 
+            // olvColName
+            // 
+            this.olvColName.AspectName = "Name";
+            this.olvColName.Text = "Nazwa";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 586);
+            this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.dlvActivities);
             this.Controls.Add(this.objectListView1);
             this.Controls.Add(this.btnCancelCalendar);
@@ -255,6 +276,8 @@
         private BrightIdeasSoftware.OLVColumn olvColType;
         private BrightIdeasSoftware.OLVColumn olvColStatus;
         private BrightIdeasSoftware.OLVColumn olvColNotes;
+        private System.Windows.Forms.Button btnDetails;
+        private BrightIdeasSoftware.OLVColumn olvColName;
     }
 }
 
