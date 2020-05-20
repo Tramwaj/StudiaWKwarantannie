@@ -41,7 +41,7 @@
             this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
             this.dlvActivities = new BrightIdeasSoftware.DataListView();
             this.olvColSubject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColTime = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNotes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -49,6 +49,7 @@
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
+            this.olvTimeOfDay = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
@@ -167,24 +168,28 @@
             // dlvActivities
             // 
             this.dlvActivities.AllColumns.Add(this.olvColSubject);
-            this.dlvActivities.AllColumns.Add(this.olvColTime);
+            this.dlvActivities.AllColumns.Add(this.olvColDate);
             this.dlvActivities.AllColumns.Add(this.olvColType);
             this.dlvActivities.AllColumns.Add(this.olvColStatus);
             this.dlvActivities.AllColumns.Add(this.olvColNotes);
             this.dlvActivities.AllColumns.Add(this.olvColName);
+            this.dlvActivities.AllColumns.Add(this.olvTimeOfDay);
             this.dlvActivities.CellEditUseWholeCell = false;
             this.dlvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColSubject,
-            this.olvColTime,
+            this.olvColDate,
             this.olvColType,
             this.olvColStatus,
             this.olvColNotes,
-            this.olvColName});
+            this.olvColName,
+            this.olvTimeOfDay});
             this.dlvActivities.Cursor = System.Windows.Forms.Cursors.Default;
             this.dlvActivities.DataSource = null;
+            this.dlvActivities.FullRowSelect = true;
             this.dlvActivities.HideSelection = false;
             this.dlvActivities.Location = new System.Drawing.Point(388, 42);
             this.dlvActivities.Name = "dlvActivities";
+            this.dlvActivities.SelectAllOnControlA = false;
             this.dlvActivities.Size = new System.Drawing.Size(525, 254);
             this.dlvActivities.TabIndex = 11;
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
@@ -197,12 +202,12 @@
             this.olvColSubject.DisplayIndex = 1;
             this.olvColSubject.Text = "Przedmiot";
             // 
-            // olvColTime
+            // olvColDate
             // 
-            this.olvColTime.AspectName = "Time";
-            this.olvColTime.AspectToStringFormat = "{0:HH:mm}";
-            this.olvColTime.DisplayIndex = 0;
-            this.olvColTime.Text = "Czas";
+            this.olvColDate.AspectName = "Time";
+            this.olvColDate.AspectToStringFormat = "{0:dd/MM/yyyy}";
+            this.olvColDate.DisplayIndex = 0;
+            this.olvColDate.Text = "Czas";
             // 
             // olvColType
             // 
@@ -306,6 +311,8 @@
         private BrightIdeasSoftware.OLVColumn olvColName;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLoad;
+        private BrightIdeasSoftware.OLVColumn olvColDate;
+        private BrightIdeasSoftware.OLVColumn olvTimeOfDay;
     }
 }
 

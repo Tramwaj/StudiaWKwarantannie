@@ -80,7 +80,7 @@ namespace Tasker
                 "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
             if (deleteConfirmed == DialogResult.OK)
             {
-
+                activities.All.Remove(dlvActivities.SelectedObjects.OfType<Activity>().First());
             }
             if (deleteConfirmed == DialogResult.Cancel)
             {
@@ -98,7 +98,7 @@ namespace Tasker
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            string file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
+            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
             Workers.Serializator.Serialize("act.bin", activities);
             //using (TextWriter writer = new StreamWriter(file))
             //{
@@ -110,14 +110,26 @@ namespace Tasker
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            string file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
+            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
             activities = Workers.Serializator.Deserialize<Activities>("act.bin");
         }
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //List<Activity> temp = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
+            ////olvEvents.AccessibilityObjectacce
+            //if (temp.Any())
+            //{
+            //    activities.All=activities.All.Select(x => { x.Time = x.Time.AddHours(1); return x; }).ToList();
+            //    //temp.First().Subject.Name = "Bobki";
+            //    string _subjectName = temp.First().Time.ToString();//.GetType().ToString();
+            //                                           //if (!String.IsNullOrEmpty(typ))
+            //                                           //{
+            //    label1.Text = _subjectName;
+            //    //}
+            //}
+            //var chosenActivity = activities.All.Where(x=>x==)
         }
-
+        
     }
 }
