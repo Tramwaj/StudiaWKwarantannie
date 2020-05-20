@@ -28,10 +28,7 @@ namespace Tasker
             subjects = Data.InitialSubjects.Provide(teachers).ToList();
             activities = new Activities();
 
-            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
-
-            //bindingSource1.DataSource = activities.All;
-            //bindingSource1.
+            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());      
 
         }
 
@@ -62,20 +59,19 @@ namespace Tasker
                 }
             }
         }
+
         private void btnCancelCalendar_Click(object sender, EventArgs e)
         {
             ShowAllEvents();
         }
-        private void ShowAllEvents()
-        {
-            //dlvActivities.Refresh();
-            dlvActivities.SetObjects(activities.All);
-            //OLVDataObject
 
+        private void ShowAllEvents()
+        {            
+            dlvActivities.SetObjects(activities.All);            
         }
+
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
-            //calendar.Invalidate();////
             DialogResult deleteConfirmed = MessageBox.Show(
                 "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
             if (deleteConfirmed == DialogResult.OK)
@@ -86,9 +82,7 @@ namespace Tasker
             {
 
             }
-        }
-
-        
+        }        
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
         {
