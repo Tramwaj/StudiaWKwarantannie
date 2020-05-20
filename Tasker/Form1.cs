@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using Tasker.Models;
 
 namespace Tasker
@@ -24,7 +27,7 @@ namespace Tasker
             teachers = Data.InitialTeachers.Provide().ToList();
             subjects = Data.InitialSubjects.Provide(teachers).ToList();
             activities = new Activities();
-            
+
             cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
 
             //bindingSource1.DataSource = activities.All;
@@ -48,7 +51,6 @@ namespace Tasker
                     activities.Add(addLesson.GetResult());
                 }
             }
-            ShowAllEvents();
         }
         private void btnAddTask_Click(object sender, EventArgs e)
         {
@@ -59,19 +61,21 @@ namespace Tasker
                     activities.Add(addJob.GetResult());
                 }
             }
+        }
+        private void btnCancelCalendar_Click(object sender, EventArgs e)
+        {
             ShowAllEvents();
         }
-
         private void ShowAllEvents()
         {
             //dlvActivities.Refresh();
-            dlvActivities.SetObjects(activities.All);            
+            dlvActivities.SetObjects(activities.All);
             //OLVDataObject
-            
-        }       
+
+        }
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
-            calendar.Invalidate();////
+            //calendar.Invalidate();////
             DialogResult deleteConfirmed = MessageBox.Show(
                 "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
             if (deleteConfirmed == DialogResult.OK)
@@ -84,27 +88,36 @@ namespace Tasker
             }
         }
 
-        private void olvEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //do testów całe jak na razie (selectedobjects jakos bedzie)
-            List<Lesson> temp = dlvActivities.SelectedObjects.OfType<Lesson>().ToList();
-            //olvEvents.AccessibilityObjectacce
-            if (temp.Any())
-            {
-                temp.First().Subject.Name = "Bobki";
-                string typ = temp.First().Subject.Name;//.GetType().ToString();
-                //if (!String.IsNullOrEmpty(typ))
-                //{
-                    label1.Text = typ;
-                //}
-            }
-        }
+        
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
         {
 
         }
 
-        
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            string file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
+            Workers.Serializator.Serialize("act.bin", activities);
+            //using (TextWriter writer = new StreamWriter(file))
+            //{
+            //    XmlSerializer serializer = new XmlSerializer(typeof(Activities));
+            //    serializer.Serialize(writer, activities);
+            //    writer.Close();
+            //}
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            string file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
+            activities = Workers.Serializator.Deserialize<Activities>("act.bin");
+        }
+
+        private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

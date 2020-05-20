@@ -45,8 +45,10 @@
             this.olvColType = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColStatus = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNotes = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.btnDetails = new System.Windows.Forms.Button();
             this.olvColName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
@@ -147,6 +149,7 @@
             this.btnCancelCalendar.TabIndex = 8;
             this.btnCancelCalendar.Text = "Wszystko";
             this.btnCancelCalendar.UseVisualStyleBackColor = true;
+            this.btnCancelCalendar.Click += new System.EventHandler(this.btnCancelCalendar_Click);
             // 
             // objectListView1
             // 
@@ -186,6 +189,7 @@
             this.dlvActivities.TabIndex = 11;
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
             this.dlvActivities.View = System.Windows.Forms.View.Details;
+            this.dlvActivities.SelectedIndexChanged += new System.EventHandler(this.dlvActivities_SelectedIndexChanged);
             // 
             // olvColSubject
             // 
@@ -215,6 +219,11 @@
             this.olvColNotes.AspectName = "Notes.Count";
             this.olvColNotes.Text = "Notatki";
             // 
+            // olvColName
+            // 
+            this.olvColName.AspectName = "Name";
+            this.olvColName.Text = "Nazwa";
+            // 
             // btnDetails
             // 
             this.btnDetails.Location = new System.Drawing.Point(388, 303);
@@ -224,16 +233,33 @@
             this.btnDetails.Text = "Szczegóły";
             this.btnDetails.UseVisualStyleBackColor = true;
             // 
-            // olvColName
+            // btnSave
             // 
-            this.olvColName.AspectName = "Name";
-            this.olvColName.Text = "Nazwa";
+            this.btnSave.Location = new System.Drawing.Point(391, 418);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(96, 44);
+            this.btnSave.TabIndex = 13;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(695, 303);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(118, 38);
+            this.btnLoad.TabIndex = 14;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(989, 586);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.dlvActivities);
             this.Controls.Add(this.objectListView1);
@@ -278,6 +304,8 @@
         private BrightIdeasSoftware.OLVColumn olvColNotes;
         private System.Windows.Forms.Button btnDetails;
         private BrightIdeasSoftware.OLVColumn olvColName;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnLoad;
     }
 }
 
