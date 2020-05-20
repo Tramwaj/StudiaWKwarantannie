@@ -18,6 +18,7 @@ namespace Tasker.Models
         InProgress = 1,
         Done = 2
     }
+    [Serializable]
     public class Job : Activity
     {
         public TaskType Type { get; set; }

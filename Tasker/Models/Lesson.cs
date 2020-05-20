@@ -17,6 +17,7 @@ namespace Tasker.Models
         InProgress = 1,
         Finished = 2
     }
+    [Serializable]
     public class Lesson : Activity
     {
         public TimeSpan Duration { get; set; }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tasker.Models
 {
+    [Serializable]
     public class Activities
     {
         public List<Activity> All { get; set; }
@@ -29,6 +30,14 @@ namespace Tasker.Models
                 return;
             }
             All.Add(activity);
+        }
+        public IEnumerable<Job> Jobs
+        {
+            get => All.OfType<Job>();
+        }
+        public IEnumerable<Lesson> Lessons
+        {
+            get => All.OfType<Lesson>();
         }
     }
 }
