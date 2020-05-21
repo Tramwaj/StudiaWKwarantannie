@@ -46,14 +46,9 @@ namespace Tasker
         private void ShowEvents()
         {
             var bubek = activities.All.Select(x => x.Time).Distinct();
-            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));
-            //foreach (var date in activities.All.Select(x=>x.Time).Distinct())
-            //{
-            //    calendar.AddBoldedDate(date);
-            //}
+            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));            
             calendar.BoldedDates = activities.All.Select(x => x.Time).Distinct().ToArray();
         }
-
 
         private void btnAddLesson_Click(object sender, EventArgs e)
         {
@@ -92,24 +87,13 @@ namespace Tasker
 
             }
             ShowEvents();
-        }        
-
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
+        } 
 
         private void btnSave_Click(object sender, EventArgs e)
         {
 
             string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
-            Workers.Serializator.Serialize("act.bin", activities);
-            //using (TextWriter writer = new StreamWriter(file))
-            //{
-            //    XmlSerializer serializer = new XmlSerializer(typeof(Activities));
-            //    serializer.Serialize(writer, activities);
-            //    writer.Close();
-            //}
+            Workers.Serializator.Serialize("act.bin", activities);            
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
