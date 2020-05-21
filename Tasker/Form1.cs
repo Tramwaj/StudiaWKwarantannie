@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Tasker.Models;
+using Tasker.Workers;
 
 namespace Tasker
 {
@@ -21,20 +22,36 @@ namespace Tasker
         private List<Subject> subjects;
         //private List<Activity> events;
         private Activities activities;
+        private ActivityDisplayFilter DisplayFilter;
         public Form1()
         {
             InitializeComponent();
             teachers = Data.InitialTeachers.Provide().ToList();
             subjects = Data.InitialSubjects.Provide(teachers).ToList();
             activities = new Activities();
-
-            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());      
-
+            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
+            DisplayFilter = new ActivityDisplayFilter();
+            ShowEvents();
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            //monthCalendar1.
+            DisplayFilter.Set(calendar.SelectionStart, calendar.SelectionEnd);
+            ShowEvents();
+        }
+        private void btnCancelCalendar_Click(object sender, EventArgs e)
+        {
+            DisplayFilter.Disable();            
+        }
+        private void ShowEvents()
+        {
+            var bubek = activities.All.Select(x => x.Time).Distinct();
+            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));
+            //foreach (var date in activities.All.Select(x=>x.Time).Distinct())
+            //{
+            //    calendar.AddBoldedDate(date);
+            //}
+            calendar.BoldedDates = activities.All.Select(x => x.Time).Distinct().ToArray();
         }
 
 
@@ -48,6 +65,7 @@ namespace Tasker
                     activities.Add(addLesson.GetResult());
                 }
             }
+            ShowEvents();
         }
         private void btnAddTask_Click(object sender, EventArgs e)
         {
@@ -58,18 +76,9 @@ namespace Tasker
                     activities.Add(addJob.GetResult());
                 }
             }
+            ShowEvents();
         }
-
-        private void btnCancelCalendar_Click(object sender, EventArgs e)
-        {
-            ShowAllEvents();
-        }
-
-        private void ShowAllEvents()
-        {            
-            dlvActivities.SetObjects(activities.All);            
-        }
-
+        
         private void btnDeleteEvent_Click(object sender, EventArgs e)
         {
             DialogResult deleteConfirmed = MessageBox.Show(
@@ -82,6 +91,7 @@ namespace Tasker
             {
 
             }
+            ShowEvents();
         }        
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
@@ -106,6 +116,7 @@ namespace Tasker
         {
             string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
             activities = Workers.Serializator.Deserialize<Activities>("act.bin");
+            ShowEvents();
         }
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
