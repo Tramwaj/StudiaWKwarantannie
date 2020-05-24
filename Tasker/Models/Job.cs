@@ -24,7 +24,7 @@ namespace Tasker.Models
         public TaskType Type { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string PlaceOnDisk { get; set; }
+        public ICollection<string> PlaceOnDisk { get; set; }
         public Status Status { get; set; } 
         public ICollection<string> Links { get; set; }
 
@@ -33,7 +33,7 @@ namespace Tasker.Models
             Type = type;
             Name = name;
             Description = description;
-            PlaceOnDisk = placeOnDisk;
+            PlaceOnDisk = new List<string> { placeOnDisk };
             Links = links;
         }
 
