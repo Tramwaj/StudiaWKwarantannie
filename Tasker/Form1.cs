@@ -89,6 +89,13 @@ namespace Tasker
         {
             Activity selectedActivity =
                 (Activity)dlvActivities.SelectedObject;
+            using (EditDetails editDetails = new EditDetails(selectedActivity))
+            {
+                if (editDetails.ShowDialog() == DialogResult.OK)
+                {
+                    activities.Replace(selectedActivity, editDetails.getResult());
+                }
+            }
             //activities
             //label2.Text = selectedActivity.Subject.Name;
 

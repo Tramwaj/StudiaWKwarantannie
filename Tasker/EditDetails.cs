@@ -11,15 +11,22 @@ using Tasker.Models;
 
 namespace Tasker
 {
-    public partial class Details : Form
+    public partial class EditDetails : Form
     {
-        public Details()
+        private Activity activity;
+
+        public EditDetails()
         {
             InitializeComponent();
         }
-        public Details(Activity activity)
+        public EditDetails(Activity activity)
         {
 
+        }
+
+        internal Activity getResult()
+        {
+            return activity;
         }
     }
 }

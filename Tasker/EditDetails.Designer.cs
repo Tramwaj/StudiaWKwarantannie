@@ -1,6 +1,6 @@
 ﻿namespace Tasker
 {
-    partial class Details
+    partial class EditDetails
     {
         /// <summary>
         /// Required designer variable.
