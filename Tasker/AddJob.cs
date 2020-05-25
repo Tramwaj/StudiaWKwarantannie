@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tasker.Models;
 
+
 namespace Tasker
 {
     public partial class AddJob : Form
@@ -16,15 +18,15 @@ namespace Tasker
         private Job job;
         private ICollection<Subject> _subjects;
         private string _filePath;
-        
+
         public AddJob(ICollection<Subject> subjects)
         {
             InitializeComponent();
             _subjects = subjects;
             cmbSubject.Items.AddRange(subjects.Select(s => s.ShortName).OrderBy(s => s).ToArray());
-            SetComboBoxesToDefault();
-        }        
-       
+            SetComboBoxesToDefault();            
+        }
+
         public Job GetResult()
         {
             return job;
@@ -65,19 +67,21 @@ namespace Tasker
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {
+            CommonOpenFileDialog OpenFolder = new CommonOpenFileDialog();
+            OpenFolder.InitialDirectory = "C:\\Users";
+            OpenFolder.IsFolderPicker = true;
+            if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                _filePath = OpenFolder.FileName;                
+            }
 
-            _filePath = openFileDialog1.FileName;
         }
 
-        //TODO: clean these:
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
+        //TODO: clean these:       
 
         private void AddJob_Load(object sender, EventArgs e)
         {
 
-        }        
+        }
     }
 }
