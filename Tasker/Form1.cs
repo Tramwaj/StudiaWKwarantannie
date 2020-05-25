@@ -29,24 +29,35 @@ namespace Tasker
             teachers = Data.InitialTeachers.Provide().ToList();
             subjects = Data.InitialSubjects.Provide(teachers).ToList();
             activities = new Activities();
-            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
-            DisplayFilter = new ActivityDisplayFilter();
+            DisplayFilter = new ActivityDisplayFilter(cklSubjects.CheckedItems.Cast<string>());
+            FormatActivitiesList();
+            SetSubjects();
             ShowEvents();
+
+        }
+        private void SetSubjects()
+        {
+            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
+            for (int i = 0; i < cklSubjects.Items.Count; i++)
+            {
+                cklSubjects.SetItemChecked(i, true);
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
-            DisplayFilter.Set(calendar.SelectionStart, calendar.SelectionEnd);
+            DisplayFilter.SetDatesShown(calendar.SelectionStart, calendar.SelectionEnd);
             ShowEvents();
         }
         private void btnCancelCalendar_Click(object sender, EventArgs e)
         {
-            DisplayFilter.Disable();            
+            DisplayFilter.DisableDates();
+            ShowEvents();
         }
+
         private void ShowEvents()
         {
-            var bubek = activities.All.Select(x => x.Time).Distinct();
-            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));            
+            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));
             calendar.BoldedDates = activities.All.Select(x => x.Time).Distinct().ToArray();
         }
 
@@ -73,38 +84,20 @@ namespace Tasker
             }
             ShowEvents();
         }
-        
-        private void btnDeleteEvent_Click(object sender, EventArgs e)
+
+        private void btnDetails_Click(object sender, EventArgs e)
         {
-            DialogResult deleteConfirmed = MessageBox.Show(
-                "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
-            if (deleteConfirmed == DialogResult.OK)
-            {
-                activities.All.Remove(dlvActivities.SelectedObjects.OfType<Activity>().First());
-            }
-            if (deleteConfirmed == DialogResult.Cancel)
-            {
+            Activity selectedActivity =
+                (Activity)dlvActivities.SelectedObject;
+            //activities
+            //label2.Text = selectedActivity.Subject.Name;
 
-            }
-            ShowEvents();
-        } 
+            //s.OfType<Activity>().First()
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
-            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
-            Workers.Serializator.Serialize("act.bin", activities);            
         }
-
-        private void btnLoad_Click(object sender, EventArgs e)
-        {
-            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "activities.xml";
-            activities = Workers.Serializator.Deserialize<Activities>("act.bin");
-            ShowEvents();
-        }
-
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             //List<Activity> temp = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
             ////olvEvents.AccessibilityObjectacce
             //if (temp.Any())
@@ -119,6 +112,73 @@ namespace Tasker
             //}
             //var chosenActivity = activities.All.Where(x=>x==)
         }
+
+        private void btnDeleteEvent_Click(object sender, EventArgs e)
+        {
+            DialogResult deleteConfirmed = MessageBox.Show(
+                "Czy naprawdę usunąć zapis?", "Usunięcie", MessageBoxButtons.OKCancel);
+            if (deleteConfirmed == DialogResult.OK)
+                try
+                {
+                    {
+                        activities.Remove(dlvActivities.SelectedObjects.OfType<Activity>().First());
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Trzeba zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
+                }
+
+            if (deleteConfirmed == DialogResult.Cancel)
+            {
+
+            }
+            ShowEvents();
+        }
+
+
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "act.bin";
+            Workers.Serializator.Serialize("act.bin", activities);
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "act.bin";
+            activities = Workers.Serializator.Deserialize<Activities>("act.bin");
+            ShowEvents();
+        }
+
         
+
+        private void cklSubjects_SelectedValueChanged(object sender, EventArgs e)
+        {
+            DisplayFilter.SetSubjectsShown(cklSubjects.CheckedItems.Cast<string>());
+            ShowEvents();
+        }
+
+        private void FormatActivitiesList()
+        {
+            this.olvColDate.GroupKeyGetter = delegate (object rowObject)
+            {
+                Activity activity = (Activity)rowObject;
+                return new DateTime(activity.Time.Year, activity.Time.Month, activity.Time.Day);
+            };
+            this.olvColDate.GroupKeyToTitleConverter = delegate (object groupKey)
+            {
+                return ((DateTime)groupKey).ToString("dddd-dd/MM/yyyy");
+            };
+        }
+
+
+        // TO BE REMOVED:
+        private void cklSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

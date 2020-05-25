@@ -10,7 +10,7 @@ namespace Tasker.Models
     [Serializable]
     public class Activities
     {
-        public List<Activity> All { get; set; }
+        public List<Activity> All { get; }// set; }
         public Activities()
         {
             All = new List<Activity>();
@@ -25,11 +25,14 @@ namespace Tasker.Models
         }
         public void Add(Activity activity)
         {
-            if (All.Contains(activity))
+            if (!All.Contains(activity))
             {
-                return;
+                All.Add(activity);
             }
-            All.Add(activity);
+        }
+        public void Remove(Activity activity)
+        {
+            All.Remove(activity);
         }
         public IEnumerable<Job> Jobs
         {
