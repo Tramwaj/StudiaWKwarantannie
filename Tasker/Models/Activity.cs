@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 namespace Tasker.Models
 {
     [Serializable]
+#pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     public abstract class Activity
+#pragma warning restore CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
     {
         public int Id { get; set; }
         public Subject Subject { get; set; }
         public DateTime Time { get; set; }
         public virtual ICollection<Note> Notes { get; set; }
+        public ICollection<string> PlaceOnDisk { get; set; }
+        public ICollection<string> Links { get; set; }
 
         protected Activity(Subject subject, DateTime time)
         {
