@@ -34,6 +34,14 @@ namespace Tasker.Models
         {
             All.Remove(activity);
         }
+        public void Replace(Activity current, Activity updated)
+        {
+            if (!All.Contains(current))// lepiej try?? I w poprzednich też?
+            {
+                All.Remove(current);
+                All.Add(updated);
+            }
+        }
         public IEnumerable<Job> Jobs
         {
             get => All.OfType<Job>();
