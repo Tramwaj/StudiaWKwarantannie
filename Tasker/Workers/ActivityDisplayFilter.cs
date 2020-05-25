@@ -4,34 +4,46 @@ using System.Data.Entity.Core.Common.CommandTrees;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tasker.Data;
 using Tasker.Models;
 
 namespace Tasker.Workers
 {
-    class ActivityDisplayFilter
+    public class ActivityDisplayFilter
     {
-        public DateTime _startDate { get; set; }
-        public DateTime _endDate { get; set; }
-        public bool _disabled { get; set; }
-        public ActivityDisplayFilter()
+        private DateTime _startDate;
+        private DateTime _endDate;
+        private bool _datesEnabled;
+        private IEnumerable<string> _subjectsShown;// = new IEnumerable<string>();
+
+        public ActivityDisplayFilter(IEnumerable<string> subjects)
         {
-            _disabled = true;
+            _subjectsShown = subjects;
+            _datesEnabled = false;
         }
 
         public IEnumerable<Activity> Apply(IEnumerable<Activity> collection)
         {
-            return _disabled ? collection :
-                collection.Where(x => x.Time >= _startDate && x.Time <= _endDate);
+           
+            return (_datesEnabled ? 
+                collection.Where(x => x.Time >= _startDate && x.Time <= _endDate)
+                : collection)
+                .Where(x=>_subjectsShown.Any(s=>x.Subject.Name==s));
+                
         }
-        public void Set(DateTime start, DateTime end)
+        public void SetDatesShown(DateTime start, DateTime end)
         {
             _startDate = start;
             _endDate = end;
-            _disabled = false;
+            _datesEnabled = true;
         }
-        public void Disable()
+        public void DisableDates()
         {
-            _disabled = true;
+            _datesEnabled = false;
+        }
+        public void SetSubjectsShown(IEnumerable<string> subjects)
+        {
+            _subjectsShown = subjects;
         }
     }
 }
