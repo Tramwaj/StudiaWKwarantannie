@@ -87,8 +87,8 @@ namespace Tasker
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            Activity selectedActivity =
-                (Activity)dlvActivities.SelectedObject;
+            Activity selectedActivity = (Activity)dlvActivities.SelectedObject;
+            
             using (EditDetails editDetails = new EditDetails(selectedActivity))
             {
                 if (editDetails.ShowDialog() == DialogResult.OK)
@@ -96,12 +96,8 @@ namespace Tasker
                     activities.Replace(selectedActivity, editDetails.getResult());
                 }
             }
-            //activities
-            //label2.Text = selectedActivity.Subject.Name;
-
-            //s.OfType<Activity>().First()
-
         }
+
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
 

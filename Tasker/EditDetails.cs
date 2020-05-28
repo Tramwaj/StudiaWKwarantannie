@@ -19,9 +19,17 @@ namespace Tasker
         {
             InitializeComponent();
         }
-        public EditDetails(Activity activity)
+        public EditDetails(Activity activity):this()
         {
-
+            TypeSpecificInitialization((dynamic)activity);
+        }
+        public void TypeSpecificInitialization(Lesson activity)
+        {
+            lblName.Text = "Lesson";
+        }
+        public void TypeSpecificInitialization(Job activity)
+        {
+            lblName.Text = "Job";
         }
 
         internal Activity getResult()
