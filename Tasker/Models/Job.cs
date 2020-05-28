@@ -10,7 +10,7 @@ namespace Tasker.Models
     {
         Project = 0,
         LabReport = 1,
-        Partial = 2
+        Test = 2
     } 
     public enum Status
     {
