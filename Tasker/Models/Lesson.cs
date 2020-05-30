@@ -30,11 +30,12 @@ namespace Tasker.Models
             Duration = duration;
             Type = type;
         }
-        public LessonStatus Status
+        public override Status Status
         {
-            get => DateTime.Now < Time ? LessonStatus.Planned :
-                DateTime.Now < Time + Duration ? LessonStatus.InProgress :
-                LessonStatus.Finished;                
+            get => DateTime.Now < Time ? Status.Scheduled :
+                DateTime.Now < Time + Duration ? Status.InProgress :
+                Status.Finished;
+            set =>Status = Status;
         }
         public bool Equals(Lesson other)
         {

@@ -51,6 +51,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnAddNote = new System.Windows.Forms.Button();
+            this.cmbState = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
@@ -75,11 +76,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(340, 17);
+            this.label1.Location = new System.Drawing.Point(385, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(41, 17);
             this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.label1.Text = "Stan:";
             // 
             // btnDeleteEvent
             // 
@@ -276,11 +277,25 @@
             this.btnAddNote.Text = "D O D A   J  ";
             this.btnAddNote.UseVisualStyleBackColor = true;
             // 
+            // cmbState
+            // 
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Items.AddRange(new object[] {
+            "Wszystkie",
+            "Aktywne",
+            "Ukończone"});
+            this.cmbState.Location = new System.Drawing.Point(456, 14);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(121, 24);
+            this.cmbState.TabIndex = 16;
+            this.cmbState.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 655);
+            this.Controls.Add(this.cmbState);
             this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
@@ -333,6 +348,7 @@
         private BrightIdeasSoftware.OLVColumn olvColDate;
         private BrightIdeasSoftware.OLVColumn olvTimeOfDay;
         private System.Windows.Forms.Button btnAddNote;
+        private System.Windows.Forms.ComboBox cmbState;
     }
 }
 

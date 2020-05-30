@@ -17,6 +17,7 @@ namespace Tasker.Models
         public virtual ICollection<Note> Notes { get; set; }
         public ICollection<string> PlaceOnDisk { get; set; }
         public ICollection<string> Links { get; set; }
+        public abstract Status Status { get; set; }
 
         protected Activity(Subject subject, DateTime time)
         {

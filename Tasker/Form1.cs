@@ -26,8 +26,10 @@ namespace Tasker
         public Form1()
         {
             InitializeComponent();
-            teachers = Data.InitialTeachers.Provide().ToList();
+            //change to serialization
+            teachers = Data.InitialTeachers.Provide().ToList(); 
             subjects = Data.InitialSubjects.Provide(teachers).ToList();
+            //
             activities = new Activities();
             DisplayFilter = new ActivityDisplayFilter(cklSubjects.CheckedItems.Cast<string>());
             FormatActivitiesList();
@@ -88,13 +90,19 @@ namespace Tasker
         private void btnDetails_Click(object sender, EventArgs e)
         {
             Activity selectedActivity = (Activity)dlvActivities.SelectedObject;
-            
-            using (EditDetails editDetails = new EditDetails(selectedActivity))
+            try
             {
-                if (editDetails.ShowDialog() == DialogResult.OK)
+                using (EditDetails editDetails = new EditDetails(selectedActivity))
                 {
-                    activities.Replace(selectedActivity, editDetails.getResult());
+                    if (editDetails.ShowDialog() == DialogResult.OK)
+                    {
+                        activities.Replace(selectedActivity, editDetails.getResult());
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Należy zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
             }
         }
 
@@ -129,7 +137,7 @@ namespace Tasker
                 }
                 catch
                 {
-                    MessageBox.Show("Trzeba zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
+                    MessageBox.Show("Należy zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
                 }
 
             if (deleteConfirmed == DialogResult.Cancel)
@@ -155,7 +163,7 @@ namespace Tasker
             ShowEvents();
         }
 
-        
+
 
         private void cklSubjects_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -174,6 +182,7 @@ namespace Tasker
             {
                 return ((DateTime)groupKey).ToString("dddd-dd/MM/yyyy");
             };
+            cmbState.SelectedIndex = 0;
         }
 
 
@@ -183,5 +192,10 @@ namespace Tasker
 
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplayFilter.SetFilterByState(cmbState.SelectedIndex);
+            ShowEvents();
+        }
     }
 }

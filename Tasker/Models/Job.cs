@@ -14,9 +14,9 @@ namespace Tasker.Models
     } 
     public enum Status
     {
-        Untouched = 0,
+        Scheduled = 0,
         InProgress = 1,
-        Done = 2
+        Finished = 2
     }
     [Serializable]
 #pragma warning disable CS0659 // Type overrides Object.Equals(object o) but does not override Object.GetHashCode()
@@ -26,7 +26,7 @@ namespace Tasker.Models
         public TaskType Type { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }        
-        public Status Status { get; set; }         
+        public override Status Status { get; set; }         
 
         public Job(Subject subject, DateTime time, TaskType type, string name, string description, string placeOnDisk, ICollection<string> links): base(subject, time)
         {
