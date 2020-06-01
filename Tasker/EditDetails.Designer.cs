@@ -46,6 +46,7 @@
             this.BtnRemoveLink = new System.Windows.Forms.Button();
             this.olvNotes = new BrightIdeasSoftware.FastObjectListView();
             this.rtxNote = new System.Windows.Forms.RichTextBox();
+            this.btnAddNote = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -54,89 +55,91 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(207, 30);
+            this.lblName.Location = new System.Drawing.Point(184, 24);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(51, 20);
+            this.lblName.Size = new System.Drawing.Size(45, 17);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
             // 
             // lblSubject
             // 
             this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(91, 82);
+            this.lblSubject.Location = new System.Drawing.Point(81, 66);
             this.lblSubject.Name = "lblSubject";
-            this.lblSubject.Size = new System.Drawing.Size(63, 20);
+            this.lblSubject.Size = new System.Drawing.Size(55, 17);
             this.lblSubject.TabIndex = 1;
             this.lblSubject.Text = "Subject";
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(91, 30);
+            this.lblType.Location = new System.Drawing.Point(81, 24);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(43, 20);
+            this.lblType.Size = new System.Drawing.Size(40, 17);
             this.lblType.TabIndex = 2;
             this.lblType.Text = "Type";
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(91, 132);
+            this.lblTime.Location = new System.Drawing.Point(81, 106);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(43, 20);
+            this.lblTime.Size = new System.Drawing.Size(39, 17);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "Time";
             // 
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(275, 132);
+            this.lblDuration.Location = new System.Drawing.Point(244, 106);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(70, 20);
+            this.lblDuration.Size = new System.Drawing.Size(62, 17);
             this.lblDuration.TabIndex = 4;
             this.lblDuration.Text = "Duration";
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(361, 82);
+            this.lblStatus.Location = new System.Drawing.Point(321, 66);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(56, 20);
+            this.lblStatus.Size = new System.Drawing.Size(48, 17);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Status";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(545, 30);
+            this.label1.Location = new System.Drawing.Point(484, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 20);
+            this.label1.Size = new System.Drawing.Size(33, 17);
             this.label1.TabIndex = 6;
             this.label1.Text = "Pliki";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(545, 327);
+            this.label2.Location = new System.Drawing.Point(484, 262);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 20);
+            this.label2.Size = new System.Drawing.Size(37, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "Linki";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 536);
+            this.btnSave.Location = new System.Drawing.Point(58, 450);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(163, 60);
+            this.btnSave.Size = new System.Drawing.Size(145, 48);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Zapisz";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(225, 536);
+            this.btnCancel.Location = new System.Drawing.Point(260, 450);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(163, 60);
+            this.btnCancel.Size = new System.Drawing.Size(145, 48);
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Anuluj";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -146,10 +149,11 @@
             // 
             this.olvPlaces.CellEditUseWholeCell = false;
             this.olvPlaces.HideSelection = false;
-            this.olvPlaces.Location = new System.Drawing.Point(549, 62);
+            this.olvPlaces.Location = new System.Drawing.Point(488, 50);
+            this.olvPlaces.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.olvPlaces.Name = "olvPlaces";
             this.olvPlaces.ShowGroups = false;
-            this.olvPlaces.Size = new System.Drawing.Size(312, 199);
+            this.olvPlaces.Size = new System.Drawing.Size(278, 160);
             this.olvPlaces.TabIndex = 10;
             this.olvPlaces.UseCompatibleStateImageBehavior = false;
             this.olvPlaces.View = System.Windows.Forms.View.Details;
@@ -159,10 +163,11 @@
             // 
             this.olvLinks.CellEditUseWholeCell = false;
             this.olvLinks.HideSelection = false;
-            this.olvLinks.Location = new System.Drawing.Point(549, 367);
+            this.olvLinks.Location = new System.Drawing.Point(488, 294);
+            this.olvLinks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.olvLinks.Name = "olvLinks";
             this.olvLinks.ShowGroups = false;
-            this.olvLinks.Size = new System.Drawing.Size(312, 199);
+            this.olvLinks.Size = new System.Drawing.Size(278, 160);
             this.olvLinks.TabIndex = 11;
             this.olvLinks.UseCompatibleStateImageBehavior = false;
             this.olvLinks.View = System.Windows.Forms.View.Details;
@@ -170,48 +175,53 @@
             // 
             // btnAddPlace
             // 
-            this.btnAddPlace.Location = new System.Drawing.Point(549, 267);
+            this.btnAddPlace.Location = new System.Drawing.Point(488, 214);
+            this.btnAddPlace.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddPlace.Name = "btnAddPlace";
-            this.btnAddPlace.Size = new System.Drawing.Size(112, 40);
+            this.btnAddPlace.Size = new System.Drawing.Size(100, 32);
             this.btnAddPlace.TabIndex = 12;
             this.btnAddPlace.Text = "Dodaj";
             this.btnAddPlace.UseVisualStyleBackColor = true;
             // 
             // btnRemovePlace
             // 
-            this.btnRemovePlace.Location = new System.Drawing.Point(749, 267);
+            this.btnRemovePlace.Location = new System.Drawing.Point(728, 214);
+            this.btnRemovePlace.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemovePlace.Name = "btnRemovePlace";
-            this.btnRemovePlace.Size = new System.Drawing.Size(112, 40);
+            this.btnRemovePlace.Size = new System.Drawing.Size(38, 32);
             this.btnRemovePlace.TabIndex = 13;
-            this.btnRemovePlace.Text = "Usuń";
+            this.btnRemovePlace.Text = "X";
             this.btnRemovePlace.UseVisualStyleBackColor = true;
             // 
             // btnAddLink
             // 
-            this.btnAddLink.Location = new System.Drawing.Point(549, 572);
+            this.btnAddLink.Location = new System.Drawing.Point(488, 458);
+            this.btnAddLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddLink.Name = "btnAddLink";
-            this.btnAddLink.Size = new System.Drawing.Size(112, 40);
+            this.btnAddLink.Size = new System.Drawing.Size(100, 32);
             this.btnAddLink.TabIndex = 14;
             this.btnAddLink.Text = "Dodaj";
             this.btnAddLink.UseVisualStyleBackColor = true;
             // 
             // BtnRemoveLink
             // 
-            this.BtnRemoveLink.Location = new System.Drawing.Point(749, 572);
+            this.BtnRemoveLink.Location = new System.Drawing.Point(728, 458);
+            this.BtnRemoveLink.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnRemoveLink.Name = "BtnRemoveLink";
-            this.BtnRemoveLink.Size = new System.Drawing.Size(112, 40);
+            this.BtnRemoveLink.Size = new System.Drawing.Size(38, 32);
             this.BtnRemoveLink.TabIndex = 15;
-            this.BtnRemoveLink.Text = "Usuń";
+            this.BtnRemoveLink.Text = "X";
             this.BtnRemoveLink.UseVisualStyleBackColor = true;
             // 
             // olvNotes
             // 
             this.olvNotes.CellEditUseWholeCell = false;
             this.olvNotes.HideSelection = false;
-            this.olvNotes.Location = new System.Drawing.Point(12, 201);
+            this.olvNotes.Location = new System.Drawing.Point(11, 161);
+            this.olvNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.olvNotes.Name = "olvNotes";
             this.olvNotes.ShowGroups = false;
-            this.olvNotes.Size = new System.Drawing.Size(163, 256);
+            this.olvNotes.Size = new System.Drawing.Size(145, 206);
             this.olvNotes.TabIndex = 16;
             this.olvNotes.UseCompatibleStateImageBehavior = false;
             this.olvNotes.View = System.Windows.Forms.View.Details;
@@ -219,17 +229,29 @@
             // 
             // rtxNote
             // 
-            this.rtxNote.Location = new System.Drawing.Point(193, 201);
+            this.rtxNote.Location = new System.Drawing.Point(172, 161);
+            this.rtxNote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rtxNote.Name = "rtxNote";
-            this.rtxNote.Size = new System.Drawing.Size(324, 312);
+            this.rtxNote.Size = new System.Drawing.Size(288, 250);
             this.rtxNote.TabIndex = 17;
             this.rtxNote.Text = "";
             // 
+            // btnAddNote
+            // 
+            this.btnAddNote.Location = new System.Drawing.Point(18, 376);
+            this.btnAddNote.Name = "btnAddNote";
+            this.btnAddNote.Size = new System.Drawing.Size(84, 35);
+            this.btnAddNote.TabIndex = 18;
+            this.btnAddNote.Text = "Dodaj";
+            this.btnAddNote.UseVisualStyleBackColor = true;
+            this.btnAddNote.Click += new System.EventHandler(this.btnAddNote_Click);
+            // 
             // EditDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 644);
+            this.ClientSize = new System.Drawing.Size(808, 515);
+            this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.rtxNote);
             this.Controls.Add(this.olvNotes);
             this.Controls.Add(this.BtnRemoveLink);
@@ -248,7 +270,6 @@
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.lblName);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "EditDetails";
             this.Text = "Details";
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).EndInit();
@@ -279,5 +300,6 @@
         private System.Windows.Forms.Button BtnRemoveLink;
         private BrightIdeasSoftware.FastObjectListView olvNotes;
         private System.Windows.Forms.RichTextBox rtxNote;
+        private System.Windows.Forms.Button btnAddNote;
     }
 }

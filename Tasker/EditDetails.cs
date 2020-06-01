@@ -13,11 +13,11 @@ namespace Tasker
 {
     public partial class EditDetails : Form
     {
-        private Activity _activity;                   
+        private Activity _activity;
+        private ICollection<Note> _notes;
 
         public EditDetails(Activity activity)
-        {            
-            //TypeSpecificInitialization(activity);
+        {               
             InitializeComponent();
             lblSubject.Text = activity.Subject.Name;
             lblTime.Text = activity.Time.ToString();
@@ -25,7 +25,7 @@ namespace Tasker
             olvNotes.SetObjects(activity.Notes);
             olvLinks.SetObjects(activity.Links);
             olvPlaces.SetObjects(activity.PlaceOnDisk);
-            rtxNote.Text = "Zawartość wybranej notatki";
+            rtxNote.Text = "Treść wybranej notatki";
         }
         public EditDetails(Lesson activity):this((Activity)activity)
         {
@@ -58,6 +58,17 @@ namespace Tasker
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
-        }        
+        }
+
+        private void btnAddNote_Click(object sender, EventArgs e)
+        {
+            using (AddNote addNote = new AddNote())
+            {
+                if (addNote.ShowDialog() == DialogResult.Ok)
+                {
+                    _notes.Add(addNote.GetResult());
+                }
+            }
+        }
     }
 }
