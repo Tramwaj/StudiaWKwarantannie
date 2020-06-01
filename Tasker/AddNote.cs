@@ -25,14 +25,14 @@ namespace Tasker
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             note = new Note(txtName.Text, rtxContent.Text);
-            this.DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 

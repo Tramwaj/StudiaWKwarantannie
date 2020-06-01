@@ -15,6 +15,8 @@ namespace Tasker
     {
         private Activity _activity;
         private ICollection<Note> _notes;
+        private ICollection<string> _links;
+        private ICollection<string> _places;
 
         public EditDetails(Activity activity)
         {               
@@ -22,11 +24,12 @@ namespace Tasker
             lblSubject.Text = activity.Subject.Name;
             lblTime.Text = activity.Time.ToString();
             lblStatus.Text = TranslateStatus(activity.Status);
-            olvNotes.SetObjects(activity.Notes);
-            olvLinks.SetObjects(activity.Links);
-            olvPlaces.SetObjects(activity.PlaceOnDisk);
+            _links = activity.Links;
+            _places = activity.PlaceOnDisk;
+            _notes = activity.Notes;
             rtxNote.Text = "Treść wybranej notatki";
-        }
+            FillListViews();
+        }        
         public EditDetails(Lesson activity):this((Activity)activity)
         {
             lblType.Text = "Spotkanie";
@@ -37,7 +40,13 @@ namespace Tasker
             lblName.Text = activity.Name;
             lblType.Text = "Zadanie";
         }
-        public string TranslateStatus(Status status)
+        private void FillListViews()
+        {
+            olvNotes.SetObjects(_notes);
+            olvLinks.SetObjects(_links);
+            olvPlaces.SetObjects(_places);
+        }
+        private string TranslateStatus(Status status)
         {
             switch (status)
             {
@@ -64,11 +73,12 @@ namespace Tasker
         {
             using (AddNote addNote = new AddNote())
             {
-                if (addNote.ShowDialog() == DialogResult.Ok)
+                if (addNote.ShowDialog() == DialogResult.OK)
                 {
                     _notes.Add(addNote.GetResult());
                 }
             }
+            FillListViews();
         }
     }
 }
