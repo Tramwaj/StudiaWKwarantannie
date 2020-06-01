@@ -49,6 +49,7 @@
             this.btnAddNote = new System.Windows.Forms.Button();
             this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNoteDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -267,19 +268,32 @@
             // olvColNoteName
             // 
             this.olvColNoteName.AspectName = "Name";
+            this.olvColNoteName.DisplayIndex = 0;
             this.olvColNoteName.Text = "Nazwa";
             // 
             // olvColNoteDate
             // 
             this.olvColNoteDate.AspectName = "TimeCreated";
             this.olvColNoteDate.AspectToStringFormat = "{0:dd/MM/yy}";
+            this.olvColNoteDate.DisplayIndex = 1;
             this.olvColNoteDate.Text = "Data dodania";
+            this.olvColNoteDate.Width = 80;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(288, 65);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 19;
+            this.lblDescription.Text = "Description";
             // 
             // EditDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 418);
+            this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.rtxNote);
             this.Controls.Add(this.olvNotes);
@@ -333,5 +347,6 @@
         private System.Windows.Forms.Button btnAddNote;
         private BrightIdeasSoftware.OLVColumn olvColNoteName;
         private BrightIdeasSoftware.OLVColumn olvColNoteDate;
+        private System.Windows.Forms.Label lblDescription;
     }
 }

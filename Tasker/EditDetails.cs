@@ -35,14 +35,15 @@ namespace Tasker
         }        
         public EditDetails(Lesson activity):this((Activity)activity)
         {
-            lblType.Text = "Spotkanie";
+            lblType.Text = activity.Type.ToString();
             lblDuration.Text = activity.Duration.ToString();
             _isLesson = true;
         }
         public EditDetails(Job activity) : this((Activity)activity)
         {            
             lblName.Text = activity.Name;
-            lblType.Text = "Zadanie";
+            lblType.Text = activity.Type.ToString();
+            lblDescription.Text = activity.Description;
             _isLesson = false;
         }
         private void FillListViews()
@@ -90,8 +91,29 @@ namespace Tasker
         {
             if (_isLesson)
             {
-            //    _activity = new Lesson(_subject,)
-            } 
+                _activity = new Lesson
+                    (
+                     _subject,
+                     DateTime.Parse(lblTime.Text),
+                     TimeSpan.Parse(lblDuration.Text),
+                     LessonType.Lab,//TODO
+                     _places,
+                     _links
+                    );
+            }
+            else
+            {
+                _activity = new Job
+                    (
+                    _subject,
+                    DateTime.Parse(lblTime.Text),
+                    TaskType.LabReport,
+                    lblName.Text,
+                    lblDescription.Text,
+                    _places,
+                    _links
+                    );
+            }
         }
     }
 }
