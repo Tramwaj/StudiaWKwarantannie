@@ -25,11 +25,11 @@ namespace Tasker.Models
         public TimeSpan Duration { get; set; }
         public LessonType Type { get; set; }
 
-        public Lesson(Subject subject, DateTime time, TimeSpan duration, LessonType type) : base(subject, time)
+        public Lesson(Subject subject, DateTime time, TimeSpan duration, LessonType type, ICollection<string> placeOnDisk, ICollection<string> links) : base(subject, time, placeOnDisk, links)
         {
             Duration = duration;
             Type = type;
-            PlaceOnDisk = new List<string>();
+            //PlaceOnDisk = new List<string>();
         }
         //TODO: tidy all constructors, 
         //and probably change Links to objects (same with Places??)

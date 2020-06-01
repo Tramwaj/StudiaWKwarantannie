@@ -28,13 +28,11 @@ namespace Tasker.Models
         public string Description { get; set; }        
         public override Status Status { get; set; }         
 
-        public Job(Subject subject, DateTime time, TaskType type, string name, string description, string placeOnDisk, ICollection<string> links): base(subject, time)
+        public Job(Subject subject, DateTime time, TaskType type, string name, string description, ICollection<string> placeOnDisk, ICollection<string> links): base(subject, time, placeOnDisk, links)
         {
             Type = type;
             Name = name;
             Description = description;
-            PlaceOnDisk = new List<string> { placeOnDisk };
-            Links = links;
         }
 
         public bool Equals(Job other)

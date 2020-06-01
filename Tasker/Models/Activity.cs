@@ -24,8 +24,15 @@ namespace Tasker.Models
             Subject = subject;
             Time = time;
             Notes = new List<Note>();
-            Links = new List<string>();
+            //Links = new List<string>();
         }
+
+        protected Activity(Subject subject, DateTime time, ICollection<string> placeOnDisk, ICollection<string> links) : this(subject, time)
+        {
+            PlaceOnDisk = placeOnDisk;
+            Links = links;
+        }
+
         public bool Equals(Activity other)
         {
             return Subject == other.Subject
