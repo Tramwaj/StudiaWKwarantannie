@@ -34,7 +34,7 @@ namespace Tasker
             DisplayFilter = new ActivityDisplayFilter(cklSubjects.CheckedItems.Cast<string>());
             FormatActivitiesList();
             SetSubjects();
-            ShowEvents();
+            ShowEvents();            
 
         }
         private void SetSubjects()
@@ -92,7 +92,7 @@ namespace Tasker
             Activity selectedActivity = (Activity)dlvActivities.SelectedObject;
             try
             {
-                using (EditDetails editDetails = new EditDetails(selectedActivity))
+                using (EditDetails editDetails = new EditDetails((dynamic)selectedActivity))
                 {
                     if (editDetails.ShowDialog() == DialogResult.OK)
                     {
