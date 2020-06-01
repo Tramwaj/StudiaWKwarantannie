@@ -17,11 +17,14 @@ namespace Tasker
         private ICollection<Note> _notes;
         private ICollection<string> _links;
         private ICollection<string> _places;
+        private bool _isLesson;
+        private Subject _subject;
 
         public EditDetails(Activity activity)
         {               
             InitializeComponent();
-            lblSubject.Text = activity.Subject.Name;
+            _subject = activity.Subject;
+            lblSubject.Text = _subject.Name;
             lblTime.Text = activity.Time.ToString();
             lblStatus.Text = TranslateStatus(activity.Status);
             _links = activity.Links;
@@ -34,11 +37,13 @@ namespace Tasker
         {
             lblType.Text = "Spotkanie";
             lblDuration.Text = activity.Duration.ToString();
+            _isLesson = true;
         }
         public EditDetails(Job activity) : this((Activity)activity)
         {            
             lblName.Text = activity.Name;
             lblType.Text = "Zadanie";
+            _isLesson = false;
         }
         private void FillListViews()
         {
@@ -79,6 +84,14 @@ namespace Tasker
                 }
             }
             FillListViews();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (_isLesson)
+            {
+            //    _activity = new Lesson(_subject,)
+            } 
         }
     }
 }
