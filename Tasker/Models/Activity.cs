@@ -24,6 +24,7 @@ namespace Tasker.Models
             Subject = subject;
             Time = time;
             Notes = new List<Note>();
+            Links = new List<string>();
         }
         public bool Equals(Activity other)
         {

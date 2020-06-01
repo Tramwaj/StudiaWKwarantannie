@@ -29,7 +29,10 @@ namespace Tasker.Models
         {
             Duration = duration;
             Type = type;
+            PlaceOnDisk = new List<string>();
         }
+        //TODO: tidy all constructors, 
+        //and probably change Links to objects (same with Places??)
         public override Status Status
         {
             get => DateTime.Now < Time ? Status.Scheduled :
