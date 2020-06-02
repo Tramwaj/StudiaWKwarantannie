@@ -45,10 +45,10 @@
             this.btnAddLink = new System.Windows.Forms.Button();
             this.BtnRemoveLink = new System.Windows.Forms.Button();
             this.olvNotes = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColNoteDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.rtxNote = new System.Windows.Forms.RichTextBox();
             this.btnAddNote = new System.Windows.Forms.Button();
-            this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColNoteDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.lblDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
@@ -138,7 +138,7 @@
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(44, 366);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 39);
             this.btnSave.TabIndex = 8;
@@ -149,7 +149,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(195, 366);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 39);
             this.btnCancel.TabIndex = 9;
@@ -162,7 +162,7 @@
             this.olvPlaces.CellEditUseWholeCell = false;
             this.olvPlaces.HideSelection = false;
             this.olvPlaces.Location = new System.Drawing.Point(366, 41);
-            this.olvPlaces.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.olvPlaces.Margin = new System.Windows.Forms.Padding(2);
             this.olvPlaces.Name = "olvPlaces";
             this.olvPlaces.ShowGroups = false;
             this.olvPlaces.Size = new System.Drawing.Size(210, 131);
@@ -176,7 +176,7 @@
             this.olvLinks.CellEditUseWholeCell = false;
             this.olvLinks.HideSelection = false;
             this.olvLinks.Location = new System.Drawing.Point(366, 239);
-            this.olvLinks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.olvLinks.Margin = new System.Windows.Forms.Padding(2);
             this.olvLinks.Name = "olvLinks";
             this.olvLinks.ShowGroups = false;
             this.olvLinks.Size = new System.Drawing.Size(210, 131);
@@ -188,7 +188,7 @@
             // btnAddPlace
             // 
             this.btnAddPlace.Location = new System.Drawing.Point(366, 174);
-            this.btnAddPlace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddPlace.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPlace.Name = "btnAddPlace";
             this.btnAddPlace.Size = new System.Drawing.Size(75, 26);
             this.btnAddPlace.TabIndex = 12;
@@ -198,7 +198,7 @@
             // btnRemovePlace
             // 
             this.btnRemovePlace.Location = new System.Drawing.Point(546, 174);
-            this.btnRemovePlace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRemovePlace.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemovePlace.Name = "btnRemovePlace";
             this.btnRemovePlace.Size = new System.Drawing.Size(28, 26);
             this.btnRemovePlace.TabIndex = 13;
@@ -208,7 +208,7 @@
             // btnAddLink
             // 
             this.btnAddLink.Location = new System.Drawing.Point(366, 372);
-            this.btnAddLink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddLink.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddLink.Name = "btnAddLink";
             this.btnAddLink.Size = new System.Drawing.Size(75, 26);
             this.btnAddLink.TabIndex = 14;
@@ -218,7 +218,7 @@
             // BtnRemoveLink
             // 
             this.BtnRemoveLink.Location = new System.Drawing.Point(546, 372);
-            this.BtnRemoveLink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnRemoveLink.Margin = new System.Windows.Forms.Padding(2);
             this.BtnRemoveLink.Name = "BtnRemoveLink";
             this.BtnRemoveLink.Size = new System.Drawing.Size(28, 26);
             this.BtnRemoveLink.TabIndex = 15;
@@ -236,7 +236,7 @@
             this.olvNotes.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvNotes.HideSelection = false;
             this.olvNotes.Location = new System.Drawing.Point(11, 112);
-            this.olvNotes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.olvNotes.Margin = new System.Windows.Forms.Padding(2);
             this.olvNotes.Name = "olvNotes";
             this.olvNotes.ShowGroups = false;
             this.olvNotes.Size = new System.Drawing.Size(219, 114);
@@ -245,10 +245,24 @@
             this.olvNotes.View = System.Windows.Forms.View.Details;
             this.olvNotes.VirtualMode = true;
             // 
+            // olvColNoteDate
+            // 
+            this.olvColNoteDate.AspectName = "TimeCreated";
+            this.olvColNoteDate.AspectToStringFormat = "{0:dd/MM/yy}";
+            this.olvColNoteDate.DisplayIndex = 1;
+            this.olvColNoteDate.Text = "Data dodania";
+            this.olvColNoteDate.Width = 80;
+            // 
+            // olvColNoteName
+            // 
+            this.olvColNoteName.AspectName = "Name";
+            this.olvColNoteName.DisplayIndex = 0;
+            this.olvColNoteName.Text = "Nazwa";
+            // 
             // rtxNote
             // 
             this.rtxNote.Location = new System.Drawing.Point(11, 240);
-            this.rtxNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rtxNote.Margin = new System.Windows.Forms.Padding(2);
             this.rtxNote.Name = "rtxNote";
             this.rtxNote.Size = new System.Drawing.Size(335, 122);
             this.rtxNote.TabIndex = 17;
@@ -257,27 +271,13 @@
             // btnAddNote
             // 
             this.btnAddNote.Location = new System.Drawing.Point(241, 112);
-            this.btnAddNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddNote.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNote.Name = "btnAddNote";
             this.btnAddNote.Size = new System.Drawing.Size(63, 28);
             this.btnAddNote.TabIndex = 18;
-            this.btnAddNote.Text = "Dodaj";
+            this.btnAddNote.Text = "Nowa";
             this.btnAddNote.UseVisualStyleBackColor = true;
             this.btnAddNote.Click += new System.EventHandler(this.btnAddNote_Click);
-            // 
-            // olvColNoteName
-            // 
-            this.olvColNoteName.AspectName = "Name";
-            this.olvColNoteName.DisplayIndex = 0;
-            this.olvColNoteName.Text = "Nazwa";
-            // 
-            // olvColNoteDate
-            // 
-            this.olvColNoteDate.AspectName = "TimeCreated";
-            this.olvColNoteDate.AspectToStringFormat = "{0:dd/MM/yy}";
-            this.olvColNoteDate.DisplayIndex = 1;
-            this.olvColNoteDate.Text = "Data dodania";
-            this.olvColNoteDate.Width = 80;
             // 
             // lblDescription
             // 
@@ -313,7 +313,7 @@
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblSubject);
             this.Controls.Add(this.lblName);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "EditDetails";
             this.Text = "Details";
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).EndInit();
