@@ -45,7 +45,7 @@ namespace Tasker
                 , (TaskType)cmbJobType.SelectedIndex
                 , txtName.Text
                 , rtxDescription.Text
-                , _filePath
+                , new List<string>{_filePath}
                 , null); //TODO: Linki
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -67,9 +67,11 @@ namespace Tasker
 
         private void btnAddFile_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog OpenFolder = new CommonOpenFileDialog();
-            OpenFolder.InitialDirectory = "C:\\Users";
-            OpenFolder.IsFolderPicker = true;
+            CommonOpenFileDialog OpenFolder = new CommonOpenFileDialog
+            {
+                InitialDirectory = "C:\\Users",
+                IsFolderPicker = true
+            };
             if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 _filePath = OpenFolder.FileName;                

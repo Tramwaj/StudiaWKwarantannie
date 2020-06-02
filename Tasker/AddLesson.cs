@@ -43,7 +43,10 @@ namespace Tasker
                 (_subjects.Where(s => s.ShortName.Equals(cmbSubject.SelectedItem)).First()
                 , _startTime
                 , _duration
-                , (LessonType)cmbLessonType.SelectedIndex);
+                , (LessonType)cmbLessonType.SelectedIndex
+                , null
+                , null
+                );
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
