@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Tasker.Models
 {
     public enum LessonType
-    {
+    {        
         Lecture = 0,
         Lab = 1
     }
@@ -25,14 +25,12 @@ namespace Tasker.Models
         public TimeSpan Duration { get; set; }
         public LessonType Type { get; set; }
 
-        public Lesson(Subject subject, DateTime time, TimeSpan duration, LessonType type, ICollection<string> placeOnDisk, ICollection<string> links) : base(subject, time, placeOnDisk, links)
-        {
+        public Lesson(Subject subject, DateTime time, TimeSpan duration, LessonType type, ICollection<DiskPlace> diskPlaces, ICollection<Link> links, ICollection<Note> notes) : base(subject, time, diskPlaces, links, notes)
+        {            
             Duration = duration;
-            Type = type;
-            //PlaceOnDisk = new List<string>();
+            Type = type;            
         }
-        //TODO: tidy all constructors, 
-        //and probably change Links to objects (same with Places??)
+        
         public override Status Status
         {
             get => DateTime.Now < Time ? Status.Scheduled :
@@ -54,17 +52,5 @@ namespace Tasker.Models
             return false;
         }
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder(base.ToString());
-            return sb
-                .Append(" (")
-                .Append(Duration.Hours)
-                .Append("h")
-                .Append(Duration.Minutes)
-                .Append(") - ")
-                .Append(Type)
-                .ToString();
-        }
     }
 }

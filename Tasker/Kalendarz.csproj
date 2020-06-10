@@ -107,7 +107,9 @@
     <Compile Include="Data\InitialTeachers.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Activities.cs" />
+    <Compile Include="Models\DiskPlace.cs" />
     <Compile Include="Models\Lesson.cs" />
+    <Compile Include="Models\Link.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Job.cs" />

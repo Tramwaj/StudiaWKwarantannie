@@ -15,22 +15,17 @@ namespace Tasker.Models
         public Subject Subject { get; set; }
         public DateTime Time { get; set; }
         public virtual ICollection<Note> Notes { get; set; }
-        public ICollection<string> PlaceOnDisk { get; set; }
-        public ICollection<string> Links { get; set; }
+        public ICollection<DiskPlace> DiskPlaces { get; set; }
+        public ICollection<Link> Links { get; set; }
         public abstract Status Status { get; set; }
-
-        protected Activity(Subject subject, DateTime time)
+       
+        protected Activity(Subject subject, DateTime time, ICollection<DiskPlace> diskPlaces, ICollection<Link> links, ICollection<Note> notes)
         {
             Subject = subject;
             Time = time;
-            Notes = new List<Note>();
-            //Links = new List<string>();
-        }
-
-        protected Activity(Subject subject, DateTime time, ICollection<string> placeOnDisk, ICollection<string> links) : this(subject, time)
-        {
-            PlaceOnDisk = placeOnDisk;
+            DiskPlaces = diskPlaces;
             Links = links;
+            Notes = notes;
         }
 
         public bool Equals(Activity other)
@@ -38,19 +33,10 @@ namespace Tasker.Models
             return Subject == other.Subject
                 && Time == other.Time;                
         }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Activity);
-        }
-
-
-        public override string ToString()
-        {
-            //var sb = new StringBuilder();
-            //sb.Append(Subject.ShortName)
-            //    .Append(" ")
-            //    .Append
-            return Time.ToString() + " " + Subject.ShortName + " " + Notes.Count;
         }
     }
 }

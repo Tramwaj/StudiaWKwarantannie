@@ -24,7 +24,7 @@ namespace Tasker
             InitializeComponent();
             _subjects = subjects;
             cmbSubject.Items.AddRange(subjects.Select(s => s.ShortName).OrderBy(s => s).ToArray());
-            SetComboBoxesToDefault();            
+            SetComboBoxesToDefault();
         }
 
         public Job GetResult()
@@ -37,16 +37,16 @@ namespace Tasker
             DateTime _time = dtpDate.Value.Date;
             _time = _time.AddHours(Convert.ToInt32(cmbStartHour.SelectedItem));
             _time = _time.AddMinutes(Convert.ToInt32(cmbStartMinutes.SelectedItem));
-
-            //development comment: Subject subject, DateTime time, TaskType type, string name, string description, string placeOnDisk, ICollection<string> links): base(subject, time)
+                        
             job = new Job
                 (_subjects.Where(s => s.ShortName.Equals(cmbSubject.SelectedItem)).First()
                 , _time
                 , (TaskType)cmbJobType.SelectedIndex
                 , txtName.Text
                 , rtxDescription.Text
-                , new List<string>{_filePath}
-                , null); //TODO: Linki
+                , new List<DiskPlace> { new DiskPlace(_filePath, "", false) } //To change (different implementation in form)
+                , new List<Link>() //TODO: Links , notes
+                , new List<Note>());
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -74,7 +74,7 @@ namespace Tasker
             };
             if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                _filePath = OpenFolder.FileName;                
+                _filePath = OpenFolder.FileName;
             }
 
         }

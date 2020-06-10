@@ -15,32 +15,32 @@ namespace Tasker
     {
         private Activity _activity;
         private ICollection<Note> _notes;
-        private ICollection<string> _links;
-        private ICollection<string> _places;
+        private ICollection<Link> _links;
+        private ICollection<DiskPlace> _diskPlaces;
         private bool _isLesson;
         private Subject _subject;
 
         public EditDetails(Activity activity)
-        {               
+        {
             InitializeComponent();
             _subject = activity.Subject;
             lblSubject.Text = _subject.Name;
             lblTime.Text = activity.Time.ToString();
             lblStatus.Text = TranslateStatus(activity.Status);
             _links = activity.Links;
-            _places = activity.PlaceOnDisk;
+            _diskPlaces = activity.DiskPlaces;
             _notes = activity.Notes;
             rtxNote.Text = "Treść wybranej notatki";
             FillListViews();
-        }        
-        public EditDetails(Lesson activity):this((Activity)activity)
+        }
+        public EditDetails(Lesson activity) : this((Activity)activity)
         {
             lblType.Text = activity.Type.ToString();
             lblDuration.Text = activity.Duration.ToString();
             _isLesson = true;
         }
         public EditDetails(Job activity) : this((Activity)activity)
-        {            
+        {
             lblName.Text = activity.Name;
             lblType.Text = activity.Type.ToString();
             lblDescription.Text = activity.Description;
@@ -50,7 +50,7 @@ namespace Tasker
         {
             olvNotes.SetObjects(_notes);
             olvLinks.SetObjects(_links);
-            olvPlaces.SetObjects(_places);
+            olvPlaces.SetObjects(_diskPlaces);
         }
         private string TranslateStatus(Status status)
         {
@@ -93,25 +93,27 @@ namespace Tasker
             {
                 _activity = new Lesson
                     (
-                     _subject,
-                     DateTime.Parse(lblTime.Text),
-                     TimeSpan.Parse(lblDuration.Text),
-                     LessonType.Lab,//TODO
-                     _places,
-                     _links
+                     _subject
+                     , DateTime.Parse(lblTime.Text)
+                     , TimeSpan.Parse(lblDuration.Text)
+                     , LessonType.Lab//TODO
+                     , _diskPlaces
+                     , _links
+                     , _notes
                     );
             }
             else
             {
                 _activity = new Job
                     (
-                    _subject,
-                    DateTime.Parse(lblTime.Text),
-                    TaskType.LabReport,
-                    lblName.Text,
-                    lblDescription.Text,
-                    _places,
-                    _links
+                    _subject
+                    , DateTime.Parse(lblTime.Text)
+                    , TaskType.LabReport
+                    , lblName.Text
+                    , lblDescription.Text
+                    , _diskPlaces
+                    , _links
+                    , _notes
                     );
             }
         }

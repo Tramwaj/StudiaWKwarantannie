@@ -44,8 +44,9 @@ namespace Tasker
                 , _startTime
                 , _duration
                 , (LessonType)cmbLessonType.SelectedIndex
-                , null
-                , null
+                , new List<DiskPlace>()
+                , new List<Link>()
+                , new List<Note>()
                 );
             this.DialogResult = DialogResult.OK;
             this.Close();

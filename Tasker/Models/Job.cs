@@ -28,7 +28,7 @@ namespace Tasker.Models
         public string Description { get; set; }        
         public override Status Status { get; set; }         
 
-        public Job(Subject subject, DateTime time, TaskType type, string name, string description, ICollection<string> placeOnDisk, ICollection<string> links): base(subject, time, placeOnDisk, links)
+        public Job(Subject subject, DateTime time, TaskType type, string name, string description, ICollection<DiskPlace> diskPlaces, ICollection<Link> links, ICollection<Note> notes): base(subject, time, diskPlaces, links, notes)
         {
             Type = type;
             Name = name;
