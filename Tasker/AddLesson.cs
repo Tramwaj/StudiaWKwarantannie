@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tasker.Data;
 using Tasker.Models;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Tasker
 {
@@ -16,6 +17,7 @@ namespace Tasker
     {
         private Lesson lesson;
         private ICollection<Subject> _subjects;
+        private DiskPlace _diskPlace;
         public AddLesson(ICollection<Subject> subjects)
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace Tasker
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+
             DateTime _startTime = dtpDate.Value.Date;
             _startTime = _startTime.AddHours(Convert.ToInt32(cmbStartHour.SelectedItem));
             _startTime = _startTime.AddMinutes(Convert.ToInt32(cmbStartMinutes.SelectedItem));
@@ -44,9 +47,10 @@ namespace Tasker
                 , _startTime
                 , _duration
                 , (LessonType)cmbLessonType.SelectedIndex
-                , new List<DiskPlace>()
-                , new List<Link>()
-                , new List<Note>()
+                //TODO
+                , new List<DiskPlace> { _diskPlace }
+                , new List<Link>()//TODO
+                , new List<Note>()//TODO
                 );
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -68,5 +72,20 @@ namespace Tasker
             cmbLessonType.SelectedIndex = 0;
         }
 
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog OpenFolder = new CommonOpenFileDialog
+            {
+                InitialDirectory = "C:\\Users",
+                IsFolderPicker = true
+            };
+            if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                _diskPlace = new DiskPlace(
+                    OpenFolder.FileName
+                    , txtDiskPlace.Text,
+                    false);
+            }
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace Tasker
     {
         private Job job;
         private ICollection<Subject> _subjects;
-        private string _filePath;
+        private DiskPlace _diskPlace;
 
         public AddJob(ICollection<Subject> subjects)
         {
@@ -44,7 +44,7 @@ namespace Tasker
                 , (TaskType)cmbJobType.SelectedIndex
                 , txtName.Text
                 , rtxDescription.Text
-                , new List<DiskPlace> { new DiskPlace(_filePath, "", false) } //To change (different implementation in form)
+                , new List<DiskPlace> { _diskPlace } 
                 , new List<Link>() //TODO: Links , notes
                 , new List<Note>());
             this.DialogResult = DialogResult.OK;
@@ -74,7 +74,10 @@ namespace Tasker
             };
             if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                _filePath = OpenFolder.FileName;
+                _diskPlace = new DiskPlace(
+                    OpenFolder.FileName
+                    , txtDiskPlace.Text,
+                    false);
             }
 
         }
