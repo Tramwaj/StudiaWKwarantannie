@@ -17,13 +17,14 @@ namespace Tasker
     {
         private Lesson lesson;
         private ICollection<Subject> _subjects;
-        private DiskPlace _diskPlace;
+        private List<DiskPlace> _diskPlaces;
         public AddLesson(ICollection<Subject> subjects)
         {
             InitializeComponent();
             _subjects = subjects;
             cmbSubject.Items.AddRange(subjects.Select(s => s.ShortName).OrderBy(s => s).ToArray());
             SetComboBoxesToDefault();
+            _diskPlaces = new List<DiskPlace>();
         }
 
         public Lesson GetResult()
@@ -48,7 +49,7 @@ namespace Tasker
                 , _duration
                 , (LessonType)cmbLessonType.SelectedIndex
                 //TODO
-                , new List<DiskPlace> { _diskPlace }
+                , _diskPlaces 
                 , new List<Link>()//TODO
                 , new List<Note>()//TODO
                 );
@@ -81,10 +82,11 @@ namespace Tasker
             };
             if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                _diskPlace = new DiskPlace(
+                _diskPlaces.Add(new DiskPlace(
                     OpenFolder.FileName
                     , txtDiskPlace.Text,
-                    false);
+                    false));
+                MessageBox.Show("Dodano folder");
             }
         }
     }

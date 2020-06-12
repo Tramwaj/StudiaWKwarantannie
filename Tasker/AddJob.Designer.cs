@@ -45,7 +45,6 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.rtxDescription = new System.Windows.Forms.RichTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -53,7 +52,9 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.txtDiskPlace = new System.Windows.Forms.TextBox();
+            this.fastObjectListView1 = new BrightIdeasSoftware.FastObjectListView();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbStartMinutes
@@ -141,7 +142,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(215, 416);
+            this.btnCancel.Location = new System.Drawing.Point(215, 437);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(103, 41);
             this.btnCancel.TabIndex = 30;
@@ -151,7 +152,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(40, 416);
+            this.btnOK.Location = new System.Drawing.Point(40, 437);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(100, 41);
             this.btnOK.TabIndex = 29;
@@ -226,12 +227,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(57, 205);
+            this.label6.Location = new System.Drawing.Point(63, 205);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(28, 13);
+            this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 41;
-            this.label6.Text = "Opis";
+            this.label6.Text = "Opis:";
             // 
             // rtxDescription
             // 
@@ -242,20 +243,10 @@
             this.rtxDescription.TabIndex = 42;
             this.rtxDescription.Text = "";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(118, 359);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listBox1.MultiColumn = true;
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(150, 43);
-            this.listBox1.TabIndex = 43;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(61, 359);
+            this.label8.Location = new System.Drawing.Point(61, 347);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 13);
@@ -298,16 +289,29 @@
             this.txtDiskPlace.TabIndex = 47;
             this.txtDiskPlace.Text = "Folder domyślny";
             // 
+            // fastObjectListView1
+            // 
+            this.fastObjectListView1.CellEditUseWholeCell = false;
+            this.fastObjectListView1.HideSelection = false;
+            this.fastObjectListView1.Location = new System.Drawing.Point(118, 343);
+            this.fastObjectListView1.Name = "fastObjectListView1";
+            this.fastObjectListView1.ShowGroups = false;
+            this.fastObjectListView1.Size = new System.Drawing.Size(200, 67);
+            this.fastObjectListView1.TabIndex = 48;
+            this.fastObjectListView1.UseCompatibleStateImageBehavior = false;
+            this.fastObjectListView1.View = System.Windows.Forms.View.Details;
+            this.fastObjectListView1.VirtualMode = true;
+            // 
             // AddJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 479);
+            this.ClientSize = new System.Drawing.Size(346, 506);
+            this.Controls.Add(this.fastObjectListView1);
             this.Controls.Add(this.txtDiskPlace);
             this.Controls.Add(this.btnAddFile);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.rtxDescription);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtName);
@@ -331,6 +335,7 @@
             this.Text = "AddJob";
             this.Load += new System.EventHandler(this.AddJob_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,7 +359,6 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox rtxDescription;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
@@ -362,5 +366,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.TextBox txtDiskPlace;
+        private BrightIdeasSoftware.FastObjectListView fastObjectListView1;
     }
 }

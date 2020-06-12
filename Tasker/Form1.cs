@@ -90,8 +90,8 @@ namespace Tasker
         private void btnDetails_Click(object sender, EventArgs e)
         {
             Activity selectedActivity = (Activity)dlvActivities.SelectedObject;
-            try
-            {
+            //try
+            //{
                 using (EditDetails editDetails = new EditDetails((dynamic)selectedActivity))
                 {
                     if (editDetails.ShowDialog() == DialogResult.OK)
@@ -99,11 +99,11 @@ namespace Tasker
                         activities.Replace(selectedActivity, editDetails.getResult());
                     }
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Należy zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Należy zaznaczyć JEDNO wydarzenie", "błąd", MessageBoxButtons.OK);
+            //}
         }
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)

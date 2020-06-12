@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tasker.Models
 {
+    [Serializable]
     public class Link
     {
         public string Path { get; set; }

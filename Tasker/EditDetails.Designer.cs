@@ -50,6 +50,9 @@
             this.rtxNote = new System.Windows.Forms.RichTextBox();
             this.btnAddNote = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.olvColDiskPlace = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColDiskPlaceDesc = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColOpen = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -159,17 +162,26 @@
             // 
             // olvPlaces
             // 
+            this.olvPlaces.AllColumns.Add(this.olvColDiskPlace);
+            this.olvPlaces.AllColumns.Add(this.olvColDiskPlaceDesc);
+            this.olvPlaces.AllColumns.Add(this.olvColOpen);
             this.olvPlaces.CellEditUseWholeCell = false;
+            this.olvPlaces.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColDiskPlace,
+            this.olvColDiskPlaceDesc,
+            this.olvColOpen});
+            this.olvPlaces.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvPlaces.HideSelection = false;
-            this.olvPlaces.Location = new System.Drawing.Point(366, 41);
+            this.olvPlaces.Location = new System.Drawing.Point(366, 20);
             this.olvPlaces.Margin = new System.Windows.Forms.Padding(2);
             this.olvPlaces.Name = "olvPlaces";
             this.olvPlaces.ShowGroups = false;
-            this.olvPlaces.Size = new System.Drawing.Size(210, 131);
+            this.olvPlaces.Size = new System.Drawing.Size(317, 152);
             this.olvPlaces.TabIndex = 10;
             this.olvPlaces.UseCompatibleStateImageBehavior = false;
             this.olvPlaces.View = System.Windows.Forms.View.Details;
             this.olvPlaces.VirtualMode = true;
+            this.olvPlaces.SelectedIndexChanged += new System.EventHandler(this.olvPlaces_SelectedIndexChanged);
             // 
             // olvLinks
             // 
@@ -179,7 +191,7 @@
             this.olvLinks.Margin = new System.Windows.Forms.Padding(2);
             this.olvLinks.Name = "olvLinks";
             this.olvLinks.ShowGroups = false;
-            this.olvLinks.Size = new System.Drawing.Size(210, 131);
+            this.olvLinks.Size = new System.Drawing.Size(317, 131);
             this.olvLinks.TabIndex = 11;
             this.olvLinks.UseCompatibleStateImageBehavior = false;
             this.olvLinks.View = System.Windows.Forms.View.Details;
@@ -194,6 +206,7 @@
             this.btnAddPlace.TabIndex = 12;
             this.btnAddPlace.Text = "Dodaj";
             this.btnAddPlace.UseVisualStyleBackColor = true;
+            this.btnAddPlace.Click += new System.EventHandler(this.btnAddPlace_Click);
             // 
             // btnRemovePlace
             // 
@@ -288,11 +301,30 @@
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
             // 
+            // olvColDiskPlace
+            // 
+            this.olvColDiskPlace.AspectName = "Path";
+            this.olvColDiskPlace.Text = "Scieżka";
+            this.olvColDiskPlace.Width = 128;
+            // 
+            // olvColDiskPlaceDesc
+            // 
+            this.olvColDiskPlaceDesc.AspectName = "Description";
+            this.olvColDiskPlaceDesc.Text = "Opis";
+            this.olvColDiskPlaceDesc.Width = 128;
+            // 
+            // olvColOpen
+            // 
+            this.olvColOpen.AspectName = "IsFile";
+            this.olvColOpen.ButtonSizing = BrightIdeasSoftware.OLVColumn.ButtonSizingMode.CellBounds;
+            this.olvColOpen.IsButton = true;
+            this.olvColOpen.Text = "Otwórz";
+            // 
             // EditDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(606, 418);
+            this.ClientSize = new System.Drawing.Size(716, 418);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.rtxNote);
@@ -348,5 +380,8 @@
         private BrightIdeasSoftware.OLVColumn olvColNoteName;
         private BrightIdeasSoftware.OLVColumn olvColNoteDate;
         private System.Windows.Forms.Label lblDescription;
+        private BrightIdeasSoftware.OLVColumn olvColDiskPlace;
+        private BrightIdeasSoftware.OLVColumn olvColDiskPlaceDesc;
+        private BrightIdeasSoftware.OLVColumn olvColOpen;
     }
 }

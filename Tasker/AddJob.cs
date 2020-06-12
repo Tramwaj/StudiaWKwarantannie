@@ -17,7 +17,7 @@ namespace Tasker
     {
         private Job job;
         private ICollection<Subject> _subjects;
-        private DiskPlace _diskPlace;
+        private List<DiskPlace> _diskPlaces;
 
         public AddJob(ICollection<Subject> subjects)
         {
@@ -25,6 +25,7 @@ namespace Tasker
             _subjects = subjects;
             cmbSubject.Items.AddRange(subjects.Select(s => s.ShortName).OrderBy(s => s).ToArray());
             SetComboBoxesToDefault();
+            _diskPlaces = new List<DiskPlace>();
         }
 
         public Job GetResult()
@@ -44,7 +45,7 @@ namespace Tasker
                 , (TaskType)cmbJobType.SelectedIndex
                 , txtName.Text
                 , rtxDescription.Text
-                , new List<DiskPlace> { _diskPlace } 
+                , _diskPlaces 
                 , new List<Link>() //TODO: Links , notes
                 , new List<Note>());
             this.DialogResult = DialogResult.OK;
@@ -74,10 +75,11 @@ namespace Tasker
             };
             if (OpenFolder.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                _diskPlace = new DiskPlace(
+                _diskPlaces.Add(new DiskPlace(
                     OpenFolder.FileName
                     , txtDiskPlace.Text,
-                    false);
+                    false));
+                MessageBox.Show("Dodano folder");
             }
 
         }

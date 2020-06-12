@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BrightIdeasSoftware;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -31,7 +33,7 @@ namespace Tasker
             _diskPlaces = activity.DiskPlaces;
             _notes = activity.Notes;
             rtxNote.Text = "Treść wybranej notatki";
-            FillListViews();
+            FormatListViews();
         }
         public EditDetails(Lesson activity) : this((Activity)activity)
         {
@@ -46,7 +48,30 @@ namespace Tasker
             lblDescription.Text = activity.Description;
             _isLesson = false;
         }
-        private void FillListViews()
+        private void FormatListViews()
+        {
+            RefreshListViews();   
+            olvColOpen.IsButton = true;
+            olvPlaces.ButtonClick += delegate (object sender, CellClickEventArgs e) {
+                DiskPlace _diskPlace = (DiskPlace)e.Model;
+                if (_diskPlace.IsFile)
+                {
+                    Process.Start(_diskPlace.Path);
+                }
+                else
+                {
+                    Process.Start("explorer.exe", _diskPlace.Path);
+                }
+                
+                // Take some action on e.Model based on which button (e.ColumnIndex) was clicked
+
+                // ...
+
+                // If something about the object changed, you probably want to refresh the model
+                //this.olv.RefreshObject(e.Model);
+            };
+        }
+        private void RefreshListViews()
         {
             olvNotes.SetObjects(_notes);
             olvLinks.SetObjects(_links);
@@ -84,7 +109,7 @@ namespace Tasker
                     _notes.Add(addNote.GetResult());
                 }
             }
-            FillListViews();
+            RefreshListViews();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -116,6 +141,27 @@ namespace Tasker
                     , _notes
                     );
             }
+        }
+
+
+
+        private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddPlace_Click(object sender, EventArgs e)
+        {
+            string _defaultPath = _diskPlaces.FirstOrDefault().Path;
+            using (AddDiskPlace addDiskPlace = new AddDiskPlace(_defaultPath))
+            {
+                if (addDiskPlace.ShowDialog() == DialogResult.OK)
+                {
+                    _diskPlaces.Add(addDiskPlace.GetResult());
+                }
+            }
+            RefreshListViews();
+
         }
     }
 }

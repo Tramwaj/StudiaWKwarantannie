@@ -52,14 +52,15 @@
             this.btnAddFile = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.txtDiskPlace = new System.Windows.Forms.TextBox();
+            this.fastObjectListView1 = new BrightIdeasSoftware.FastObjectListView();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDate
             // 
-            this.dtpDate.Location = new System.Drawing.Point(126, 53);
+            this.dtpDate.Location = new System.Drawing.Point(117, 51);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 20);
             this.dtpDate.TabIndex = 0;
@@ -113,7 +114,7 @@
             this.cmbLessonType.Items.AddRange(new object[] {
             "Wykład",
             "Laboratorium"});
-            this.cmbLessonType.Location = new System.Drawing.Point(126, 165);
+            this.cmbLessonType.Location = new System.Drawing.Point(117, 165);
             this.cmbLessonType.Name = "cmbLessonType";
             this.cmbLessonType.Size = new System.Drawing.Size(121, 21);
             this.cmbLessonType.TabIndex = 10;
@@ -190,7 +191,7 @@
             // cmbSubject
             // 
             this.cmbSubject.FormattingEnabled = true;
-            this.cmbSubject.Location = new System.Drawing.Point(126, 21);
+            this.cmbSubject.Location = new System.Drawing.Point(117, 18);
             this.cmbSubject.Name = "cmbSubject";
             this.cmbSubject.Size = new System.Drawing.Size(121, 21);
             this.cmbSubject.TabIndex = 18;
@@ -313,40 +314,44 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(70, 242);
+            this.label11.Location = new System.Drawing.Point(70, 252);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 48;
             this.label11.Text = "Linki:";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(127, 242);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(150, 43);
-            this.listBox1.TabIndex = 47;
-            // 
             // txtDiskPlace
             // 
-            this.txtDiskPlace.Location = new System.Drawing.Point(108, 207);
+            this.txtDiskPlace.Location = new System.Drawing.Point(117, 207);
             this.txtDiskPlace.Name = "txtDiskPlace";
             this.txtDiskPlace.Size = new System.Drawing.Size(100, 20);
             this.txtDiskPlace.TabIndex = 51;
             this.txtDiskPlace.Text = "Folder domyślny";
             // 
+            // fastObjectListView1
+            // 
+            this.fastObjectListView1.CellEditUseWholeCell = false;
+            this.fastObjectListView1.HideSelection = false;
+            this.fastObjectListView1.Location = new System.Drawing.Point(117, 252);
+            this.fastObjectListView1.Name = "fastObjectListView1";
+            this.fastObjectListView1.ShowGroups = false;
+            this.fastObjectListView1.Size = new System.Drawing.Size(200, 79);
+            this.fastObjectListView1.TabIndex = 52;
+            this.fastObjectListView1.UseCompatibleStateImageBehavior = false;
+            this.fastObjectListView1.View = System.Windows.Forms.View.Details;
+            this.fastObjectListView1.VirtualMode = true;
+            // 
             // AddLesson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(355, 503);
+            this.ClientSize = new System.Drawing.Size(361, 434);
+            this.Controls.Add(this.fastObjectListView1);
             this.Controls.Add(this.txtDiskPlace);
             this.Controls.Add(this.btnAddFile);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.cmbDurationMinutes);
             this.Controls.Add(this.cmbStartMinutes);
             this.Controls.Add(this.cmbDurationHours);
@@ -369,6 +374,7 @@
             this.Name = "AddLesson";
             this.Text = "AddLesson";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fastObjectListView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,7 +405,7 @@
         private System.Windows.Forms.Button btnAddFile;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox txtDiskPlace;
+        private BrightIdeasSoftware.FastObjectListView fastObjectListView1;
     }
 }
