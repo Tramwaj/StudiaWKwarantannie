@@ -13,12 +13,11 @@ using Tasker.Models;
 namespace Tasker
 {
     public partial class AddDiskPlace : Form
-    {
-        private string _homepath;
+    {        
         private string _chosenPath;
         private DiskPlace diskPlace;
 
-        public AddDiskPlace(string path)
+        public AddDiskPlace()
         {
             InitializeComponent();
         }
@@ -31,8 +30,7 @@ namespace Tasker
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog
-            {
-                InitialDirectory = _homepath,
+            {                
                 IsFolderPicker = rdoFolder.Checked ? true : false
             };
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)

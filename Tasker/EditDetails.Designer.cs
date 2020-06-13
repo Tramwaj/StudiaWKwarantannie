@@ -39,9 +39,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.olvPlaces = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColDiskPlace = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColDiskPlaceDesc = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColOpen = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLinks = new BrightIdeasSoftware.FastObjectListView();
             this.btnAddPlace = new System.Windows.Forms.Button();
-            this.btnRemovePlace = new System.Windows.Forms.Button();
+            this.btnRemoveDiskPlace = new System.Windows.Forms.Button();
             this.btnAddLink = new System.Windows.Forms.Button();
             this.BtnRemoveLink = new System.Windows.Forms.Button();
             this.olvNotes = new BrightIdeasSoftware.FastObjectListView();
@@ -50,9 +53,6 @@
             this.rtxNote = new System.Windows.Forms.RichTextBox();
             this.btnAddNote = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.olvColDiskPlace = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColDiskPlaceDesc = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.olvColOpen = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -121,7 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(320, 20);
+            this.label1.Location = new System.Drawing.Point(298, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
@@ -172,26 +172,45 @@
             this.olvColOpen});
             this.olvPlaces.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvPlaces.HideSelection = false;
-            this.olvPlaces.Location = new System.Drawing.Point(366, 20);
+            this.olvPlaces.Location = new System.Drawing.Point(347, 20);
             this.olvPlaces.Margin = new System.Windows.Forms.Padding(2);
             this.olvPlaces.Name = "olvPlaces";
             this.olvPlaces.ShowGroups = false;
-            this.olvPlaces.Size = new System.Drawing.Size(317, 152);
+            this.olvPlaces.Size = new System.Drawing.Size(336, 152);
             this.olvPlaces.TabIndex = 10;
             this.olvPlaces.UseCompatibleStateImageBehavior = false;
             this.olvPlaces.View = System.Windows.Forms.View.Details;
             this.olvPlaces.VirtualMode = true;
             this.olvPlaces.SelectedIndexChanged += new System.EventHandler(this.olvPlaces_SelectedIndexChanged);
             // 
+            // olvColDiskPlace
+            // 
+            this.olvColDiskPlace.AspectName = "Path";
+            this.olvColDiskPlace.Text = "Scieżka";
+            this.olvColDiskPlace.Width = 128;
+            // 
+            // olvColDiskPlaceDesc
+            // 
+            this.olvColDiskPlaceDesc.AspectName = "Description";
+            this.olvColDiskPlaceDesc.Text = "Opis";
+            this.olvColDiskPlaceDesc.Width = 128;
+            // 
+            // olvColOpen
+            // 
+            this.olvColOpen.AspectName = "IsFile";
+            this.olvColOpen.ButtonSizing = BrightIdeasSoftware.OLVColumn.ButtonSizingMode.CellBounds;
+            this.olvColOpen.IsButton = true;
+            this.olvColOpen.Text = "Otwórz";
+            // 
             // olvLinks
             // 
             this.olvLinks.CellEditUseWholeCell = false;
             this.olvLinks.HideSelection = false;
-            this.olvLinks.Location = new System.Drawing.Point(366, 239);
+            this.olvLinks.Location = new System.Drawing.Point(347, 239);
             this.olvLinks.Margin = new System.Windows.Forms.Padding(2);
             this.olvLinks.Name = "olvLinks";
             this.olvLinks.ShowGroups = false;
-            this.olvLinks.Size = new System.Drawing.Size(317, 131);
+            this.olvLinks.Size = new System.Drawing.Size(336, 131);
             this.olvLinks.TabIndex = 11;
             this.olvLinks.UseCompatibleStateImageBehavior = false;
             this.olvLinks.View = System.Windows.Forms.View.Details;
@@ -208,15 +227,16 @@
             this.btnAddPlace.UseVisualStyleBackColor = true;
             this.btnAddPlace.Click += new System.EventHandler(this.btnAddPlace_Click);
             // 
-            // btnRemovePlace
+            // btnRemoveDiskPlace
             // 
-            this.btnRemovePlace.Location = new System.Drawing.Point(546, 174);
-            this.btnRemovePlace.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRemovePlace.Name = "btnRemovePlace";
-            this.btnRemovePlace.Size = new System.Drawing.Size(28, 26);
-            this.btnRemovePlace.TabIndex = 13;
-            this.btnRemovePlace.Text = "X";
-            this.btnRemovePlace.UseVisualStyleBackColor = true;
+            this.btnRemoveDiskPlace.Location = new System.Drawing.Point(655, 176);
+            this.btnRemoveDiskPlace.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemoveDiskPlace.Name = "btnRemoveDiskPlace";
+            this.btnRemoveDiskPlace.Size = new System.Drawing.Size(28, 26);
+            this.btnRemoveDiskPlace.TabIndex = 13;
+            this.btnRemoveDiskPlace.Text = "X";
+            this.btnRemoveDiskPlace.UseVisualStyleBackColor = true;
+            this.btnRemoveDiskPlace.Click += new System.EventHandler(this.btnRemoveDiskPlace_Click);
             // 
             // btnAddLink
             // 
@@ -230,7 +250,7 @@
             // 
             // BtnRemoveLink
             // 
-            this.BtnRemoveLink.Location = new System.Drawing.Point(546, 372);
+            this.BtnRemoveLink.Location = new System.Drawing.Point(655, 372);
             this.BtnRemoveLink.Margin = new System.Windows.Forms.Padding(2);
             this.BtnRemoveLink.Name = "BtnRemoveLink";
             this.BtnRemoveLink.Size = new System.Drawing.Size(28, 26);
@@ -277,7 +297,7 @@
             this.rtxNote.Location = new System.Drawing.Point(11, 240);
             this.rtxNote.Margin = new System.Windows.Forms.Padding(2);
             this.rtxNote.Name = "rtxNote";
-            this.rtxNote.Size = new System.Drawing.Size(335, 122);
+            this.rtxNote.Size = new System.Drawing.Size(313, 122);
             this.rtxNote.TabIndex = 17;
             this.rtxNote.Text = "";
             // 
@@ -295,30 +315,11 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(288, 65);
+            this.lblDescription.Location = new System.Drawing.Point(235, 159);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
-            // 
-            // olvColDiskPlace
-            // 
-            this.olvColDiskPlace.AspectName = "Path";
-            this.olvColDiskPlace.Text = "Scieżka";
-            this.olvColDiskPlace.Width = 128;
-            // 
-            // olvColDiskPlaceDesc
-            // 
-            this.olvColDiskPlaceDesc.AspectName = "Description";
-            this.olvColDiskPlaceDesc.Text = "Opis";
-            this.olvColDiskPlaceDesc.Width = 128;
-            // 
-            // olvColOpen
-            // 
-            this.olvColOpen.AspectName = "IsFile";
-            this.olvColOpen.ButtonSizing = BrightIdeasSoftware.OLVColumn.ButtonSizingMode.CellBounds;
-            this.olvColOpen.IsButton = true;
-            this.olvColOpen.Text = "Otwórz";
             // 
             // EditDetails
             // 
@@ -331,7 +332,7 @@
             this.Controls.Add(this.olvNotes);
             this.Controls.Add(this.BtnRemoveLink);
             this.Controls.Add(this.btnAddLink);
-            this.Controls.Add(this.btnRemovePlace);
+            this.Controls.Add(this.btnRemoveDiskPlace);
             this.Controls.Add(this.btnAddPlace);
             this.Controls.Add(this.olvLinks);
             this.Controls.Add(this.olvPlaces);
@@ -371,7 +372,7 @@
         private BrightIdeasSoftware.FastObjectListView olvPlaces;
         private BrightIdeasSoftware.FastObjectListView olvLinks;
         private System.Windows.Forms.Button btnAddPlace;
-        private System.Windows.Forms.Button btnRemovePlace;
+        private System.Windows.Forms.Button btnRemoveDiskPlace;
         private System.Windows.Forms.Button btnAddLink;
         private System.Windows.Forms.Button BtnRemoveLink;
         private BrightIdeasSoftware.FastObjectListView olvNotes;

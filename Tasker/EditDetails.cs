@@ -35,12 +35,14 @@ namespace Tasker
             rtxNote.Text = "Treść wybranej notatki";
             FormatListViews();
         }
+
         public EditDetails(Lesson activity) : this((Activity)activity)
         {
             lblType.Text = activity.Type.ToString();
             lblDuration.Text = activity.Duration.ToString();
             _isLesson = true;
         }
+
         public EditDetails(Job activity) : this((Activity)activity)
         {
             lblName.Text = activity.Name;
@@ -48,6 +50,7 @@ namespace Tasker
             lblDescription.Text = activity.Description;
             _isLesson = false;
         }
+
         private void FormatListViews()
         {
             RefreshListViews();   
@@ -61,22 +64,17 @@ namespace Tasker
                 else
                 {
                     Process.Start("explorer.exe", _diskPlace.Path);
-                }
-                
-                // Take some action on e.Model based on which button (e.ColumnIndex) was clicked
-
-                // ...
-
-                // If something about the object changed, you probably want to refresh the model
-                //this.olv.RefreshObject(e.Model);
+                }                
             };
         }
+
         private void RefreshListViews()
         {
             olvNotes.SetObjects(_notes);
             olvLinks.SetObjects(_links);
             olvPlaces.SetObjects(_diskPlaces);
         }
+
         private string TranslateStatus(Status status)
         {
             switch (status)
@@ -143,17 +141,19 @@ namespace Tasker
             }
         }
 
-
-
-        private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e)
+        private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e) //TO BE REMOVED
         {
+
+            //TO BE REMOVED
+            //TO BE REMOVED
+            //TO BE REMOVED
+            //TO BE REMOVED
 
         }
 
         private void btnAddPlace_Click(object sender, EventArgs e)
         {
-            string _defaultPath = _diskPlaces.FirstOrDefault().Path;
-            using (AddDiskPlace addDiskPlace = new AddDiskPlace(_defaultPath))
+            using (AddDiskPlace addDiskPlace = new AddDiskPlace())
             {
                 if (addDiskPlace.ShowDialog() == DialogResult.OK)
                 {
@@ -162,6 +162,21 @@ namespace Tasker
             }
             RefreshListViews();
 
+        }
+
+        private void btnRemoveDiskPlace_Click(object sender, EventArgs e)
+        {
+            IEnumerable<DiskPlace> _diskPlacesToDelete = olvPlaces.SelectedObjects.OfType<DiskPlace>();
+            DialogResult deleteConfirmed = MessageBox.Show(
+                $"Czy chcesz usunąć {_diskPlacesToDelete.Count()} zapisów?", "Usuń", MessageBoxButtons.OKCancel);
+            if (deleteConfirmed == DialogResult.OK)
+            {
+                foreach (var _diskplace in _diskPlacesToDelete)
+                {
+                    _diskPlaces.Remove(_diskplace);
+                }
+                RefreshListViews();
+            }
         }
     }
 }
