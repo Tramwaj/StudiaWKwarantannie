@@ -38,7 +38,9 @@
             this.btnAddTask = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancelCalendar = new System.Windows.Forms.Button();
-            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
+            this.olvNotes = new BrightIdeasSoftware.ObjectListView();
+            this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColNoteDateCreated = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.dlvActivities = new BrightIdeasSoftware.DataListView();
             this.olvColDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTimeOfDay = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -52,7 +54,8 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnAddNote = new System.Windows.Forms.Button();
             this.cmbState = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.btnEditSubjects = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(667, 426);
+            this.label2.Location = new System.Drawing.Point(616, 462);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 5;
@@ -105,7 +108,7 @@
             // 
             // btnAddLesson
             // 
-            this.btnAddLesson.Location = new System.Drawing.Point(12, 471);
+            this.btnAddLesson.Location = new System.Drawing.Point(12, 482);
             this.btnAddLesson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddLesson.Name = "btnAddLesson";
             this.btnAddLesson.Size = new System.Drawing.Size(141, 87);
@@ -120,14 +123,14 @@
             this.cklSubjects.Location = new System.Drawing.Point(4, 303);
             this.cklSubjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cklSubjects.Name = "cklSubjects";
-            this.cklSubjects.Size = new System.Drawing.Size(351, 140);
+            this.cklSubjects.Size = new System.Drawing.Size(253, 140);
             this.cklSubjects.TabIndex = 2;
             this.cklSubjects.SelectedIndexChanged += new System.EventHandler(this.cklSubjects_SelectedIndexChanged);
             this.cklSubjects.SelectedValueChanged += new System.EventHandler(this.cklSubjects_SelectedValueChanged);
             // 
             // btnAddTask
             // 
-            this.btnAddTask.Location = new System.Drawing.Point(187, 471);
+            this.btnAddTask.Location = new System.Drawing.Point(187, 482);
             this.btnAddTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddTask.Name = "btnAddTask";
             this.btnAddTask.Size = new System.Drawing.Size(151, 87);
@@ -156,18 +159,36 @@
             this.btnCancelCalendar.UseVisualStyleBackColor = true;
             this.btnCancelCalendar.Click += new System.EventHandler(this.btnCancelCalendar_Click);
             // 
-            // objectListView1
+            // olvNotes
             // 
-            this.objectListView1.CellEditUseWholeCell = false;
-            this.objectListView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.objectListView1.HideSelection = false;
-            this.objectListView1.Location = new System.Drawing.Point(670, 451);
-            this.objectListView1.Margin = new System.Windows.Forms.Padding(4);
-            this.objectListView1.Name = "objectListView1";
-            this.objectListView1.Size = new System.Drawing.Size(354, 192);
-            this.objectListView1.TabIndex = 10;
-            this.objectListView1.UseCompatibleStateImageBehavior = false;
-            this.objectListView1.View = System.Windows.Forms.View.Details;
+            this.olvNotes.AllColumns.Add(this.olvColNoteName);
+            this.olvNotes.AllColumns.Add(this.olvColNoteDateCreated);
+            this.olvNotes.CellEditUseWholeCell = false;
+            this.olvNotes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColNoteName,
+            this.olvColNoteDateCreated});
+            this.olvNotes.Cursor = System.Windows.Forms.Cursors.Default;
+            this.olvNotes.HideSelection = false;
+            this.olvNotes.Location = new System.Drawing.Point(669, 462);
+            this.olvNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.olvNotes.Name = "olvNotes";
+            this.olvNotes.Size = new System.Drawing.Size(353, 192);
+            this.olvNotes.TabIndex = 10;
+            this.olvNotes.UseCompatibleStateImageBehavior = false;
+            this.olvNotes.View = System.Windows.Forms.View.Details;
+            // 
+            // olvColNoteName
+            // 
+            this.olvColNoteName.AspectName = "Name";
+            this.olvColNoteName.Text = "Nazwa";
+            this.olvColNoteName.Width = 160;
+            // 
+            // olvColNoteDateCreated
+            // 
+            this.olvColNoteDateCreated.AspectName = "TimeCreated";
+            this.olvColNoteDateCreated.AspectToStringFormat = "{0:dd/MM/yyyy}";
+            this.olvColNoteDateCreated.Text = "Data utworzenia";
+            this.olvColNoteDateCreated.Width = 128;
             // 
             // dlvActivities
             // 
@@ -192,9 +213,10 @@
             this.dlvActivities.FullRowSelect = true;
             this.dlvActivities.HideSelection = false;
             this.dlvActivities.Location = new System.Drawing.Point(388, 42);
+            this.dlvActivities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dlvActivities.Name = "dlvActivities";
             this.dlvActivities.SelectAllOnControlA = false;
-            this.dlvActivities.Size = new System.Drawing.Size(682, 349);
+            this.dlvActivities.Size = new System.Drawing.Size(681, 349);
             this.dlvActivities.TabIndex = 11;
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
             this.dlvActivities.View = System.Windows.Forms.View.Details;
@@ -240,6 +262,7 @@
             // btnDetails
             // 
             this.btnDetails.Location = new System.Drawing.Point(388, 405);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(125, 38);
             this.btnDetails.TabIndex = 12;
@@ -249,9 +272,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(187, 586);
+            this.btnSave.Location = new System.Drawing.Point(187, 597);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(151, 41);
+            this.btnSave.Size = new System.Drawing.Size(151, 48);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -259,9 +283,10 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(12, 589);
+            this.btnLoad.Location = new System.Drawing.Point(12, 597);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(141, 38);
+            this.btnLoad.Size = new System.Drawing.Size(141, 48);
             this.btnLoad.TabIndex = 14;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -269,7 +294,8 @@
             // 
             // btnAddNote
             // 
-            this.btnAddNote.Location = new System.Drawing.Point(1031, 450);
+            this.btnAddNote.Location = new System.Drawing.Point(1031, 462);
+            this.btnAddNote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddNote.Name = "btnAddNote";
             this.btnAddNote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAddNote.Size = new System.Drawing.Size(39, 193);
@@ -285,23 +311,36 @@
             "Aktywne",
             "Ukończone"});
             this.cmbState.Location = new System.Drawing.Point(456, 14);
+            this.cmbState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(121, 24);
             this.cmbState.TabIndex = 16;
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // btnEditSubjects
+            // 
+            this.btnEditSubjects.Location = new System.Drawing.Point(278, 304);
+            this.btnEditSubjects.Name = "btnEditSubjects";
+            this.btnEditSubjects.Size = new System.Drawing.Size(75, 140);
+            this.btnEditSubjects.TabIndex = 17;
+            this.btnEditSubjects.Text = "Edytuj przedmioty";
+            this.btnEditSubjects.UseVisualStyleBackColor = true;
+            this.btnEditSubjects.UseWaitCursor = true;
+            this.btnEditSubjects.Click += new System.EventHandler(this.btnEditSubjects_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 655);
+            this.ClientSize = new System.Drawing.Size(1107, 670);
+            this.Controls.Add(this.btnEditSubjects);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.dlvActivities);
-            this.Controls.Add(this.objectListView1);
+            this.Controls.Add(this.olvNotes);
             this.Controls.Add(this.btnCancelCalendar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -315,7 +354,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -334,7 +373,7 @@
         private System.Windows.Forms.ListView lvwEvents;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCancelCalendar;
-        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.ObjectListView olvNotes;
         private BrightIdeasSoftware.DataListView dlvActivities;
         private BrightIdeasSoftware.OLVColumn olvColSubject;
         private BrightIdeasSoftware.OLVColumn olvColTime;
@@ -349,6 +388,9 @@
         private BrightIdeasSoftware.OLVColumn olvTimeOfDay;
         private System.Windows.Forms.Button btnAddNote;
         private System.Windows.Forms.ComboBox cmbState;
+        private BrightIdeasSoftware.OLVColumn olvColNoteName;
+        private BrightIdeasSoftware.OLVColumn olvColNoteDateCreated;
+        private System.Windows.Forms.Button btnEditSubjects;
     }
 }
 

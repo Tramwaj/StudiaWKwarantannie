@@ -24,5 +24,9 @@ namespace Tasker.Models
             Link = link;
             //CommunicationMedium = communicationMedium;
         }
+        public override string ToString()
+        {
+            return (FirstName + " " + LastName);
+        }
     }
 }

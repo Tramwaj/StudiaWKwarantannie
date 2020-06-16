@@ -108,7 +108,12 @@ namespace Tasker
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Activity _chosenActivity = (Activity)dlvActivities.SelectedObject;
+            if (_chosenActivity is null) { }
+            else
+            {
+                olvNotes.SetObjects(_chosenActivity.Notes);
+            }
             //List<Activity> temp = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
             ////olvEvents.AccessibilityObjectacce
             //if (temp.Any())
@@ -195,6 +200,19 @@ namespace Tasker
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayFilter.SetFilterByState(cmbState.SelectedIndex);
+            ShowEvents();
+        }
+
+        private void btnEditSubjects_Click(object sender, EventArgs e)
+        {
+            using (EditSubjects editSubjects = new EditSubjects(subjects,teachers))
+            {
+
+                if (editSubjects.ShowDialog() == DialogResult.OK)
+                {
+                    //activities.Add(editSubjects.GetResult());
+                }
+            }
             ShowEvents();
         }
     }

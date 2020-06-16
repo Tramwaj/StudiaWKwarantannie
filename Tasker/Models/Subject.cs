@@ -18,7 +18,9 @@ namespace Tasker.Models
         //public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Note> Notes { get; set; }
 
-        public Subject(string name, string shortName, Teacher teacher, int eCTS, int priority)
+
+
+        public Subject(string name, string shortName, Teacher teacher, int eCTS, int priority=0)
         {
             Name = name;
             ShortName = shortName;
