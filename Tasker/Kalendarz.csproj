@@ -74,10 +74,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddDiskPlace.cs">
+    <Compile Include="EditDetailsFolder\AddDiskPlace.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddDiskPlace.Designer.cs">
+    <Compile Include="EditDetailsFolder\AddDiskPlace.Designer.cs">
       <DependentUpon>AddDiskPlace.cs</DependentUpon>
     </Compile>
     <Compile Include="AddJob.cs">
@@ -98,10 +98,16 @@
     <Compile Include="AddNote.Designer.cs">
       <DependentUpon>AddNote.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditDetails.cs">
+    <Compile Include="EditDetailsFolder\AddLink.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditDetails.Designer.cs">
+    <Compile Include="EditDetailsFolder\AddLink.Designer.cs">
+      <DependentUpon>AddLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditDetailsFolder\EditDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDetailsFolder\EditDetails.Designer.cs">
       <DependentUpon>EditDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="EditSubjects.cs">
@@ -131,7 +137,7 @@
     <Compile Include="Data\InitialSubjects.cs" />
     <Compile Include="Workers\ActivityDisplayFilter.cs" />
     <Compile Include="Workers\Serializator.cs" />
-    <EmbeddedResource Include="AddDiskPlace.resx">
+    <EmbeddedResource Include="EditDetailsFolder\AddDiskPlace.resx">
       <DependentUpon>AddDiskPlace.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddJob.resx">
@@ -143,7 +149,10 @@
     <EmbeddedResource Include="AddNote.resx">
       <DependentUpon>AddNote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditDetails.resx">
+    <EmbeddedResource Include="EditDetailsFolder\AddLink.resx">
+      <DependentUpon>AddLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDetailsFolder\EditDetails.resx">
       <DependentUpon>EditDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditSubjects.resx">
@@ -179,6 +188,7 @@
   <ItemGroup>
     <Content Include="Windows Logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

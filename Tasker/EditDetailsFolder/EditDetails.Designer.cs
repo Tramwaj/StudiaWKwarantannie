@@ -43,6 +43,8 @@
             this.olvColDiskPlaceDesc = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColOpen = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvLinks = new BrightIdeasSoftware.FastObjectListView();
+            this.olvColLinkPath = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColLinkDescription = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.btnAddPlace = new System.Windows.Forms.Button();
             this.btnRemoveDiskPlace = new System.Windows.Forms.Button();
             this.btnAddLink = new System.Windows.Forms.Button();
@@ -204,7 +206,13 @@
             // 
             // olvLinks
             // 
+            this.olvLinks.AllColumns.Add(this.olvColLinkPath);
+            this.olvLinks.AllColumns.Add(this.olvColLinkDescription);
             this.olvLinks.CellEditUseWholeCell = false;
+            this.olvLinks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvColLinkPath,
+            this.olvColLinkDescription});
+            this.olvLinks.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvLinks.HideSelection = false;
             this.olvLinks.Location = new System.Drawing.Point(347, 239);
             this.olvLinks.Margin = new System.Windows.Forms.Padding(2);
@@ -215,6 +223,19 @@
             this.olvLinks.UseCompatibleStateImageBehavior = false;
             this.olvLinks.View = System.Windows.Forms.View.Details;
             this.olvLinks.VirtualMode = true;
+            // 
+            // olvColLinkPath
+            // 
+            this.olvColLinkPath.AspectName = "Path";
+            this.olvColLinkPath.Text = "Link";
+            this.olvColLinkPath.Width = 128;
+            // 
+            // olvColLinkDescription
+            // 
+            this.olvColLinkDescription.AspectName = "Description";
+            this.olvColLinkDescription.Text = "Opis";
+            this.olvColLinkDescription.ToolTipText = "Description";
+            this.olvColLinkDescription.Width = 200;
             // 
             // btnAddPlace
             // 
@@ -247,6 +268,7 @@
             this.btnAddLink.TabIndex = 14;
             this.btnAddLink.Text = "Dodaj";
             this.btnAddLink.UseVisualStyleBackColor = true;
+            this.btnAddLink.Click += new System.EventHandler(this.btnAddLink_Click);
             // 
             // BtnRemoveLink
             // 
@@ -260,12 +282,12 @@
             // 
             // olvNotes
             // 
-            this.olvNotes.AllColumns.Add(this.olvColNoteDate);
             this.olvNotes.AllColumns.Add(this.olvColNoteName);
+            this.olvNotes.AllColumns.Add(this.olvColNoteDate);
             this.olvNotes.CellEditUseWholeCell = false;
             this.olvNotes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.olvColNoteDate,
-            this.olvColNoteName});
+            this.olvColNoteName,
+            this.olvColNoteDate});
             this.olvNotes.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvNotes.HideSelection = false;
             this.olvNotes.Location = new System.Drawing.Point(11, 112);
@@ -277,20 +299,20 @@
             this.olvNotes.UseCompatibleStateImageBehavior = false;
             this.olvNotes.View = System.Windows.Forms.View.Details;
             this.olvNotes.VirtualMode = true;
+            this.olvNotes.SelectedIndexChanged += new System.EventHandler(this.olvNotes_SelectedIndexChanged);
             // 
             // olvColNoteDate
             // 
             this.olvColNoteDate.AspectName = "TimeCreated";
             this.olvColNoteDate.AspectToStringFormat = "{0:dd/MM/yy}";
-            this.olvColNoteDate.DisplayIndex = 1;
             this.olvColNoteDate.Text = "Data dodania";
-            this.olvColNoteDate.Width = 80;
+            this.olvColNoteDate.Width = 70;
             // 
             // olvColNoteName
             // 
             this.olvColNoteName.AspectName = "Name";
-            this.olvColNoteName.DisplayIndex = 0;
             this.olvColNoteName.Text = "Nazwa";
+            this.olvColNoteName.Width = 136;
             // 
             // rtxNote
             // 
@@ -384,5 +406,7 @@
         private BrightIdeasSoftware.OLVColumn olvColDiskPlace;
         private BrightIdeasSoftware.OLVColumn olvColDiskPlaceDesc;
         private BrightIdeasSoftware.OLVColumn olvColOpen;
+        private BrightIdeasSoftware.OLVColumn olvColLinkPath;
+        private BrightIdeasSoftware.OLVColumn olvColLinkDescription;
     }
 }

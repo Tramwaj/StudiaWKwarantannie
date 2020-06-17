@@ -43,9 +43,18 @@ namespace Tasker
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            diskPlace = new DiskPlace(_chosenPath, txtDescription.Text, rdoFile.Checked);
-            this.DialogResult = DialogResult.OK;
+            if (String.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                errorProvider1.SetError(txtDescription, "Pole nie może być puste");
+            }
+            else
+            {
+                diskPlace = new DiskPlace(_chosenPath, txtDescription.Text, rdoIsAFile.Checked);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

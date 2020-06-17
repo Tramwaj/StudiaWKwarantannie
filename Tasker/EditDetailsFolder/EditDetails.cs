@@ -114,31 +114,37 @@ namespace Tasker
         {
             if (_isLesson)
             {
+                LessonType _type;
+                Enum.TryParse(lblType.Text, out _type);
                 _activity = new Lesson
                     (
                      _subject
                      , DateTime.Parse(lblTime.Text)
                      , TimeSpan.Parse(lblDuration.Text)
-                     , LessonType.Lab//TODO
+                     , _type
                      , _diskPlaces
                      , _links
                      , _notes
-                    );
+                    ) ;
             }
             else
             {
+                TaskType _type;
+                Enum.TryParse(lblType.Text, out _type);
                 _activity = new Job
                     (
                     _subject
                     , DateTime.Parse(lblTime.Text)
-                    , TaskType.LabReport
+                    , _type
                     , lblName.Text
                     , lblDescription.Text
                     , _diskPlaces
                     , _links
                     , _notes
-                    );
+                    ) ;
             }
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e) //TO BE REMOVED
@@ -176,6 +182,31 @@ namespace Tasker
                     _diskPlaces.Remove(_diskplace);
                 }
                 RefreshListViews();
+            }
+        }
+
+        private void btnAddLink_Click(object sender, EventArgs e)
+        {
+            using (AddLink addLink = new AddLink())
+            {
+                if (addLink.ShowDialog() == DialogResult.OK)
+                {
+                    _links.Add(addLink.GetResult());
+                }
+            }
+            RefreshListViews();
+        }
+
+        private void olvNotes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Note _note = ((Note)olvNotes.SelectedObject);
+            if (_note is null)
+            {
+                return;
+            }
+            else 
+            {
+                rtxNote.Text = _note.Content;
             }
         }
     }
