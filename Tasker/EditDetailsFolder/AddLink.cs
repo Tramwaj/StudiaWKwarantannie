@@ -39,21 +39,19 @@ namespace Tasker
         }
         private bool AnyStringIsEmpty()
         {
-            
+            bool _isEmpty = false;
             errorProvider1.Clear();
             if (String.IsNullOrWhiteSpace(txtPath.Text))
             {
                 errorProvider1.SetError(txtPath, "Pole nie może być puste");
+                _isEmpty = true;
             }
             else if (String.IsNullOrWhiteSpace(rtxDescription.Text))
             {
-                errorProvider1.SetError(rtxDescription, "Pole nie moż e być puste");
+                errorProvider1.SetError(rtxDescription, "Pole nie może być puste");
+                _isEmpty = true;
             }
-            else 
-            {
-                return false;
-            }
-            return true;
+            return _isEmpty;            
         }
     }
 }

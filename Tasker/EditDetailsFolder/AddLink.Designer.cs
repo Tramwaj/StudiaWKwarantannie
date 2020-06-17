@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.txtPath = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.rtxDescription = new System.Windows.Forms.RichTextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -41,21 +39,12 @@
             // 
             // txtPath
             // 
-            this.txtPath.Location = new System.Drawing.Point(42, 32);
+            this.txtPath.Location = new System.Drawing.Point(42, 24);
             this.txtPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(154, 20);
+            this.txtPath.Size = new System.Drawing.Size(204, 20);
             this.txtPath.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Link";
+            this.txtPath.Text = "Link";
             // 
             // btnOK
             // 
@@ -78,24 +67,14 @@
             this.btnCancel.Text = "Anuluj";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 62);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "description";
-            // 
             // rtxDescription
             // 
-            this.rtxDescription.Location = new System.Drawing.Point(42, 79);
+            this.rtxDescription.Location = new System.Drawing.Point(42, 66);
             this.rtxDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rtxDescription.Name = "rtxDescription";
             this.rtxDescription.Size = new System.Drawing.Size(204, 53);
             this.rtxDescription.TabIndex = 6;
-            this.rtxDescription.Text = "";
+            this.rtxDescription.Text = "Opis";
             // 
             // errorProvider1
             // 
@@ -107,10 +86,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(267, 185);
             this.Controls.Add(this.rtxDescription);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPath);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddLink";
@@ -124,10 +101,8 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtPath;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox rtxDescription;
         private System.Windows.Forms.ErrorProvider errorProvider1;
     }
