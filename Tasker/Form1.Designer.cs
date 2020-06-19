@@ -55,13 +55,16 @@
             this.btnAddNote = new System.Windows.Forms.Button();
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.btnEditSubjects = new System.Windows.Forms.Button();
+            this.btnSaveSelected = new System.Windows.Forms.Button();
+            this.btnLoadSelected = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
             this.SuspendLayout();
             // 
             // calendar
             // 
-            this.calendar.Location = new System.Drawing.Point(4, 42);
+            this.calendar.Location = new System.Drawing.Point(3, 34);
+            this.calendar.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.calendar.Name = "calendar";
             this.calendar.TabIndex = 0;
             this.calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -69,29 +72,30 @@
             // lvwEvents
             // 
             this.lvwEvents.HideSelection = false;
-            this.lvwEvents.Location = new System.Drawing.Point(388, 608);
-            this.lvwEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lvwEvents.Location = new System.Drawing.Point(291, 494);
+            this.lvwEvents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lvwEvents.Name = "lvwEvents";
-            this.lvwEvents.Size = new System.Drawing.Size(96, 36);
+            this.lvwEvents.Size = new System.Drawing.Size(73, 30);
             this.lvwEvents.TabIndex = 5;
             this.lvwEvents.UseCompatibleStateImageBehavior = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(385, 17);
+            this.label1.Location = new System.Drawing.Point(289, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Stan:";
             // 
             // btnDeleteEvent
             // 
             this.btnDeleteEvent.ForeColor = System.Drawing.Color.Red;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(945, 405);
-            this.btnDeleteEvent.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDeleteEvent.Location = new System.Drawing.Point(709, 329);
+            this.btnDeleteEvent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDeleteEvent.Name = "btnDeleteEvent";
-            this.btnDeleteEvent.Size = new System.Drawing.Size(125, 38);
+            this.btnDeleteEvent.Size = new System.Drawing.Size(94, 31);
             this.btnDeleteEvent.TabIndex = 1;
             this.btnDeleteEvent.Text = "Usuń";
             this.btnDeleteEvent.UseVisualStyleBackColor = true;
@@ -100,18 +104,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(616, 462);
+            this.label2.Location = new System.Drawing.Point(462, 375);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
             // btnAddLesson
             // 
-            this.btnAddLesson.Location = new System.Drawing.Point(12, 482);
-            this.btnAddLesson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddLesson.Location = new System.Drawing.Point(9, 392);
+            this.btnAddLesson.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnAddLesson.Name = "btnAddLesson";
-            this.btnAddLesson.Size = new System.Drawing.Size(141, 87);
+            this.btnAddLesson.Size = new System.Drawing.Size(106, 71);
             this.btnAddLesson.TabIndex = 0;
             this.btnAddLesson.Text = "Dodaj spotkanie";
             this.btnAddLesson.UseVisualStyleBackColor = true;
@@ -120,20 +125,20 @@
             // cklSubjects
             // 
             this.cklSubjects.FormattingEnabled = true;
-            this.cklSubjects.Location = new System.Drawing.Point(4, 303);
-            this.cklSubjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cklSubjects.Location = new System.Drawing.Point(3, 246);
+            this.cklSubjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cklSubjects.Name = "cklSubjects";
-            this.cklSubjects.Size = new System.Drawing.Size(253, 140);
+            this.cklSubjects.Size = new System.Drawing.Size(191, 109);
             this.cklSubjects.TabIndex = 2;
             this.cklSubjects.SelectedIndexChanged += new System.EventHandler(this.cklSubjects_SelectedIndexChanged);
             this.cklSubjects.SelectedValueChanged += new System.EventHandler(this.cklSubjects_SelectedValueChanged);
             // 
             // btnAddTask
             // 
-            this.btnAddTask.Location = new System.Drawing.Point(187, 482);
-            this.btnAddTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddTask.Location = new System.Drawing.Point(140, 392);
+            this.btnAddTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddTask.Name = "btnAddTask";
-            this.btnAddTask.Size = new System.Drawing.Size(151, 87);
+            this.btnAddTask.Size = new System.Drawing.Size(113, 71);
             this.btnAddTask.TabIndex = 3;
             this.btnAddTask.Text = "Dodaj zadanie";
             this.btnAddTask.UseVisualStyleBackColor = true;
@@ -142,18 +147,19 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(395, 471);
+            this.label3.Location = new System.Drawing.Point(296, 383);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "label3";
             // 
             // btnCancelCalendar
             // 
-            this.btnCancelCalendar.Location = new System.Drawing.Point(4, 250);
-            this.btnCancelCalendar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancelCalendar.Location = new System.Drawing.Point(3, 203);
+            this.btnCancelCalendar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancelCalendar.Name = "btnCancelCalendar";
-            this.btnCancelCalendar.Size = new System.Drawing.Size(349, 37);
+            this.btnCancelCalendar.Size = new System.Drawing.Size(262, 30);
             this.btnCancelCalendar.TabIndex = 8;
             this.btnCancelCalendar.Text = "Wszystko";
             this.btnCancelCalendar.UseVisualStyleBackColor = true;
@@ -169,10 +175,9 @@
             this.olvColNoteDateCreated});
             this.olvNotes.Cursor = System.Windows.Forms.Cursors.Default;
             this.olvNotes.HideSelection = false;
-            this.olvNotes.Location = new System.Drawing.Point(669, 462);
-            this.olvNotes.Margin = new System.Windows.Forms.Padding(4);
+            this.olvNotes.Location = new System.Drawing.Point(502, 375);
             this.olvNotes.Name = "olvNotes";
-            this.olvNotes.Size = new System.Drawing.Size(353, 192);
+            this.olvNotes.Size = new System.Drawing.Size(266, 157);
             this.olvNotes.TabIndex = 10;
             this.olvNotes.UseCompatibleStateImageBehavior = false;
             this.olvNotes.View = System.Windows.Forms.View.Details;
@@ -212,11 +217,11 @@
             this.dlvActivities.DataSource = null;
             this.dlvActivities.FullRowSelect = true;
             this.dlvActivities.HideSelection = false;
-            this.dlvActivities.Location = new System.Drawing.Point(388, 42);
-            this.dlvActivities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dlvActivities.Location = new System.Drawing.Point(291, 34);
+            this.dlvActivities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dlvActivities.Name = "dlvActivities";
             this.dlvActivities.SelectAllOnControlA = false;
-            this.dlvActivities.Size = new System.Drawing.Size(681, 349);
+            this.dlvActivities.Size = new System.Drawing.Size(512, 284);
             this.dlvActivities.TabIndex = 11;
             this.dlvActivities.UseCompatibleStateImageBehavior = false;
             this.dlvActivities.View = System.Windows.Forms.View.Details;
@@ -261,10 +266,10 @@
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(388, 405);
-            this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDetails.Location = new System.Drawing.Point(291, 329);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(125, 38);
+            this.btnDetails.Size = new System.Drawing.Size(94, 31);
             this.btnDetails.TabIndex = 12;
             this.btnDetails.Text = "Szczegóły";
             this.btnDetails.UseVisualStyleBackColor = true;
@@ -272,10 +277,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(187, 597);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSave.Location = new System.Drawing.Point(140, 485);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(151, 48);
+            this.btnSave.Size = new System.Drawing.Size(113, 39);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -283,10 +288,10 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(12, 597);
-            this.btnLoad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLoad.Location = new System.Drawing.Point(9, 485);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(141, 48);
+            this.btnLoad.Size = new System.Drawing.Size(106, 39);
             this.btnLoad.TabIndex = 14;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -294,11 +299,11 @@
             // 
             // btnAddNote
             // 
-            this.btnAddNote.Location = new System.Drawing.Point(1031, 462);
-            this.btnAddNote.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddNote.Location = new System.Drawing.Point(773, 375);
+            this.btnAddNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddNote.Name = "btnAddNote";
             this.btnAddNote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btnAddNote.Size = new System.Drawing.Size(39, 193);
+            this.btnAddNote.Size = new System.Drawing.Size(29, 157);
             this.btnAddNote.TabIndex = 15;
             this.btnAddNote.Text = "D O D A   J  ";
             this.btnAddNote.UseVisualStyleBackColor = true;
@@ -310,29 +315,54 @@
             "Wszystkie",
             "Aktywne",
             "Ukończone"});
-            this.cmbState.Location = new System.Drawing.Point(456, 14);
-            this.cmbState.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmbState.Location = new System.Drawing.Point(342, 11);
+            this.cmbState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(121, 24);
+            this.cmbState.Size = new System.Drawing.Size(92, 21);
             this.cmbState.TabIndex = 16;
             this.cmbState.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnEditSubjects
             // 
-            this.btnEditSubjects.Location = new System.Drawing.Point(278, 304);
+            this.btnEditSubjects.Location = new System.Drawing.Point(208, 247);
+            this.btnEditSubjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEditSubjects.Name = "btnEditSubjects";
-            this.btnEditSubjects.Size = new System.Drawing.Size(75, 140);
+            this.btnEditSubjects.Size = new System.Drawing.Size(56, 114);
             this.btnEditSubjects.TabIndex = 17;
             this.btnEditSubjects.Text = "Edytuj przedmioty";
             this.btnEditSubjects.UseVisualStyleBackColor = true;
             this.btnEditSubjects.UseWaitCursor = true;
             this.btnEditSubjects.Click += new System.EventHandler(this.btnEditSubjects_Click);
             // 
+            // btnSaveSelected
+            // 
+            this.btnSaveSelected.Location = new System.Drawing.Point(416, 330);
+            this.btnSaveSelected.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveSelected.Name = "btnSaveSelected";
+            this.btnSaveSelected.Size = new System.Drawing.Size(94, 31);
+            this.btnSaveSelected.TabIndex = 18;
+            this.btnSaveSelected.Text = "Zapisz wybrane";
+            this.btnSaveSelected.UseVisualStyleBackColor = true;
+            this.btnSaveSelected.Click += new System.EventHandler(this.btnSaveSelected_Click);
+            // 
+            // btnLoadSelected
+            // 
+            this.btnLoadSelected.Location = new System.Drawing.Point(544, 330);
+            this.btnLoadSelected.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLoadSelected.Name = "btnLoadSelected";
+            this.btnLoadSelected.Size = new System.Drawing.Size(104, 31);
+            this.btnLoadSelected.TabIndex = 19;
+            this.btnLoadSelected.Text = "Wczytaj wybrane";
+            this.btnLoadSelected.UseVisualStyleBackColor = true;
+            this.btnLoadSelected.Click += new System.EventHandler(this.btnLoadSelected_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1107, 670);
+            this.ClientSize = new System.Drawing.Size(830, 544);
+            this.Controls.Add(this.btnLoadSelected);
+            this.Controls.Add(this.btnSaveSelected);
             this.Controls.Add(this.btnEditSubjects);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.btnAddNote);
@@ -351,7 +381,7 @@
             this.Controls.Add(this.cklSubjects);
             this.Controls.Add(this.btnAddLesson);
             this.Controls.Add(this.calendar);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).EndInit();
@@ -391,6 +421,8 @@
         private BrightIdeasSoftware.OLVColumn olvColNoteName;
         private BrightIdeasSoftware.OLVColumn olvColNoteDateCreated;
         private System.Windows.Forms.Button btnEditSubjects;
+        private System.Windows.Forms.Button btnSaveSelected;
+        private System.Windows.Forms.Button btnLoadSelected;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using BrightIdeasSoftware;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,16 +29,18 @@ namespace Tasker
         {
             InitializeComponent();
             //change to serialization
-            teachers = Data.InitialTeachers.Provide().ToList(); 
-            subjects = Data.InitialSubjects.Provide(teachers).ToList();
+            //teachers = Data.InitialTeachers.Provide().ToList(); 
+            //subjects = Data.InitialSubjects.Provide(teachers).ToList();
             //
+            LoadSubjects();
+            LoadTeachers();
             activities = new Activities();
             DisplayFilter = new ActivityDisplayFilter(cklSubjects.CheckedItems.Cast<string>());
             FormatActivitiesList();
             SetSubjects();
-            ShowEvents();            
-
+            ShowEvents();
         }
+
         private void SetSubjects()
         {
             cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
@@ -114,19 +118,6 @@ namespace Tasker
             {
                 olvNotes.SetObjects(_chosenActivity.Notes);
             }
-            //List<Activity> temp = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
-            ////olvEvents.AccessibilityObjectacce
-            //if (temp.Any())
-            //{
-            //    activities.All=activities.All.Select(x => { x.Time = x.Time.AddHours(1); return x; }).ToList();
-            //    //temp.First().Subject.Name = "Bobki";
-            //    string _subjectName = temp.First().Time.ToString();//.GetType().ToString();
-            //                                           //if (!String.IsNullOrEmpty(typ))
-            //                                           //{
-            //    label1.Text = _subjectName;
-            //    //}
-            //}
-            //var chosenActivity = activities.All.Where(x=>x==)
         }
 
         private void btnDeleteEvent_Click(object sender, EventArgs e)
@@ -205,15 +196,67 @@ namespace Tasker
 
         private void btnEditSubjects_Click(object sender, EventArgs e)
         {
-            using (EditSubjects editSubjects = new EditSubjects(subjects,teachers))
+            using (EditSubjects editSubjects = new EditSubjects(subjects, teachers))
             {
 
                 if (editSubjects.ShowDialog() == DialogResult.OK)
                 {
-                    //activities.Add(editSubjects.GetResult());
+                    subjects = editSubjects.GetSubjects().ToList();
+                    teachers = editSubjects.GetTeachers().ToList();
+                    SaveSubjects();
+                    SaveTeachers();
                 }
             }
+
             ShowEvents();
+        }
+
+        private void SaveTeachers()
+        {
+            Workers.Serializator.Serialize("teachers.bin", teachers);
+        }
+        private void SaveSubjects()
+        {
+            Workers.Serializator.Serialize("subjects.bin", subjects);
+        }
+        private void LoadTeachers()
+        {
+            teachers = Workers.Serializator.Deserialize<List<Teacher>>("teachers.bin");
+        }
+        private void LoadSubjects()
+        {
+            subjects = Workers.Serializator.Deserialize<List<Subject>>("subjects.bin");
+        }
+
+        private void btnSaveSelected_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog("Gdzie zapisać?")
+            {
+                DefaultExtension = "bin"
+
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                var _tempAct = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
+                Workers.Serializator.Serialize(
+                    openFileDialog.FileName
+                    , _tempAct
+                    );
+            }
+        }
+
+        private void btnLoadSelected_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog("Gdzie zapisać?")
+            {
+                DefaultExtension = ".bin"
+
+            };
+            if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                activities.AddRange(Workers.Serializator.Deserialize<List<Activity>>(openFileDialog.FileName));
+                ShowEvents();
+            }
         }
     }
 }
