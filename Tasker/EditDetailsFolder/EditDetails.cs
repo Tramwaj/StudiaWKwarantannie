@@ -41,6 +41,7 @@ namespace Tasker
             lblType.Text = activity.Type.ToString();
             lblDuration.Text = activity.Duration.ToString();
             _isLesson = true;
+            lblDescription.Visible = false;
         }
 
         public EditDetails(Job activity) : this((Activity)activity)
