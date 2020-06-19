@@ -30,7 +30,6 @@
         {
             this.lblName = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
-            this.lblType = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.lblDuration = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -50,11 +49,12 @@
             this.btnAddLink = new System.Windows.Forms.Button();
             this.BtnRemoveLink = new System.Windows.Forms.Button();
             this.olvNotes = new BrightIdeasSoftware.FastObjectListView();
-            this.olvColNoteDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.olvColNoteDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.rtxNote = new System.Windows.Forms.RichTextBox();
             this.btnAddNote = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
+            this.lblType = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -63,7 +63,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(138, 20);
+            this.lblName.Location = new System.Drawing.Point(24, 9);
             this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(35, 13);
@@ -73,27 +73,17 @@
             // lblSubject
             // 
             this.lblSubject.AutoSize = true;
-            this.lblSubject.Location = new System.Drawing.Point(61, 54);
+            this.lblSubject.Location = new System.Drawing.Point(24, 34);
             this.lblSubject.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSubject.Name = "lblSubject";
             this.lblSubject.Size = new System.Drawing.Size(43, 13);
             this.lblSubject.TabIndex = 1;
             this.lblSubject.Text = "Subject";
             // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(61, 20);
-            this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(31, 13);
-            this.lblType.TabIndex = 2;
-            this.lblType.Text = "Type";
-            // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(61, 86);
+            this.lblTime.Location = new System.Drawing.Point(24, 86);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(30, 13);
@@ -113,7 +103,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(183, 54);
+            this.lblStatus.Location = new System.Drawing.Point(193, 9);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
@@ -123,7 +113,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(298, 20);
+            this.label1.Location = new System.Drawing.Point(344, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
@@ -133,7 +123,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(383, 213);
+            this.label2.Location = new System.Drawing.Point(353, 224);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
@@ -227,6 +217,7 @@
             // olvColLinkPath
             // 
             this.olvColLinkPath.AspectName = "Path";
+            this.olvColLinkPath.Hyperlink = true;
             this.olvColLinkPath.Text = "Link";
             this.olvColLinkPath.Width = 128;
             // 
@@ -301,18 +292,18 @@
             this.olvNotes.VirtualMode = true;
             this.olvNotes.SelectedIndexChanged += new System.EventHandler(this.olvNotes_SelectedIndexChanged);
             // 
+            // olvColNoteName
+            // 
+            this.olvColNoteName.AspectName = "Name";
+            this.olvColNoteName.Text = "Nazwa";
+            this.olvColNoteName.Width = 136;
+            // 
             // olvColNoteDate
             // 
             this.olvColNoteDate.AspectName = "TimeCreated";
             this.olvColNoteDate.AspectToStringFormat = "{0:dd/MM/yy}";
             this.olvColNoteDate.Text = "Data dodania";
             this.olvColNoteDate.Width = 70;
-            // 
-            // olvColNoteName
-            // 
-            this.olvColNoteName.AspectName = "Name";
-            this.olvColNoteName.Text = "Nazwa";
-            this.olvColNoteName.Width = 136;
             // 
             // rtxNote
             // 
@@ -337,11 +328,22 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(235, 159);
+            this.lblDescription.Location = new System.Drawing.Point(24, 56);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
+            // 
+            // lblType
+            // 
+            this.lblType.AutoSize = true;
+            this.lblType.Location = new System.Drawing.Point(77, 86);
+            this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(31, 13);
+            this.lblType.TabIndex = 2;
+            this.lblType.Text = "Type";
+            this.lblType.Visible = false;
             // 
             // EditDetails
             // 
@@ -383,7 +385,6 @@
 
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblSubject;
-        private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblStatus;
@@ -408,5 +409,6 @@
         private BrightIdeasSoftware.OLVColumn olvColOpen;
         private BrightIdeasSoftware.OLVColumn olvColLinkPath;
         private BrightIdeasSoftware.OLVColumn olvColLinkDescription;
+        private System.Windows.Forms.Label lblType;
     }
 }

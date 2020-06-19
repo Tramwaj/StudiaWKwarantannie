@@ -26,7 +26,7 @@ namespace Tasker
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (AnyStringIsEmpty())
+            if (AnyFieldIsEmpty())
             {
                 return;
             }
@@ -37,7 +37,7 @@ namespace Tasker
                 this.Close();
             }
         }
-        private bool AnyStringIsEmpty()
+        private bool AnyFieldIsEmpty()
         {
             bool _isEmpty = false;
             errorProvider1.Clear();

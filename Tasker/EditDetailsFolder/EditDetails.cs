@@ -55,6 +55,7 @@ namespace Tasker
         {
             RefreshListViews();   
             olvColOpen.IsButton = true;
+            olvLinks.UseHyperlinks = true;
             olvPlaces.ButtonClick += delegate (object sender, CellClickEventArgs e) {
                 DiskPlace _diskPlace = (DiskPlace)e.Model;
                 if (_diskPlace.IsFile)
