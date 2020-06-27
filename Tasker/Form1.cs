@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -28,17 +29,21 @@ namespace Tasker
         public Form1()
         {
             InitializeComponent();
-            //change to serialization
-            //teachers = Data.InitialTeachers.Provide().ToList(); 
-            //subjects = Data.InitialSubjects.Provide(teachers).ToList();
-            //
+            
             LoadSubjects();
             LoadTeachers();
+
             activities = new Activities();
             DisplayFilter = new ActivityDisplayFilter(cklSubjects.CheckedItems.Cast<string>());
             FormatActivitiesList();
             SetSubjects();
             ShowEvents();
+            
+
+            //var backGround = new Bitmap(Properties.Resources.ATH_logo);
+            //backGround.SetResolution(512, 284);
+            //dlvActivities.BackgroundImage = backGround;
+            //dlvActivities.BackgroundImage.
         }
 
         private void SetSubjects()
@@ -63,8 +68,16 @@ namespace Tasker
 
         private void ShowEvents()
         {
-            dlvActivities.SetObjects(DisplayFilter.Apply(activities.All));
+            CheckRadios();
+            olvActivities.SetObjects(DisplayFilter.Apply(activities.All));
             calendar.BoldedDates = activities.All.Select(x => x.Time).Distinct().ToArray();
+            //calendar
+        }
+        private void CheckRadios()
+        {
+            if (rdoShowAll.Checked == true) DisplayFilter.SetActivityTypesShown("All");
+            if (rdoShowJobs.Checked == true) DisplayFilter.SetActivityTypesShown("Job");
+            if (rdoShowLessons.Checked == true) DisplayFilter.SetActivityTypesShown("Lesson");
         }
 
         private void btnAddLesson_Click(object sender, EventArgs e)
@@ -93,7 +106,7 @@ namespace Tasker
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            Activity selectedActivity = (Activity)dlvActivities.SelectedObject;
+            Activity selectedActivity = (Activity)olvActivities.SelectedObject;
             try
             {
                 using (EditDetails editDetails = new EditDetails((dynamic)selectedActivity))
@@ -112,7 +125,7 @@ namespace Tasker
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Activity _chosenActivity = (Activity)dlvActivities.SelectedObject;
+            Activity _chosenActivity = (Activity)olvActivities.SelectedObject;
             if (_chosenActivity is null) { }
             else
             {
@@ -128,7 +141,7 @@ namespace Tasker
                 try
                 {
                     {
-                        activities.Remove(dlvActivities.SelectedObjects.OfType<Activity>().First());
+                        activities.Remove(olvActivities.SelectedObjects.OfType<Activity>().First());
                     }
                 }
                 catch
@@ -179,8 +192,31 @@ namespace Tasker
                 return ((DateTime)groupKey).ToString("dddd-dd/MM/yyyy");
             };
             cmbState.SelectedIndex = 0;
-        }
+            olvActivities.UseCellFormatEvents = true;
 
+            this.olvActivities.FormatCell += delegate (object sender, FormatCellEventArgs e)
+             {
+                 if (e.ColumnIndex == this.olvColDate.Index)
+                 {
+                     try
+                     {
+                         Job activity = (Job)e.Model;
+                         if ((activity.Time - DateTime.Now).Days < 0)
+                         {
+                             e.SubItem.ForeColor = Color.Red;
+                         }
+
+                         else if ((activity.Time - DateTime.Now).Days < 2)
+                         {
+                             e.SubItem.ForeColor = Color.Orange;
+                         }
+                     }
+                     catch { }
+                 }
+             };
+            olvActivities.FullRowSelect = true;
+        }
+        //private void olvActivitie_FormatCell(object sender)
 
         // TO BE REMOVED:
         private void cklSubjects_SelectedIndexChanged(object sender, EventArgs e)
@@ -237,7 +273,7 @@ namespace Tasker
             };
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                var _tempAct = dlvActivities.SelectedObjects.OfType<Activity>().ToList();
+                var _tempAct = olvActivities.SelectedObjects.OfType<Activity>().ToList();
                 Workers.Serializator.Serialize(
                     openFileDialog.FileName
                     , _tempAct
@@ -257,6 +293,27 @@ namespace Tasker
                 activities.AddRange(Workers.Serializator.Deserialize<List<Activity>>(openFileDialog.FileName));
                 ShowEvents();
             }
+        }
+
+        private void dlvActivities_DoubleClick(object sender, EventArgs e)
+        {
+            btnDetails_Click(sender, e);
+        }
+
+
+        private void rdoShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowEvents();
+        }
+
+        private void rdoShowLessons_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowEvents();
+        }
+
+        private void rdoShowJobs_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowEvents();
         }
     }
 }

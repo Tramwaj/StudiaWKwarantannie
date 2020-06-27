@@ -41,7 +41,7 @@
             this.olvNotes = new BrightIdeasSoftware.ObjectListView();
             this.olvColNoteName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColNoteDateCreated = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            this.dlvActivities = new BrightIdeasSoftware.DataListView();
+            this.olvActivities = new BrightIdeasSoftware.DataListView();
             this.olvColDate = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvTimeOfDay = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColSubject = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
@@ -57,14 +57,19 @@
             this.btnEditSubjects = new System.Windows.Forms.Button();
             this.btnSaveSelected = new System.Windows.Forms.Button();
             this.btnLoadSelected = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdoShowAll = new System.Windows.Forms.RadioButton();
+            this.rdoShowLessons = new System.Windows.Forms.RadioButton();
+            this.rdoShowJobs = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.olvActivities)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // calendar
             // 
             this.calendar.Location = new System.Drawing.Point(3, 34);
-            this.calendar.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.calendar.Margin = new System.Windows.Forms.Padding(7);
             this.calendar.Name = "calendar";
             this.calendar.TabIndex = 0;
             this.calendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
@@ -73,7 +78,7 @@
             // 
             this.lvwEvents.HideSelection = false;
             this.lvwEvents.Location = new System.Drawing.Point(291, 494);
-            this.lvwEvents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvwEvents.Margin = new System.Windows.Forms.Padding(2);
             this.lvwEvents.Name = "lvwEvents";
             this.lvwEvents.Size = new System.Drawing.Size(73, 30);
             this.lvwEvents.TabIndex = 5;
@@ -126,7 +131,7 @@
             // 
             this.cklSubjects.FormattingEnabled = true;
             this.cklSubjects.Location = new System.Drawing.Point(3, 246);
-            this.cklSubjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cklSubjects.Margin = new System.Windows.Forms.Padding(2);
             this.cklSubjects.Name = "cklSubjects";
             this.cklSubjects.Size = new System.Drawing.Size(191, 109);
             this.cklSubjects.TabIndex = 2;
@@ -136,7 +141,7 @@
             // btnAddTask
             // 
             this.btnAddTask.Location = new System.Drawing.Point(140, 392);
-            this.btnAddTask.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddTask.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddTask.Name = "btnAddTask";
             this.btnAddTask.Size = new System.Drawing.Size(113, 71);
             this.btnAddTask.TabIndex = 3;
@@ -157,7 +162,7 @@
             // btnCancelCalendar
             // 
             this.btnCancelCalendar.Location = new System.Drawing.Point(3, 203);
-            this.btnCancelCalendar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelCalendar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelCalendar.Name = "btnCancelCalendar";
             this.btnCancelCalendar.Size = new System.Drawing.Size(262, 30);
             this.btnCancelCalendar.TabIndex = 8;
@@ -195,17 +200,17 @@
             this.olvColNoteDateCreated.Text = "Data utworzenia";
             this.olvColNoteDateCreated.Width = 128;
             // 
-            // dlvActivities
+            // olvActivities
             // 
-            this.dlvActivities.AllColumns.Add(this.olvColDate);
-            this.dlvActivities.AllColumns.Add(this.olvTimeOfDay);
-            this.dlvActivities.AllColumns.Add(this.olvColSubject);
-            this.dlvActivities.AllColumns.Add(this.olvColType);
-            this.dlvActivities.AllColumns.Add(this.olvColStatus);
-            this.dlvActivities.AllColumns.Add(this.olvColNotes);
-            this.dlvActivities.AllColumns.Add(this.olvColName);
-            this.dlvActivities.CellEditUseWholeCell = false;
-            this.dlvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.olvActivities.AllColumns.Add(this.olvColDate);
+            this.olvActivities.AllColumns.Add(this.olvTimeOfDay);
+            this.olvActivities.AllColumns.Add(this.olvColSubject);
+            this.olvActivities.AllColumns.Add(this.olvColType);
+            this.olvActivities.AllColumns.Add(this.olvColStatus);
+            this.olvActivities.AllColumns.Add(this.olvColNotes);
+            this.olvActivities.AllColumns.Add(this.olvColName);
+            this.olvActivities.CellEditUseWholeCell = false;
+            this.olvActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColDate,
             this.olvTimeOfDay,
             this.olvColSubject,
@@ -213,19 +218,20 @@
             this.olvColStatus,
             this.olvColNotes,
             this.olvColName});
-            this.dlvActivities.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dlvActivities.DataSource = null;
-            this.dlvActivities.FullRowSelect = true;
-            this.dlvActivities.HideSelection = false;
-            this.dlvActivities.Location = new System.Drawing.Point(291, 34);
-            this.dlvActivities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dlvActivities.Name = "dlvActivities";
-            this.dlvActivities.SelectAllOnControlA = false;
-            this.dlvActivities.Size = new System.Drawing.Size(512, 284);
-            this.dlvActivities.TabIndex = 11;
-            this.dlvActivities.UseCompatibleStateImageBehavior = false;
-            this.dlvActivities.View = System.Windows.Forms.View.Details;
-            this.dlvActivities.SelectedIndexChanged += new System.EventHandler(this.dlvActivities_SelectedIndexChanged);
+            this.olvActivities.Cursor = System.Windows.Forms.Cursors.Default;
+            this.olvActivities.DataSource = null;
+            this.olvActivities.FullRowSelect = true;
+            this.olvActivities.HideSelection = false;
+            this.olvActivities.Location = new System.Drawing.Point(291, 34);
+            this.olvActivities.Margin = new System.Windows.Forms.Padding(2);
+            this.olvActivities.Name = "olvActivities";
+            this.olvActivities.SelectAllOnControlA = false;
+            this.olvActivities.Size = new System.Drawing.Size(512, 284);
+            this.olvActivities.TabIndex = 11;
+            this.olvActivities.UseCompatibleStateImageBehavior = false;
+            this.olvActivities.View = System.Windows.Forms.View.Details;
+            this.olvActivities.SelectedIndexChanged += new System.EventHandler(this.dlvActivities_SelectedIndexChanged);
+            this.olvActivities.DoubleClick += new System.EventHandler(this.dlvActivities_DoubleClick);
             // 
             // olvColDate
             // 
@@ -267,7 +273,7 @@
             // btnDetails
             // 
             this.btnDetails.Location = new System.Drawing.Point(291, 329);
-            this.btnDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(2);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(94, 31);
             this.btnDetails.TabIndex = 12;
@@ -278,7 +284,7 @@
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(140, 485);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(113, 39);
             this.btnSave.TabIndex = 13;
@@ -289,7 +295,7 @@
             // btnLoad
             // 
             this.btnLoad.Location = new System.Drawing.Point(9, 485);
-            this.btnLoad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(106, 39);
             this.btnLoad.TabIndex = 14;
@@ -300,7 +306,7 @@
             // btnAddNote
             // 
             this.btnAddNote.Location = new System.Drawing.Point(773, 375);
-            this.btnAddNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddNote.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNote.Name = "btnAddNote";
             this.btnAddNote.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnAddNote.Size = new System.Drawing.Size(29, 157);
@@ -316,7 +322,7 @@
             "Aktywne",
             "Ukończone"});
             this.cmbState.Location = new System.Drawing.Point(342, 11);
-            this.cmbState.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbState.Margin = new System.Windows.Forms.Padding(2);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(92, 21);
             this.cmbState.TabIndex = 16;
@@ -325,7 +331,7 @@
             // btnEditSubjects
             // 
             this.btnEditSubjects.Location = new System.Drawing.Point(208, 247);
-            this.btnEditSubjects.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEditSubjects.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditSubjects.Name = "btnEditSubjects";
             this.btnEditSubjects.Size = new System.Drawing.Size(56, 114);
             this.btnEditSubjects.TabIndex = 17;
@@ -356,11 +362,59 @@
             this.btnLoadSelected.UseVisualStyleBackColor = true;
             this.btnLoadSelected.Click += new System.EventHandler(this.btnLoadSelected_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdoShowJobs);
+            this.groupBox1.Controls.Add(this.rdoShowLessons);
+            this.groupBox1.Controls.Add(this.rdoShowAll);
+            this.groupBox1.Location = new System.Drawing.Point(447, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(354, 26);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            // 
+            // rdoShowAll
+            // 
+            this.rdoShowAll.AutoSize = true;
+            this.rdoShowAll.Location = new System.Drawing.Point(18, 9);
+            this.rdoShowAll.Name = "rdoShowAll";
+            this.rdoShowAll.Size = new System.Drawing.Size(71, 17);
+            this.rdoShowAll.TabIndex = 0;
+            this.rdoShowAll.TabStop = true;
+            this.rdoShowAll.Text = "Wszystko";
+            this.rdoShowAll.UseVisualStyleBackColor = true;
+            this.rdoShowAll.CheckedChanged += new System.EventHandler(this.rdoShowAll_CheckedChanged);
+            // 
+            // rdoShowLessons
+            // 
+            this.rdoShowLessons.AutoSize = true;
+            this.rdoShowLessons.Location = new System.Drawing.Point(116, 9);
+            this.rdoShowLessons.Name = "rdoShowLessons";
+            this.rdoShowLessons.Size = new System.Drawing.Size(60, 17);
+            this.rdoShowLessons.TabIndex = 1;
+            this.rdoShowLessons.TabStop = true;
+            this.rdoShowLessons.Text = "Zajęcia";
+            this.rdoShowLessons.UseVisualStyleBackColor = true;
+            this.rdoShowLessons.CheckedChanged += new System.EventHandler(this.rdoShowLessons_CheckedChanged);
+            // 
+            // rdoShowJobs
+            // 
+            this.rdoShowJobs.AutoSize = true;
+            this.rdoShowJobs.Location = new System.Drawing.Point(207, 9);
+            this.rdoShowJobs.Name = "rdoShowJobs";
+            this.rdoShowJobs.Size = new System.Drawing.Size(64, 17);
+            this.rdoShowJobs.TabIndex = 2;
+            this.rdoShowJobs.TabStop = true;
+            this.rdoShowJobs.Text = "Zadania";
+            this.rdoShowJobs.UseVisualStyleBackColor = true;
+            this.rdoShowJobs.CheckedChanged += new System.EventHandler(this.rdoShowJobs_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 544);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoadSelected);
             this.Controls.Add(this.btnSaveSelected);
             this.Controls.Add(this.btnEditSubjects);
@@ -369,7 +423,7 @@
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDetails);
-            this.Controls.Add(this.dlvActivities);
+            this.Controls.Add(this.olvActivities);
             this.Controls.Add(this.olvNotes);
             this.Controls.Add(this.btnCancelCalendar);
             this.Controls.Add(this.label3);
@@ -385,7 +439,9 @@
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dlvActivities)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.olvActivities)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,7 +460,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCancelCalendar;
         private BrightIdeasSoftware.ObjectListView olvNotes;
-        private BrightIdeasSoftware.DataListView dlvActivities;
+        private BrightIdeasSoftware.DataListView olvActivities;
         private BrightIdeasSoftware.OLVColumn olvColSubject;
         private BrightIdeasSoftware.OLVColumn olvColTime;
         private BrightIdeasSoftware.OLVColumn olvColType;
@@ -423,6 +479,10 @@
         private System.Windows.Forms.Button btnEditSubjects;
         private System.Windows.Forms.Button btnSaveSelected;
         private System.Windows.Forms.Button btnLoadSelected;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdoShowJobs;
+        private System.Windows.Forms.RadioButton rdoShowLessons;
+        private System.Windows.Forms.RadioButton rdoShowAll;
     }
 }
 
