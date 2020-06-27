@@ -17,6 +17,7 @@ namespace Tasker.Workers
         private bool _datesEnabled;
         private IEnumerable<string> _subjectsShown;// = new IEnumerable<string>();
         private int _allActiveDoneFilter = 0;
+        private string _activityTypesShown;
 
         public ActivityDisplayFilter(IEnumerable<string> subjects)
         {
@@ -26,9 +27,10 @@ namespace Tasker.Workers
 
         public IEnumerable<Activity> Apply(IEnumerable<Activity> collection)
         {
+            IEnumerable<Activity> _collection = ShowSpecificTypes(collection);
             return FilterByState(_datesEnabled ?
-                collection.Where(x => x.Time >= _startDate && x.Time <= _endDate)
-                : collection)
+                _collection.Where(x => x.Time >= _startDate && x.Time <= _endDate)
+                : _collection)
                 .Where(x => _subjectsShown.Any(s => x.Subject.Name == s));
 
         }
@@ -38,18 +40,40 @@ namespace Tasker.Workers
             _endDate = end;
             _datesEnabled = true;
         }
+
         public void DisableDates()
         {
             _datesEnabled = false;
         }
+
         public void SetSubjectsShown(IEnumerable<string> subjects)
         {
             _subjectsShown = subjects;
         }
+
         public void SetFilterByState(int code)
         {
             _allActiveDoneFilter = code;
         }
+
+        public void SetActivityTypesShown(string type)
+        {
+            _activityTypesShown = type;
+        }
+
+        private IEnumerable<Activity> ShowSpecificTypes(IEnumerable<Activity> _collection)
+        {
+            if (_activityTypesShown == "Job")
+            {
+                return _collection.Where(a => a.GetType() == typeof(Job));
+            }
+            if (_activityTypesShown == "Lesson")
+            {
+                return _collection.Where(a => a.GetType() == typeof(Lesson));
+            }
+            return _collection;
+        }
+
         private IEnumerable<Activity> FilterByState(IEnumerable<Activity> _activities)
         {
             foreach (var activity in _activities)
