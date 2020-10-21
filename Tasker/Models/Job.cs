@@ -35,6 +35,19 @@ namespace Tasker.Models
             Description = description;
         }
 
+        public Job(Subject subject, DateTime time, TaskType type, string name, string description, ICollection<DiskPlace> diskPlaces, ICollection<Link> links, ICollection<Note> notes, string status) : this(subject, time, type, name, description, diskPlaces,  links, notes)
+        {
+            switch (status)
+            {
+                case "Skończone": Status = Status.Finished;
+                    break;
+                case "Rozpoczęte": Status = Status.InProgress;
+                    break;
+                case "Zaplanowane": Status = Status.Scheduled;
+                    break;
+            }
+        }
+
         public bool Equals(Job other)
         {
             return Name == other.Name
