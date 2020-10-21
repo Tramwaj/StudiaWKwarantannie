@@ -21,6 +21,10 @@ namespace Tasker
         private ICollection<DiskPlace> _diskPlaces;
         private bool _isLesson;
         private Subject _subject;
+        
+        //TODO:
+        //true/false
+        //dynamic
 
         public EditDetails(Activity activity)
         {
@@ -34,30 +38,33 @@ namespace Tasker
             _notes = activity.Notes;
             rtxNote.Text = "Treść wybranej notatki";
             FormatListViews();
-        }
-
-        public EditDetails(Lesson activity) : this((Activity)activity)
-        {
-            lblType.Text = activity.Type.ToString();
-            lblDuration.Text = activity.Duration.ToString();
-            _isLesson = true;
-            lblDescription.Visible = false;
-        }
-
-        public EditDetails(Job activity) : this((Activity)activity)
-        {
-            lblName.Text = activity.Name;
-            lblType.Text = activity.Type.ToString();
-            lblDescription.Text = activity.Description;
-            _isLesson = false;
+            
+            if (activity is Lesson l)
+            {
+                lblType.Text = l.Type.ToString();
+                lblDuration.Text = l.Duration.ToString();
+                _isLesson = true;
+                lblDescription.Visible = false;
+                lblName.Text = "Spotkanie";
+            }
+            
+            if (activity is Job j)
+            {
+                lblName.Text = j.Name;
+                lblType.Text = j.Type.ToString();
+                lblDescription.Text = j.Description;
+                _isLesson = false;
+                SetCmbStatus(activity.Status);
+            }
         }
 
         private void FormatListViews()
         {
-            RefreshListViews();   
+            RefreshListViews();
             olvColOpen.IsButton = true;
             olvLinks.UseHyperlinks = true;
-            olvPlaces.ButtonClick += delegate (object sender, CellClickEventArgs e) {
+            olvPlaces.ButtonClick += delegate (object sender, CellClickEventArgs e)
+            {
                 DiskPlace _diskPlace = (DiskPlace)e.Model;
                 if (_diskPlace.IsFile)
                 {
@@ -66,7 +73,19 @@ namespace Tasker
                 else
                 {
                     Process.Start("explorer.exe", _diskPlace.Path);
-                }                
+                }
+            };
+            olvColOpen.AspectToStringConverter = delegate (object x)
+            {
+                bool IsFile = (bool)x;
+                if (IsFile)
+                {
+                    return "Plik";
+                }
+                else
+                {
+                    return "Folder";
+                }
             };
         }
 
@@ -86,9 +105,26 @@ namespace Tasker
                 case Status.Scheduled: return "Zaplanowane";
             }
             return "status niedostępny";
-
         }
 
+        private void SetCmbStatus(Status status)
+        {
+            cmbStatus.Items.AddRange(new string[] { "Skończone", "Rozpoczęte", "Zaplanowane" });
+            cmbStatus.Visible = true;
+            cmbStatus.Enabled = true;
+            switch (status)
+            {
+                case Status.Finished: cmbStatus.SelectedIndex = 0;
+                    break;
+                case Status.InProgress:
+                    cmbStatus.SelectedIndex = 1;
+                    break;
+                case Status.Scheduled:
+                    cmbStatus.SelectedIndex = 2;
+                    break;
+            }
+        }
+        
         internal Activity getResult()
         {
             return _activity;
@@ -127,7 +163,7 @@ namespace Tasker
                      , _diskPlaces
                      , _links
                      , _notes
-                    ) ;
+                    );
             }
             else
             {
@@ -143,21 +179,13 @@ namespace Tasker
                     , _diskPlaces
                     , _links
                     , _notes
-                    ) ;
+                    , cmbStatus.SelectedItem.ToString()
+                    );
             }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e) //TO BE REMOVED
-        {
-
-            //TO BE REMOVED
-            //TO BE REMOVED
-            //TO BE REMOVED
-            //TO BE REMOVED
-
-        }
 
         private void btnAddPlace_Click(object sender, EventArgs e)
         {
@@ -206,10 +234,24 @@ namespace Tasker
             {
                 return;
             }
-            else 
+            else
             {
                 rtxNote.Text = _note.Content;
             }
+        }
+
+        private void lblDescription_DoubleClick(object sender, EventArgs e)
+        {
+            //var txtBox = new Te
+        }
+        private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e) //TO BE REMOVED
+        {
+
+            //TO BE REMOVED
+            //TO BE REMOVED
+            //TO BE REMOVED
+            //TO BE REMOVED
+
         }
     }
 }

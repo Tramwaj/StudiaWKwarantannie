@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblName = new System.Windows.Forms.Label();
             this.lblSubject = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
@@ -55,6 +56,8 @@
             this.btnAddNote = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.olvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvLinks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
@@ -103,7 +106,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(193, 9);
+            this.lblStatus.Location = new System.Drawing.Point(168, 9);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(37, 13);
@@ -333,6 +336,7 @@
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
+            this.lblDescription.DoubleClick += new System.EventHandler(this.lblDescription_DoubleClick);
             // 
             // lblType
             // 
@@ -345,11 +349,22 @@
             this.lblType.Text = "Type";
             this.lblType.Visible = false;
             // 
+            // cmbStatus
+            // 
+            this.cmbStatus.Enabled = false;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(171, 5);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(121, 21);
+            this.cmbStatus.TabIndex = 20;
+            this.cmbStatus.Visible = false;
+            // 
             // EditDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 418);
+            this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.btnAddNote);
             this.Controls.Add(this.rtxNote);
@@ -410,5 +425,7 @@
         private BrightIdeasSoftware.OLVColumn olvColLinkPath;
         private BrightIdeasSoftware.OLVColumn olvColLinkDescription;
         private System.Windows.Forms.Label lblType;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
