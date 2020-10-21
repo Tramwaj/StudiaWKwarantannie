@@ -35,21 +35,27 @@ namespace Tasker
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Pole nie może być puste");
+            }
+
             DateTime _time = dtpDate.Value.Date;
             _time = _time.AddHours(Convert.ToInt32(cmbStartHour.SelectedItem));
             _time = _time.AddMinutes(Convert.ToInt32(cmbStartMinutes.SelectedItem));
-                        
+
             job = new Job
                 (_subjects.Where(s => s.ShortName.Equals(cmbSubject.SelectedItem)).First()
                 , _time
                 , (TaskType)cmbJobType.SelectedIndex
                 , txtName.Text
                 , rtxDescription.Text
-                , _diskPlaces 
+                , _diskPlaces
                 , new List<Link>() //TODO: Links , notes
                 , new List<Note>());
             this.DialogResult = DialogResult.OK;
             this.Close();
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
