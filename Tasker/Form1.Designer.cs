@@ -58,9 +58,9 @@
             this.btnSaveSelected = new System.Windows.Forms.Button();
             this.btnLoadSelected = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdoShowAll = new System.Windows.Forms.RadioButton();
-            this.rdoShowLessons = new System.Windows.Forms.RadioButton();
             this.rdoShowJobs = new System.Windows.Forms.RadioButton();
+            this.rdoShowLessons = new System.Windows.Forms.RadioButton();
+            this.rdoShowAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvActivities)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -243,6 +243,7 @@
             // 
             this.olvTimeOfDay.AspectName = "Time";
             this.olvTimeOfDay.AspectToStringFormat = "{0:HH:mm}";
+            this.olvTimeOfDay.Sortable = false;
             this.olvTimeOfDay.Text = "Godzina";
             // 
             // olvColSubject
@@ -253,11 +254,13 @@
             // olvColType
             // 
             this.olvColType.AspectName = "Type";
+            this.olvColType.Sortable = false;
             this.olvColType.Text = "Rodzaj";
             // 
             // olvColStatus
             // 
             this.olvColStatus.AspectName = "Status";
+            this.olvColStatus.Sortable = false;
             this.olvColStatus.Text = "Status";
             // 
             // olvColNotes
@@ -269,6 +272,7 @@
             // 
             this.olvColName.AspectName = "Name";
             this.olvColName.Text = "Nazwa";
+            this.olvColName.Width = 120;
             // 
             // btnDetails
             // 
@@ -373,17 +377,17 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             // 
-            // rdoShowAll
+            // rdoShowJobs
             // 
-            this.rdoShowAll.AutoSize = true;
-            this.rdoShowAll.Location = new System.Drawing.Point(18, 9);
-            this.rdoShowAll.Name = "rdoShowAll";
-            this.rdoShowAll.Size = new System.Drawing.Size(71, 17);
-            this.rdoShowAll.TabIndex = 0;
-            this.rdoShowAll.TabStop = true;
-            this.rdoShowAll.Text = "Wszystko";
-            this.rdoShowAll.UseVisualStyleBackColor = true;
-            this.rdoShowAll.CheckedChanged += new System.EventHandler(this.rdoShowAll_CheckedChanged);
+            this.rdoShowJobs.AutoSize = true;
+            this.rdoShowJobs.Location = new System.Drawing.Point(207, 9);
+            this.rdoShowJobs.Name = "rdoShowJobs";
+            this.rdoShowJobs.Size = new System.Drawing.Size(64, 17);
+            this.rdoShowJobs.TabIndex = 2;
+            this.rdoShowJobs.TabStop = true;
+            this.rdoShowJobs.Text = "Zadania";
+            this.rdoShowJobs.UseVisualStyleBackColor = true;
+            this.rdoShowJobs.CheckedChanged += new System.EventHandler(this.rdoShowJobs_CheckedChanged);
             // 
             // rdoShowLessons
             // 
@@ -397,17 +401,17 @@
             this.rdoShowLessons.UseVisualStyleBackColor = true;
             this.rdoShowLessons.CheckedChanged += new System.EventHandler(this.rdoShowLessons_CheckedChanged);
             // 
-            // rdoShowJobs
+            // rdoShowAll
             // 
-            this.rdoShowJobs.AutoSize = true;
-            this.rdoShowJobs.Location = new System.Drawing.Point(207, 9);
-            this.rdoShowJobs.Name = "rdoShowJobs";
-            this.rdoShowJobs.Size = new System.Drawing.Size(64, 17);
-            this.rdoShowJobs.TabIndex = 2;
-            this.rdoShowJobs.TabStop = true;
-            this.rdoShowJobs.Text = "Zadania";
-            this.rdoShowJobs.UseVisualStyleBackColor = true;
-            this.rdoShowJobs.CheckedChanged += new System.EventHandler(this.rdoShowJobs_CheckedChanged);
+            this.rdoShowAll.AutoSize = true;
+            this.rdoShowAll.Location = new System.Drawing.Point(18, 9);
+            this.rdoShowAll.Name = "rdoShowAll";
+            this.rdoShowAll.Size = new System.Drawing.Size(71, 17);
+            this.rdoShowAll.TabIndex = 0;
+            this.rdoShowAll.TabStop = true;
+            this.rdoShowAll.Text = "Wszystko";
+            this.rdoShowAll.UseVisualStyleBackColor = true;
+            this.rdoShowAll.CheckedChanged += new System.EventHandler(this.rdoShowAll_CheckedChanged);
             // 
             // Form1
             // 

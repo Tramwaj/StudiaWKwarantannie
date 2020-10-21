@@ -110,6 +110,12 @@
     <Compile Include="EditDetailsFolder\EditDetails.Designer.cs">
       <DependentUpon>EditDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditDetailsFolder\EditProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDetailsFolder\EditProperty.Designer.cs">
+      <DependentUpon>EditProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditSubjects.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="EditDetailsFolder\EditDetails.resx">
       <DependentUpon>EditDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditDetailsFolder\EditProperty.resx">
+      <DependentUpon>EditProperty.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditSubjects.resx">
       <DependentUpon>EditSubjects.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +178,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Tasker.Models.Activities.datasource" />
@@ -186,6 +196,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ATH-studia.jpg" />
+    <None Include="ATH-logo.jpg" />
     <Content Include="Windows Logo.png" />
   </ItemGroup>
   <ItemGroup />

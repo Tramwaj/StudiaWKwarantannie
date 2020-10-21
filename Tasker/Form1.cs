@@ -28,8 +28,7 @@ namespace Tasker
         private ActivityDisplayFilter DisplayFilter;
         public Form1()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
             LoadSubjects();
             LoadTeachers();
 
@@ -38,12 +37,7 @@ namespace Tasker
             FormatActivitiesList();
             SetSubjects();
             ShowEvents();
-            
-
-            //var backGround = new Bitmap(Properties.Resources.ATH_logo);
-            //backGround.SetResolution(512, 284);
-            //dlvActivities.BackgroundImage = backGround;
-            //dlvActivities.BackgroundImage.
+                        
         }
 
         private void SetSubjects()
@@ -60,6 +54,7 @@ namespace Tasker
             DisplayFilter.SetDatesShown(calendar.SelectionStart, calendar.SelectionEnd);
             ShowEvents();
         }
+
         private void btnCancelCalendar_Click(object sender, EventArgs e)
         {
             DisplayFilter.DisableDates();
@@ -73,6 +68,7 @@ namespace Tasker
             calendar.BoldedDates = activities.All.Select(x => x.Time).Distinct().ToArray();
             //calendar
         }
+
         private void CheckRadios()
         {
             if (rdoShowAll.Checked == true) DisplayFilter.SetActivityTypesShown("All");
@@ -92,6 +88,7 @@ namespace Tasker
             }
             ShowEvents();
         }
+
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             using (AddJob addJob = new AddJob(subjects))
@@ -106,21 +103,27 @@ namespace Tasker
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            Activity selectedActivity = (Activity)olvActivities.SelectedObject;
-            try
+            if (olvActivities.SelectedObjects.Count == 1)
             {
-                using (EditDetails editDetails = new EditDetails((dynamic)selectedActivity))
+                Activity selectedActivity = (Activity)olvActivities.SelectedObject;
+                try
                 {
-                    if (editDetails.ShowDialog() == DialogResult.OK)
+                    using (EditDetails editDetails = new EditDetails(selectedActivity))
                     {
-                        activities.Replace(selectedActivity, editDetails.getResult());
+                        if (editDetails.ShowDialog() == DialogResult.OK)
+                        {
+                            var _resultActivity = editDetails.getResult();
+                            activities.Replace(selectedActivity, _resultActivity);
+                        }
                     }
                 }
+                catch
+                {
+                    MessageBox.Show("Coś poszło nie tak.", "błąd", MessageBoxButtons.OK);
+                }
+                ShowEvents();
             }
-            catch
-            {
-                MessageBox.Show("Coś poszło nie tak.", "błąd", MessageBoxButtons.OK);
-            }
+            else MessageBox.Show("Należy wybrać jedną pozycję z listy", "błąd", MessageBoxButtons.OK);
         }
 
         private void dlvActivities_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,8 +159,6 @@ namespace Tasker
             ShowEvents();
         }
 
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
 
@@ -171,8 +172,6 @@ namespace Tasker
             activities = Workers.Serializator.Deserialize<Activities>("act.bin");
             ShowEvents();
         }
-
-
 
         private void cklSubjects_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -216,14 +215,7 @@ namespace Tasker
              };
             olvActivities.FullRowSelect = true;
         }
-        //private void olvActivitie_FormatCell(object sender)
-
-        // TO BE REMOVED:
-        private void cklSubjects_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayFilter.SetFilterByState(cmbState.SelectedIndex);
@@ -251,14 +243,17 @@ namespace Tasker
         {
             Workers.Serializator.Serialize("teachers.bin", teachers);
         }
+
         private void SaveSubjects()
         {
             Workers.Serializator.Serialize("subjects.bin", subjects);
         }
+
         private void LoadTeachers()
         {
             teachers = Workers.Serializator.Deserialize<List<Teacher>>("teachers.bin");
         }
+
         private void LoadSubjects()
         {
             subjects = Workers.Serializator.Deserialize<List<Subject>>("subjects.bin");
@@ -314,6 +309,11 @@ namespace Tasker
         private void rdoShowJobs_CheckedChanged(object sender, EventArgs e)
         {
             ShowEvents();
+        }
+        // TO BE REMOVED:
+        private void cklSubjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
