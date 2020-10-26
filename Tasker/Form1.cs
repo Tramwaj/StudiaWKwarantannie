@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Tasker.Data;
 using Tasker.Models;
 using Tasker.Workers;
 
@@ -28,7 +29,7 @@ namespace Tasker
         private ActivityDisplayFilter DisplayFilter;
         public Form1()
         {
-            InitializeComponent();            
+            InitializeComponent();
             LoadSubjects();
             LoadTeachers();
 
@@ -37,7 +38,7 @@ namespace Tasker
             FormatActivitiesList();
             SetSubjects();
             ShowEvents();
-                        
+
         }
 
         private void SetSubjects()
@@ -74,6 +75,35 @@ namespace Tasker
             if (rdoShowAll.Checked == true) DisplayFilter.SetActivityTypesShown("All");
             if (rdoShowJobs.Checked == true) DisplayFilter.SetActivityTypesShown("Job");
             if (rdoShowLessons.Checked == true) DisplayFilter.SetActivityTypesShown("Lesson");
+        }
+        private void btnCopyActivity_Click(object sender, EventArgs e)
+        {
+            if (olvActivities.SelectedObjects.Count == 1)
+            {
+                Activity selectedActivity = (Activity)olvActivities.SelectedObject;
+                if (selectedActivity is Job job)
+                {
+                    using (AddJob addJob = new AddJob(subjects,job))
+                    {
+                        if (addJob.ShowDialog() == DialogResult.OK)
+                        {
+                            activities.Add(addJob.GetResult());
+                        }
+                    }
+                    ShowEvents();
+                }
+                if (selectedActivity is Lesson lesson)
+                {
+                    using (AddLesson addLesson = new AddLesson(subjects,lesson))
+                    {
+                        if (addLesson.ShowDialog() == DialogResult.OK)
+                        {
+                            activities.Add(addLesson.GetResult());
+                        }
+                    }
+                    ShowEvents();
+                }
+            }
         }
 
         private void btnAddLesson_Click(object sender, EventArgs e)
@@ -215,7 +245,7 @@ namespace Tasker
              };
             olvActivities.FullRowSelect = true;
         }
-        
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayFilter.SetFilterByState(cmbState.SelectedIndex);
@@ -252,11 +282,19 @@ namespace Tasker
         private void LoadTeachers()
         {
             teachers = Workers.Serializator.Deserialize<List<Teacher>>("teachers.bin");
+            if (teachers.Count == 0)
+            {
+                teachers = InitialTeachers.Provide().ToList();
+            }
         }
 
         private void LoadSubjects()
         {
             subjects = Workers.Serializator.Deserialize<List<Subject>>("subjects.bin");
+            if (subjects.Count == 0)
+            {
+                subjects = InitialSubjects.Provide(teachers).ToList();
+            }
         }
 
         private void btnSaveSelected_Click(object sender, EventArgs e)
@@ -315,5 +353,7 @@ namespace Tasker
         {
 
         }
+
+
     }
 }

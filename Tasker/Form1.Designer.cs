@@ -61,6 +61,7 @@
             this.rdoShowJobs = new System.Windows.Forms.RadioButton();
             this.rdoShowLessons = new System.Windows.Forms.RadioButton();
             this.rdoShowAll = new System.Windows.Forms.RadioButton();
+            this.btnCopyActivity = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.olvNotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.olvActivities)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -97,7 +98,7 @@
             // btnDeleteEvent
             // 
             this.btnDeleteEvent.ForeColor = System.Drawing.Color.Red;
-            this.btnDeleteEvent.Location = new System.Drawing.Point(709, 329);
+            this.btnDeleteEvent.Location = new System.Drawing.Point(707, 329);
             this.btnDeleteEvent.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDeleteEvent.Name = "btnDeleteEvent";
             this.btnDeleteEvent.Size = new System.Drawing.Size(94, 31);
@@ -346,7 +347,7 @@
             // 
             // btnSaveSelected
             // 
-            this.btnSaveSelected.Location = new System.Drawing.Point(416, 330);
+            this.btnSaveSelected.Location = new System.Drawing.Point(389, 329);
             this.btnSaveSelected.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveSelected.Name = "btnSaveSelected";
             this.btnSaveSelected.Size = new System.Drawing.Size(94, 31);
@@ -357,7 +358,7 @@
             // 
             // btnLoadSelected
             // 
-            this.btnLoadSelected.Location = new System.Drawing.Point(544, 330);
+            this.btnLoadSelected.Location = new System.Drawing.Point(487, 329);
             this.btnLoadSelected.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoadSelected.Name = "btnLoadSelected";
             this.btnLoadSelected.Size = new System.Drawing.Size(104, 31);
@@ -413,11 +414,22 @@
             this.rdoShowAll.UseVisualStyleBackColor = true;
             this.rdoShowAll.CheckedChanged += new System.EventHandler(this.rdoShowAll_CheckedChanged);
             // 
+            // btnCopyActivity
+            // 
+            this.btnCopyActivity.Location = new System.Drawing.Point(596, 329);
+            this.btnCopyActivity.Name = "btnCopyActivity";
+            this.btnCopyActivity.Size = new System.Drawing.Size(94, 31);
+            this.btnCopyActivity.TabIndex = 21;
+            this.btnCopyActivity.Text = "Kopiuj";
+            this.btnCopyActivity.UseVisualStyleBackColor = true;
+            this.btnCopyActivity.Click += new System.EventHandler(this.btnCopyActivity_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 544);
+            this.Controls.Add(this.btnCopyActivity);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoadSelected);
             this.Controls.Add(this.btnSaveSelected);
@@ -487,6 +499,7 @@
         private System.Windows.Forms.RadioButton rdoShowJobs;
         private System.Windows.Forms.RadioButton rdoShowLessons;
         private System.Windows.Forms.RadioButton rdoShowAll;
+        private System.Windows.Forms.Button btnCopyActivity;
     }
 }
 

@@ -28,6 +28,17 @@ namespace Tasker
             _diskPlaces = new List<DiskPlace>();
         }
 
+        public AddJob(ICollection<Subject> subjects, Job copiedJob) : this(subjects)
+        {
+            cmbSubject.SelectedItem = copiedJob.Subject.ShortName;
+            dtpDate.Value = copiedJob.Time.Date;
+            cmbJobType.SelectedIndex = (int)copiedJob.Type;
+            txtName.Text = copiedJob.Name;
+            rtxDescription.Text = copiedJob.Description;
+            cmbStartHour.SelectedItem = copiedJob.Time.Hour.ToString();
+            cmbStartMinutes.SelectedItem = copiedJob.Time.Minute.ToString();
+        }
+
         public Job GetResult()
         {
             return job;

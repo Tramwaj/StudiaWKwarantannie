@@ -26,6 +26,16 @@ namespace Tasker
             SetComboBoxesToDefault();
             _diskPlaces = new List<DiskPlace>();
         }
+        public AddLesson(ICollection<Subject> subjects, Lesson copiedLesson) : this(subjects)
+        {
+            cmbSubject.SelectedItem = copiedLesson.Subject.ShortName;
+            dtpDate.Value = copiedLesson.Time.Date;
+            cmbLessonType.SelectedIndex = (int)copiedLesson.Type;
+            cmbDurationHours.SelectedItem = copiedLesson.Duration.Hours.ToString();
+            cmbDurationMinutes.SelectedItem = copiedLesson.Duration.Minutes.ToString();            
+            cmbStartHour.SelectedItem = copiedLesson.Time.Hour.ToString();
+            cmbStartMinutes.SelectedItem = copiedLesson.Time.Minute.ToString();
+        }
 
         public Lesson GetResult()
         {
