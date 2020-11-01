@@ -245,12 +245,12 @@ namespace Tasker
              };
             olvActivities.FullRowSelect = true;
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayFilter.SetFilterByState(cmbState.SelectedIndex);
             ShowEvents();
         }
+
 
         private void btnEditSubjects_Click(object sender, EventArgs e)
         {
@@ -265,7 +265,8 @@ namespace Tasker
                     SaveTeachers();
                 }
             }
-
+            cklSubjects.Items.Clear();
+            cklSubjects.Items.AddRange(subjects.Select(s => s.Name).ToArray());
             ShowEvents();
         }
 
@@ -281,20 +282,36 @@ namespace Tasker
 
         private void LoadTeachers()
         {
-            teachers = Workers.Serializator.Deserialize<List<Teacher>>("teachers.bin");
-            if (teachers.Count == 0)
+            try
             {
-                teachers = InitialTeachers.Provide().ToList();
+                teachers = Workers.Serializator.Deserialize<List<Teacher>>("teachers.bin");
             }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show("Nie udało się zaimportować nauczycieli");
+                teachers = new List<Teacher>();
+            }
+            //if (teachers.Count == 0)
+            //{
+            //   // teachers = InitialTeachers.Provide().ToList();
+            //}
         }
 
         private void LoadSubjects()
         {
-            subjects = Workers.Serializator.Deserialize<List<Subject>>("subjects.bin");
-            if (subjects.Count == 0)
+            try
             {
-                subjects = InitialSubjects.Provide(teachers).ToList();
+                subjects = Workers.Serializator.Deserialize<List<Subject>>("subjects.bin");
             }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show("Nie udało się zaimportować przedmiotów");
+                subjects = new List<Subject>();
+            }
+            //if (subjects.Count == 0)
+            //{
+            //   // subjects = InitialSubjects.Provide(teachers).ToList();
+            //}
         }
 
         private void btnSaveSelected_Click(object sender, EventArgs e)
