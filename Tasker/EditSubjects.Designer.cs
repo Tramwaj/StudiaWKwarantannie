@@ -63,7 +63,7 @@
             // 
             this.cmbSubject.FormattingEnabled = true;
             this.cmbSubject.Location = new System.Drawing.Point(20, 24);
-            this.cmbSubject.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbSubject.Name = "cmbSubject";
             this.cmbSubject.Size = new System.Drawing.Size(141, 21);
             this.cmbSubject.TabIndex = 0;
@@ -73,7 +73,7 @@
             // 
             this.cmbTeacher.FormattingEnabled = true;
             this.cmbTeacher.Location = new System.Drawing.Point(20, 137);
-            this.cmbTeacher.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbTeacher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbTeacher.Name = "cmbTeacher";
             this.cmbTeacher.Size = new System.Drawing.Size(132, 21);
             this.cmbTeacher.TabIndex = 1;
@@ -103,7 +103,7 @@
             // txtSubjectName
             // 
             this.txtSubjectName.Location = new System.Drawing.Point(20, 62);
-            this.txtSubjectName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSubjectName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSubjectName.Name = "txtSubjectName";
             this.txtSubjectName.Size = new System.Drawing.Size(141, 20);
             this.txtSubjectName.TabIndex = 4;
@@ -111,7 +111,7 @@
             // txtSubjectShortName
             // 
             this.txtSubjectShortName.Location = new System.Drawing.Point(20, 101);
-            this.txtSubjectShortName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSubjectShortName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtSubjectShortName.Name = "txtSubjectShortName";
             this.txtSubjectShortName.Size = new System.Drawing.Size(83, 20);
             this.txtSubjectShortName.TabIndex = 5;
@@ -119,7 +119,7 @@
             // txtECTS
             // 
             this.txtECTS.Location = new System.Drawing.Point(128, 101);
-            this.txtECTS.Margin = new System.Windows.Forms.Padding(2);
+            this.txtECTS.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtECTS.Name = "txtECTS";
             this.txtECTS.Size = new System.Drawing.Size(31, 20);
             this.txtECTS.TabIndex = 6;
@@ -157,7 +157,7 @@
             // btnAddTeacher
             // 
             this.btnAddTeacher.Location = new System.Drawing.Point(289, 160);
-            this.btnAddTeacher.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddTeacher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Size = new System.Drawing.Size(71, 45);
             this.btnAddTeacher.TabIndex = 12;
@@ -168,7 +168,7 @@
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(38, 210);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(122, 41);
             this.btnOk.TabIndex = 13;
@@ -179,17 +179,18 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(208, 210);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(122, 41);
             this.btnCancel.TabIndex = 14;
             this.btnCancel.Text = "Anuluj";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtTeacherFirstName
             // 
             this.txtTeacherFirstName.Location = new System.Drawing.Point(190, 62);
-            this.txtTeacherFirstName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTeacherFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTeacherFirstName.Name = "txtTeacherFirstName";
             this.txtTeacherFirstName.Size = new System.Drawing.Size(76, 20);
             this.txtTeacherFirstName.TabIndex = 15;
@@ -197,7 +198,7 @@
             // txtTeacherLastName
             // 
             this.txtTeacherLastName.Location = new System.Drawing.Point(285, 62);
-            this.txtTeacherLastName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTeacherLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTeacherLastName.Name = "txtTeacherLastName";
             this.txtTeacherLastName.Size = new System.Drawing.Size(76, 20);
             this.txtTeacherLastName.TabIndex = 16;
@@ -205,7 +206,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(190, 101);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(141, 20);
             this.txtEmail.TabIndex = 17;
@@ -213,7 +214,7 @@
             // txtLink
             // 
             this.txtLink.Location = new System.Drawing.Point(190, 137);
-            this.txtLink.Margin = new System.Windows.Forms.Padding(2);
+            this.txtLink.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtLink.Name = "txtLink";
             this.txtLink.Size = new System.Drawing.Size(141, 20);
             this.txtLink.TabIndex = 18;
@@ -221,7 +222,7 @@
             // btnAddSubject
             // 
             this.btnAddSubject.Location = new System.Drawing.Point(94, 160);
-            this.btnAddSubject.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAddSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddSubject.Name = "btnAddSubject";
             this.btnAddSubject.Size = new System.Drawing.Size(75, 45);
             this.btnAddSubject.TabIndex = 19;
@@ -232,7 +233,7 @@
             // btnSaveSubject
             // 
             this.btnSaveSubject.Location = new System.Drawing.Point(8, 160);
-            this.btnSaveSubject.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveSubject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSaveSubject.Name = "btnSaveSubject";
             this.btnSaveSubject.Size = new System.Drawing.Size(75, 45);
             this.btnSaveSubject.TabIndex = 20;
@@ -243,11 +244,11 @@
             // btnSaveTeacher
             // 
             this.btnSaveTeacher.Location = new System.Drawing.Point(190, 160);
-            this.btnSaveTeacher.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSaveTeacher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSaveTeacher.Name = "btnSaveTeacher";
             this.btnSaveTeacher.Size = new System.Drawing.Size(75, 45);
             this.btnSaveTeacher.TabIndex = 21;
-            this.btnSaveTeacher.Text = "Zapisz zmiany";
+            this.btnSaveTeacher.Text = "Zapisz";
             this.btnSaveTeacher.UseVisualStyleBackColor = true;
             this.btnSaveTeacher.Click += new System.EventHandler(this.btnSaveTeacher_Click);
             // 
@@ -329,7 +330,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbTeacher);
             this.Controls.Add(this.cmbSubject);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "EditSubjects";
             this.Text = "EditSubjects";
             ((System.ComponentModel.ISupportInitialize)(this.errSubject)).EndInit();

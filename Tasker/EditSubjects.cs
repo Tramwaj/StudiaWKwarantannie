@@ -15,6 +15,7 @@ namespace Tasker
     {
         private ICollection<Subject> subjects;
         private ICollection<Teacher> teachers;
+        Subject _subjectSelected;
         public EditSubjects(ICollection<Subject> subjects, ICollection<Teacher> teachers)
         {
             this.subjects = subjects;
@@ -42,11 +43,11 @@ namespace Tasker
 
         private void cmbSubject_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Subject _subject = subjects.First(s => s.Name == (string)cmbSubject.SelectedItem);
-            txtSubjectName.Text = _subject.Name;
-            txtSubjectShortName.Text = _subject.ShortName;
-            txtECTS.Text = _subject.ECTS.ToString();
-            cmbTeacher.SelectedItem = _subject.Teacher.ToString();
+            _subjectSelected = subjects.First(s => s.Name == (string)cmbSubject.SelectedItem);
+            txtSubjectName.Text = _subjectSelected.Name;
+            txtSubjectShortName.Text = _subjectSelected.ShortName;
+            txtECTS.Text = _subjectSelected.ECTS.ToString();
+            cmbTeacher.SelectedItem = _subjectSelected.Teacher.ToString();
         }
 
         private void cmbTeacher_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,6 +59,17 @@ namespace Tasker
             txtLink.Text = _teacher.Link;
         }
 
+        private void ClearAll()
+        {
+            txtSubjectName.Text = "";
+            txtSubjectShortName.Text = "";
+            txtECTS.Text = "";
+            txtTeacherFirstName.Text = "";
+            txtTeacherLastName.Text = "";
+            txtEmail.Text = "";
+            txtLink.Text = "";
+        }
+
         private void btnSaveSubject_Click(object sender, EventArgs e)
         {
             if (AnySubjectFieldIsEmptyOrWrong())
@@ -66,11 +78,12 @@ namespace Tasker
             }
             else
             {
-                Subject _subject = subjects.First(s => s.Name == (string)cmbSubject.SelectedItem);
-                _subject.Name = txtSubjectName.Text;
-                _subject.ShortName = txtSubjectShortName.Text;
-                _subject.ECTS = Int32.Parse(txtECTS.Text);
-
+                subjects.Remove(_subjectSelected);                
+                _subjectSelected.Name = txtSubjectName.Text;
+                _subjectSelected.ShortName = txtSubjectShortName.Text;
+                _subjectSelected.ECTS = Int32.Parse(txtECTS.Text);
+                _subjectSelected.Teacher = teachers.First(t => (string)cmbTeacher.SelectedItem == t.ToString());
+                subjects.Add(_subjectSelected);
                 SetComboBoxes();
             }
         }
@@ -89,7 +102,8 @@ namespace Tasker
                     , teachers.First(t => t.ToString()==(string)cmbTeacher.SelectedItem)
                     , Int32.Parse(txtECTS.Text)  
                     ));
-
+                MessageBox.Show($"Dodano przedmiot - {txtSubjectShortName} - {txtSubjectName}");
+                ClearAll();
                 SetComboBoxes();
             }
         }
@@ -189,6 +203,12 @@ namespace Tasker
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
