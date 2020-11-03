@@ -72,6 +72,7 @@
             this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
+            this.lblName.DoubleClick += new System.EventHandler(this.lblName_DoubleClick);
             // 
             // lblSubject
             // 
@@ -93,6 +94,7 @@
             this.lblTime.Size = new System.Drawing.Size(30, 13);
             this.lblTime.TabIndex = 3;
             this.lblTime.Text = "Time";
+            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // lblDuration
             // 
@@ -100,9 +102,8 @@
             this.lblDuration.Location = new System.Drawing.Point(183, 86);
             this.lblDuration.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDuration.Name = "lblDuration";
-            this.lblDuration.Size = new System.Drawing.Size(47, 13);
+            this.lblDuration.Size = new System.Drawing.Size(0, 13);
             this.lblDuration.TabIndex = 4;
-            this.lblDuration.Text = "Duration";
             // 
             // lblStatus
             // 
@@ -337,12 +338,12 @@
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 19;
             this.lblDescription.Text = "Description";
-            this.lblDescription.DoubleClick += new System.EventHandler(this.lblDescription_DoubleClick);
+            this.lblDescription.DoubleClick += new System.EventHandler(this.lblName_DoubleClick);
             // 
             // lblType
             // 
             this.lblType.AutoSize = true;
-            this.lblType.Location = new System.Drawing.Point(77, 86);
+            this.lblType.Location = new System.Drawing.Point(293, 29);
             this.lblType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(31, 13);

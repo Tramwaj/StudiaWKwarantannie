@@ -251,10 +251,6 @@ namespace Tasker
             }
         }
 
-        private void lblDescription_DoubleClick(object sender, EventArgs e)
-        {
-            //var txtBox = new Te
-        }
         private void olvPlaces_SelectedIndexChanged(object sender, EventArgs e) //TO BE REMOVED
         {
 
@@ -279,6 +275,29 @@ namespace Tasker
                     lblSubject.Text = subject.Name;
                 }
 
+            }
+        }
+        private void lblName_DoubleClick(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+            using (EditProperty editProperty = new EditProperty(label.Text))
+            {
+                if (editProperty.ShowDialog() == DialogResult.OK)
+                {
+                    label.Text = editProperty.GetResult();
+                }
+            }
+        }
+
+        private void lblTime_Click(object sender, EventArgs e)
+        {
+            var label = (Label)sender;
+            using (EditTime editTime = new EditTime(label.Text))
+            {
+                if (editTime.ShowDialog() == DialogResult.OK)
+                {
+                    label.Text = editTime.GetResult();
+                }
             }
         }
     }
