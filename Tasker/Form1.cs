@@ -27,6 +27,8 @@ namespace Tasker
         //private List<Activity> events;
         private Activities activities;
         private ActivityDisplayFilter DisplayFilter;
+        bool _madeChanges = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +41,20 @@ namespace Tasker
             SetSubjects();
             ShowEvents();
 
+            this.FormClosing += new FormClosingEventHandler(ConfirmExit);
+        }
+
+        private void ConfirmExit(object sender, FormClosingEventArgs e)
+        {
+            if (_madeChanges)
+            {
+                var _selectedOption = MessageBox.Show("A może by tak zmiany zapisać?", "U sur?", MessageBoxButtons.YesNoCancel);
+                if (_selectedOption == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+                if (_selectedOption == DialogResult.Yes) SaveAllActivitiesToDefaultLocation();
+            } 
         }
 
         private void SetSubjects()
@@ -88,6 +104,7 @@ namespace Tasker
                         if (addJob.ShowDialog() == DialogResult.OK)
                         {
                             activities.Add(addJob.GetResult());
+                            _madeChanges = true;
                         }
                     }
                     ShowEvents();
@@ -99,6 +116,7 @@ namespace Tasker
                         if (addLesson.ShowDialog() == DialogResult.OK)
                         {
                             activities.Add(addLesson.GetResult());
+                            _madeChanges = true;
                         }
                     }
                     ShowEvents();
@@ -114,6 +132,7 @@ namespace Tasker
                 if (addLesson.ShowDialog() == DialogResult.OK)
                 {
                     activities.Add(addLesson.GetResult());
+                    _madeChanges = true;
                 }
             }
             ShowEvents();
@@ -126,6 +145,7 @@ namespace Tasker
                 if (addJob.ShowDialog() == DialogResult.OK)
                 {
                     activities.Add(addJob.GetResult());
+                    _madeChanges = true;
                 }
             }
             ShowEvents();
@@ -133,17 +153,19 @@ namespace Tasker
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            if (olvActivities.SelectedObjects.Count == 1)
+            bool ExactlyOneObjectSelected = olvActivities.SelectedObjects.Count == 1;
+            if (ExactlyOneObjectSelected)
             {
                 Activity selectedActivity = (Activity)olvActivities.SelectedObject;
                 try
                 {
-                    using (EditDetails editDetails = new EditDetails(selectedActivity))
+                    using (EditDetails editDetails = new EditDetails(selectedActivity, subjects))
                     {
                         if (editDetails.ShowDialog() == DialogResult.OK)
                         {
                             var _resultActivity = editDetails.getResult();
                             activities.Replace(selectedActivity, _resultActivity);
+                            _madeChanges = true;
                         }
                     }
                 }
@@ -175,6 +197,7 @@ namespace Tasker
                 {
                     {
                         activities.Remove(olvActivities.SelectedObjects.OfType<Activity>().First());
+                        _madeChanges = true;
                     }
                 }
                 catch
@@ -191,14 +214,16 @@ namespace Tasker
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "act.bin";
+            SaveAllActivitiesToDefaultLocation();            
+        }
+        private void SaveAllActivitiesToDefaultLocation()
+        {            
             Workers.Serializator.Serialize("act.bin", activities);
+            _madeChanges = false;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            string _file = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "act.bin";
             activities = Workers.Serializator.Deserialize<Activities>("act.bin");
             ShowEvents();
         }
