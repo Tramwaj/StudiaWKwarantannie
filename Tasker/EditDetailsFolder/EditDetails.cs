@@ -1,6 +1,7 @@
 ﻿using BrightIdeasSoftware;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tasker.EditDetailsFolder;
 using Tasker.Models;
 
 namespace Tasker
@@ -20,17 +22,21 @@ namespace Tasker
         private ICollection<Link> _links;
         private ICollection<DiskPlace> _diskPlaces;
         private bool _isLesson;
-        private Subject _subject;
-        
+        private Subject subject;
+
+        private readonly ICollection<Subject> subjects;
+
         //TODO:
         //true/false
         //dynamic
 
-        public EditDetails(Activity activity)
+        public EditDetails(Activity activity, ICollection<Subject> subjects)
         {
             InitializeComponent();
-            _subject = activity.Subject;
-            lblSubject.Text = _subject.Name;
+            this.subjects = subjects;
+
+            subject = activity.Subject;
+            lblSubject.Text = subject.Name;
             lblTime.Text = activity.Time.ToString();
             lblStatus.Text = TranslateStatus(activity.Status);
             _links = activity.Links;
@@ -38,7 +44,7 @@ namespace Tasker
             _notes = activity.Notes;
             rtxNote.Text = "Treść wybranej notatki";
             FormatListViews();
-            
+
             if (activity is Lesson l)
             {
                 lblType.Text = l.Type.ToString();
@@ -47,7 +53,7 @@ namespace Tasker
                 lblDescription.Visible = false;
                 lblName.Text = "Spotkanie";
             }
-            
+
             if (activity is Job j)
             {
                 lblName.Text = j.Name;
@@ -114,7 +120,8 @@ namespace Tasker
             cmbStatus.Enabled = true;
             switch (status)
             {
-                case Status.Finished: cmbStatus.SelectedIndex = 0;
+                case Status.Finished:
+                    cmbStatus.SelectedIndex = 0;
                     break;
                 case Status.InProgress:
                     cmbStatus.SelectedIndex = 1;
@@ -124,7 +131,7 @@ namespace Tasker
                     break;
             }
         }
-        
+
         internal Activity getResult()
         {
             return _activity;
@@ -147,7 +154,11 @@ namespace Tasker
             }
             RefreshListViews();
         }
-
+        /// <summary>
+        /// Seriously hating this right now?
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (_isLesson)
@@ -156,7 +167,7 @@ namespace Tasker
                 Enum.TryParse(lblType.Text, out _type);
                 _activity = new Lesson
                     (
-                     _subject
+                     subject
                      , DateTime.Parse(lblTime.Text)
                      , TimeSpan.Parse(lblDuration.Text)
                      , _type
@@ -171,7 +182,7 @@ namespace Tasker
                 Enum.TryParse(lblType.Text, out _type);
                 _activity = new Job
                     (
-                    _subject
+                    subject
                     , DateTime.Parse(lblTime.Text)
                     , _type
                     , lblName.Text
@@ -252,6 +263,23 @@ namespace Tasker
             //TO BE REMOVED
             //TO BE REMOVED
 
+        }
+
+        private void lblSubjectDoubleClick(object sender, EventArgs e)
+        {
+            using (ChangeSubject changeSubject = new ChangeSubject(
+                subjects.Select(s => s.Name).ToArray(),
+                subject.Name
+                ))
+            {
+                if (changeSubject.ShowDialog() == DialogResult.OK)
+                {
+                    string subjectName = changeSubject.GetResult();
+                    subject = subjects.First(s => s.Name.Equals(subjectName));
+                    lblSubject.Text = subject.Name;
+                }
+
+            }
         }
     }
 }

@@ -82,6 +82,7 @@
             this.lblSubject.Size = new System.Drawing.Size(43, 13);
             this.lblSubject.TabIndex = 1;
             this.lblSubject.Text = "Subject";
+            this.lblSubject.DoubleClick += new System.EventHandler(this.lblSubjectDoubleClick);
             // 
             // lblTime
             // 
@@ -228,7 +229,7 @@
             // 
             this.olvColLinkDescription.AspectName = "Description";
             this.olvColLinkDescription.Text = "Opis";
-            this.olvColLinkDescription.ToolTipText = "Description";
+            this.olvColLinkDescription.ToolTipText = "this.Description";
             this.olvColLinkDescription.Width = 200;
             // 
             // btnAddPlace
